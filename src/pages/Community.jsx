@@ -10,9 +10,9 @@ const Community = () => {
     {
       id: 1,
       user: {
-        name: "Nguyễn Văn A",
+        name: "Rô Nan Đô",
         avatar:
-          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+          "https://tse2.mm.bing.net/th/id/OIP.cvtvy8bhCp0nMsXFIf52fQHaEK?cb=12&w=1920&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3",
         level: "Gold",
         points: 2500,
       },
@@ -22,8 +22,8 @@ const Community = () => {
       content:
         "Tour du thuyền rất đẹp, hướng dẫn viên nhiệt tình. Cảnh quan thiên nhiên tuyệt vời, đặc biệt là lúc hoàng hôn. Sẽ quay lại lần nữa!",
       images: [
-        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+        "https://www.chudu24.com/wp-content/uploads/2018/06/H%E1%BA%A1.Long_.Bay_.original.1986.jpg",
+        "https://trekkingtoursapa.com/wp-content/uploads/2023/12/28-3.webp",
       ],
       likes: 24,
       comments: 8,
@@ -33,9 +33,9 @@ const Community = () => {
     {
       id: 2,
       user: {
-        name: "Trần Thị B",
+        name: "Trần Văn Mười",
         avatar:
-          "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+          "https://tse1.mm.bing.net/th/id/OIP.kMAI7IpT9DIy1LzoNjBIdgHaFj?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3",
         level: "Silver",
         points: 1800,
       },
@@ -45,7 +45,7 @@ const Community = () => {
       content:
         "Đèn lồng rất đẹp, ẩm thực phong phú. Tuy nhiên khá đông khách du lịch. Nên đi vào buổi tối để tránh nắng.",
       images: [
-        "https://images.unsplash.com/photo-1528127269322-539801943592?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+        "https://static.vinwonders.com/production/hoi-an-vietnam-map-banner.jpg",
       ],
       likes: 18,
       comments: 5,
@@ -55,9 +55,9 @@ const Community = () => {
     {
       id: 3,
       user: {
-        name: "Lê Văn C",
+        name: "Pôn Pốc Ba",
         avatar:
-          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+          "https://images.performgroup.com/di/library/GOAL/30/36/paul-pogba-manchester-united-2018-19_1im0iegikqvsf19h3klr8paoq1.jpg?t=-1354357906&quality=100",
         level: "Bronze",
         points: 950,
       },
@@ -67,8 +67,8 @@ const Community = () => {
       content:
         "Trekking ruộng bậc thang rất thú vị, gặp gỡ người dân tộc thân thiện. Cảnh quan thiên nhiên hùng vĩ. Cần chuẩn bị giày leo núi tốt.",
       images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/59/37/1a/caption.jpg?w=800&h=400&s=1",
+        "https://toigingiuvedep.vn/wp-content/uploads/2021/07/hinh-anh-ruong-bac-thang-mua-nuoc-do-dep-nhu-tranh-ve.jpg",
       ],
       likes: 32,
       comments: 12,
@@ -335,7 +335,7 @@ const Community = () => {
                               src={image}
                               alt={`Review ${index + 1}`}
                               className={`object-cover rounded-xl ${
-                                review.images.length === 1 ? "h-64" : "h-32"
+                                review.images.length === 1 ? "h-128" : "h-64"
                               } w-full`}
                             />
                           ))}

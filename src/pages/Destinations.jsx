@@ -146,7 +146,7 @@ const Destinations = () => {
   ];
 
   const regions = [
-    { id: "all", name: "Tất cả", icon: "" },
+    { id: "all", name: "Tất cả", icon: "🇻🇳" },
     { id: "Miền Bắc", name: "Miền Bắc", icon: "🏔️" },
     { id: "Miền Trung", name: "Miền Trung", icon: "🏛️" },
     { id: "Miền Nam", name: "Miền Nam", icon: "🏖️" },
@@ -208,7 +208,7 @@ const Destinations = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
-              "url('./src/assets/images/destinations-banner.jpg')",
+              "url('https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-viet-nam-cover.jpeg')",
           }}
         />
         {/* Overlay */}

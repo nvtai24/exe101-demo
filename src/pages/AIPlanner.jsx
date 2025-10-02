@@ -908,7 +908,8 @@ const AIPlanner = () => {
       <div
         className="relative overflow-hidden py-24"
         style={{
-          backgroundImage: "url('./src/assets/images/ai-planner.jpg')",
+          backgroundImage:
+            "url('https://media.vov.vn/sites/default/files/styles/large/public/2020-09/99-thuyen_hoa.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -1072,7 +1073,7 @@ const AIPlanner = () => {
         </div>
 
         {/* Features */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
             <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-200">
               <i className="fas fa-brain text-white text-2xl"></i>
@@ -1111,10 +1112,10 @@ const AIPlanner = () => {
               cách du lịch của bạn
             </p>
           </div>
-        </div>
+        </div> */}
 
         {/* Testimonials */}
-        <div className="mt-20 bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
+        {/* <div className="mt-20 bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">
               Khách hàng nói gì về chúng tôi
@@ -1169,7 +1170,7 @@ const AIPlanner = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
