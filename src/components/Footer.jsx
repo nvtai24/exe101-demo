@@ -197,7 +197,12 @@ const Footer = () => {
               </Link>
             </div>
             <div className="text-gray-400 text-sm flex items-center">
-              <i className="fas fa-heart text-red-500 mr-2"></i>
+              <div className="w-5 h-5 mr-2">
+                <img
+                  src="https://img.icons8.com/?size=100&id=Wjhd8tSYkD8r&format=png&color=000000"
+                  alt=""
+                />
+              </div>
               Được phát triển với ❤️ tại Việt Nam
             </div>
           </div>
