@@ -87,7 +87,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center">
+              {/* <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center">
                 <i className="fas fa-rocket text-white text-xl"></i>
               </div>
               <div>
@@ -97,7 +97,12 @@ const Footer = () => {
                 <p className="text-sm text-gray-400">
                   Discover Vietnam, Smarter
                 </p>
-              </div>
+              </div> */}
+              <img
+                src="/logo_tagline.png"
+                alt="TravelTech Logo"
+                className="h-16 w-auto"
+              />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Nền tảng du lịch thông minh tích hợp AI cá nhân hóa lộ trình du

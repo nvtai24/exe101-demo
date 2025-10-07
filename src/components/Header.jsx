@@ -33,21 +33,12 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <i className="fas fa-rocket text-white text-lg"></i>
-              </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            </div>
-            <div>
-              <h1 className="text-xl lg:text-2xl font-display font-bold gradient-text">
-                TravelTech
-              </h1>
-              <p className="text-xs text-gray-500 hidden sm:block">
-                Discover Vietnam, Smarter
-              </p>
-            </div>
+          <Link to="/">
+            <img
+              src="/logo_name.png"
+              alt="TravelTech Logo"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
