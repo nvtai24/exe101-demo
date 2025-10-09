@@ -53,6 +53,7 @@ const Tours = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   // Featured tours for slider
   const featuredTours = tours.filter((tour) => tour.featured).slice(0, 5);
@@ -74,11 +75,18 @@ const Tours = () => {
   // Handle infinite loop transition
   useEffect(() => {
     if (currentSlide === featuredTours.length) {
-      setTimeout(() => {
-        setCurrentSlide(0);
-      }, 1000); // Đợi animation hoàn thành
+      // Khi đến slide duplicate cuối cùng
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false); // Tắt transition để reset không bị giật
+        setCurrentSlide(0); // Reset về slide đầu tiên
+      }, 1000); // = thời gian transition
+
+      return () => clearTimeout(timeout);
+    } else {
+      setIsTransitioning(true); // Bật lại transition bình thường
     }
   }, [currentSlide, featuredTours.length]);
+
   const nextSlide = () => {
     setCurrentSlide((prev) => prev + 1);
   };
@@ -103,9 +111,9 @@ const Tours = () => {
         <div className="absolute inset-0 overflow-hidden">
           <div
             className={`flex h-full ${
-              currentSlide === featuredTours.length
-                ? ""
-                : "transition-transform duration-1000 ease-in-out"
+              isTransitioning
+                ? "transition-transform duration-1000 ease-in-out"
+                : ""
             }`}
             style={{
               transform: `translateX(-${
@@ -235,18 +243,24 @@ const Tours = () => {
         </button>
 
         {/* Dots Indicator */}
+
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-          {featuredTours.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentSlide
-                  ? "bg-white scale-125"
-                  : "bg-white/50 hover:bg-white/75"
-              }`}
-            />
-          ))}
+          {featuredTours.map((_, index) => {
+            const displayIndex =
+              currentSlide >= featuredTours.length ? 0 : currentSlide;
+
+            return (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === displayIndex
+                    ? "bg-white scale-125"
+                    : "bg-white/50 hover:bg-white/75"
+                }`}
+              />
+            );
+          })}
         </div>
       </div>
 
