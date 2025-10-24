@@ -390,12 +390,12 @@ const Contact = () => {
 
         {/* Map Section */}
         <div className="mt-16">
-          <div className="card p-8">
+          <div className="card p-6">
             <h3 className="text-2xl font-display font-bold text-gray-900 mb-6 text-center">
               Vị trí văn phòng
             </h3>
             <div className="bg-gray-200 rounded-xl h-96 flex items-center justify-center">
-              <div className="w-full h-[500px]">
+              <div className="w-full h-full rounded-xl overflow-hidden">
                 <iframe
                   title="Google Map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4984879090163!2d106.70042311533491!3d10.776889992322073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3dfb8f1dcd%3A0x6b6f!2zVGjhu5FuZyBUaOG6oW4gUXXhuq1u!5e0!3m2!1svi!2s!4v1633605827819!5m2!1svi!2s"
