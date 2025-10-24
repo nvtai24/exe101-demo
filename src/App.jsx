@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import AnimatedRoutes from "./components/AnimatedRoutes";
+import ChatSupport from "./components/ChatSupport";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <AnimatedRoutes />
         </main>
         <Footer />
+        <ChatSupport />
       </div>
     </Router>
   );
