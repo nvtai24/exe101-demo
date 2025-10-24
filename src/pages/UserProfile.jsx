@@ -11,7 +11,7 @@ const UserProfile = () => {
     id: userId,
     name: "Happy Cat",
     avatar:
-      "https://i.pinimg.com/originals/42/ed/ad/42edade68de6bf3db4b54eb705ef45fc.jpg",
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3o4eGh2MHFqZnd6cWZqMHcyYXY3MGxwaG9icG5mYXh4MjUwbjlkcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/T70hpBP1L0N7U0jtkq/giphy.gif",
     coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
     bio: "Yêu thích khám phá những vùng đất mới, chia sẻ trải nghiệm du lịch",
     level: "Gold",

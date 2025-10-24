@@ -122,7 +122,7 @@ const ChatSupport = () => {
           <>
             <i className="fas fa-comments text-xl group-hover:scale-110 transition-transform"></i>
             {/* Notification Badge */}
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center animate-pulse">
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">
               1
             </span>
           </>
@@ -131,10 +131,10 @@ const ChatSupport = () => {
 
       {/* Floating Message Tooltip */}
       {!isOpen && isTooltipVisible && (
-        <div className="fixed bottom-20 right-6 bg-white px-4 py-2 rounded-lg shadow-lg z-40 animate-bounce">
+        <div className="fixed bottom-20 right-6 bg-white px-4 py-2 rounded-lg shadow-lg z-40 animate-bounce-slow mb-2 opacity-90">
           <button
             onClick={() => setIsTooltipVisible(false)}
-            className="absolute -top-2 -right-2 w-6 h-6 bg-gray-600 hover:bg-gray-700 text-white rounded-full flex items-center justify-center transition-colors"
+            className="absolute -top-2 -right-2 w-5 h-5 bg-gray-600 hover:bg-gray-700 text-white rounded-full flex items-center justify-center transition-colors"
             title="Đóng"
           >
             <i className="fas fa-times text-xs"></i>
