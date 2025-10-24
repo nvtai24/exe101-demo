@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("vi");
   const location = useLocation();
 
   useEffect(() => {
@@ -14,6 +16,43 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close language menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isLangMenuOpen && !event.target.closest(".language-selector")) {
+        setIsLangMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isLangMenuOpen]);
+
+  const languages = [
+    {
+      code: "vi",
+      name: "Tiếng Việt",
+      shortName: "VI",
+      flag: "/flag-langs/vietnam.png",
+    },
+    {
+      code: "en",
+      name: "English",
+      shortName: "EN",
+      flag: "/flag-langs/uk.png",
+    },
+  ];
+
+  const handleLanguageChange = (langCode) => {
+    setCurrentLang(langCode);
+    setIsLangMenuOpen(false);
+    // TODO: Implement language change logic here
+    // - Update i18n/translation context
+    // - Save to localStorage
+    // - Update all page content
+    console.log("Language changed to:", langCode);
+  };
 
   const navItems = [
     { name: "Trang chủ", path: "/", icon: "fas fa-home" },
@@ -59,12 +98,64 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* CTA Button & Language Selector */}
+          <div className="hidden lg:flex items-center space-x-3">
             <Link to="/contact" className="btn btn-primary group">
               <i className="fas fa-envelope mr-2 group-hover:scale-110 transition-transform"></i>
               Liên hệ
             </Link>
+
+            {/* Language Dropdown */}
+            <div className="relative language-selector">
+              <button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="flex items-center justify-center gap-2 px-3 h-10 rounded-lg hover:bg-gray-100 transition-all duration-200 border border-gray-200 hover:border-primary-300"
+                title="Đổi ngôn ngữ"
+              >
+                <img
+                  src={
+                    languages.find((lang) => lang.code === currentLang)?.flag
+                  }
+                  alt={
+                    languages.find((lang) => lang.code === currentLang)?.name
+                  }
+                  className="w-5 h-5 object-cover rounded"
+                />
+                <span className="text-sm font-semibold text-gray-700">
+                  {
+                    languages.find((lang) => lang.code === currentLang)
+                      ?.shortName
+                  }
+                </span>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isLangMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`w-full flex items-center space-x-3 px-4 py-2.5 text-left transition-colors ${
+                        currentLang === lang.code
+                          ? "bg-primary-50 text-primary-700"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      <img
+                        src={lang.flag}
+                        alt={lang.name}
+                        className="w-6 h-6 object-cover rounded"
+                      />
+                      <span className="text-sm font-medium">{lang.name}</span>
+                      {currentLang === lang.code && (
+                        <i className="fas fa-check text-primary-600 ml-auto text-sm"></i>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -97,6 +188,37 @@ const Header = () => {
                   <span>{item.name}</span>
                 </Link>
               ))}
+
+              {/* Mobile Language Selector */}
+              <div className="pt-3 border-t border-gray-200">
+                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Ngôn ngữ / Language
+                </div>
+                <div className="space-y-1">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                        currentLang === lang.code
+                          ? "bg-primary-100 text-primary-700"
+                          : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
+                      }`}
+                    >
+                      <img
+                        src={lang.flag}
+                        alt={lang.name}
+                        className="w-7 h-7 object-cover rounded"
+                      />
+                      <span>{lang.name}</span>
+                      {currentLang === lang.code && (
+                        <i className="fas fa-check text-primary-600 ml-auto text-sm"></i>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div className="pt-3 border-t border-gray-200">
                 <Link
                   to="/contact"
