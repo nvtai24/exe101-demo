@@ -6,10 +6,13 @@ import Home from "../pages/Home";
 import AIPlanner from "../pages/AIPlanner";
 import Destinations from "../pages/Destinations";
 import Tours from "../pages/Tours";
+import CommunityV2 from "../pages/CommunityV2";
 import Community from "../pages/Community";
+import CommunityBackup from "../pages/CommunityBackup";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import TourDetail from "../pages/TourDetail";
+import UserProfile from "../pages/UserProfile";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -62,6 +65,33 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <Community />
+            </PageTransition>
+          }
+        />
+
+        <Route
+          path="/community/v2"
+          element={
+            <PageTransition>
+              <CommunityV2 />
+            </PageTransition>
+          }
+        />
+
+        <Route
+          path="/community/old"
+          element={
+            <PageTransition>
+              <CommunityBackup />
+            </PageTransition>
+          }
+        />
+
+        <Route
+          path="/community/profile/:userId"
+          element={
+            <PageTransition>
+              <UserProfile />
             </PageTransition>
           }
         />

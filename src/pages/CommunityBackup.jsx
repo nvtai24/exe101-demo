@@ -1,112 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import CreatePostModal from "../components/CreatePostModal";
 
-const Community = () => {
+const CommunityBackup = () => {
   const [activeTab, setActiveTab] = useState("reviews");
   const [userPoints, setUserPoints] = useState(9999);
+  const [newPost, setNewPost] = useState({ title: "", content: "", rating: 5 });
   const [showCreatePost, setShowCreatePost] = useState(false);
-  const [friendRequests, setFriendRequests] = useState({});
-
-  const currentUser = {
-    id: "current-user-id",
-    name: "Devip666",
-    avatar:
-      "https://www.bleepstatic.com/content/hl-images/2022/03/11/kali-linux.jpg",
-    level: "Super User",
-    points: 9999,
-  };
-
-  const suggestedUsers = [
-    {
-      id: "user-4",
-      name: "Nguyễn Văn An",
-      avatar: "https://i.pravatar.cc/150?img=12",
-      level: "Gold",
-      points: 2100,
-      mutualFriends: 5,
-      location: "Hà Nội",
-      bio: "Yêu thích khám phá các địa danh lịch sử",
-      posts: 45,
-      friends: 120,
-    },
-    {
-      id: "user-5",
-      name: "Lê Thị Bình",
-      avatar: "https://i.pravatar.cc/150?img=5",
-      level: "Silver",
-      points: 1650,
-      mutualFriends: 3,
-      location: "Đà Nẵng",
-      bio: "Đam mê ẩm thực và văn hóa địa phương",
-      posts: 32,
-      friends: 89,
-    },
-    {
-      id: "user-6",
-      name: "Trần Minh Cường",
-      avatar: "https://i.pravatar.cc/150?img=33",
-      level: "Gold",
-      points: 2800,
-      mutualFriends: 8,
-      location: "TP.HCM",
-      bio: "Nhiếp ảnh gia phong cảnh nghiệp dư",
-      posts: 67,
-      friends: 234,
-    },
-    {
-      id: "user-7",
-      name: "Phạm Thu Hà",
-      avatar: "https://i.pravatar.cc/150?img=9",
-      level: "Bronze",
-      points: 850,
-      mutualFriends: 2,
-      location: "Huế",
-      bio: "Khám phá vẻ đẹp Việt Nam",
-      posts: 23,
-      friends: 56,
-    },
-    {
-      id: "user-8",
-      name: "Hoàng Đức Tài",
-      avatar: "https://i.pravatar.cc/150?img=51",
-      level: "Silver",
-      points: 1450,
-      mutualFriends: 4,
-      location: "Nha Trang",
-      bio: "Du lịch biển là đam mê của tôi",
-      posts: 38,
-      friends: 102,
-    },
-    {
-      id: "user-9",
-      name: "Vũ Mai Linh",
-      avatar: "https://i.pravatar.cc/150?img=10",
-      level: "Gold",
-      points: 3200,
-      mutualFriends: 12,
-      location: "Hội An",
-      bio: "Travel blogger & content creator",
-      posts: 89,
-      friends: 456,
-    },
-  ];
-
-  const handleAddFriend = (userId) => {
-    setFriendRequests({ ...friendRequests, [userId]: "pending" });
-  };
-
-  const handleCancelRequest = (userId) => {
-    const updated = { ...friendRequests };
-    delete updated[userId];
-    setFriendRequests(updated);
-  };
 
   const reviews = [
     {
       id: 1,
       user: {
-        id: "user-1",
         name: "Rô Nan Đô",
         avatar:
           "https://tse2.mm.bing.net/th/id/OIP.cvtvy8bhCp0nMsXFIf52fQHaEK?cb=12&w=1920&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -130,7 +33,6 @@ const Community = () => {
     {
       id: 2,
       user: {
-        id: "user-2",
         name: "Trần Văn Mười",
         avatar:
           "https://tse1.mm.bing.net/th/id/OIP.kMAI7IpT9DIy1LzoNjBIdgHaFj?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -153,7 +55,6 @@ const Community = () => {
     {
       id: 3,
       user: {
-        id: "user-3",
         name: "Pôn Pốc Ba",
         avatar:
           "https://images.performgroup.com/di/library/GOAL/30/36/paul-pogba-manchester-united-2018-19_1im0iegikqvsf19h3klr8paoq1.jpg?t=-1354357906&quality=100",
@@ -247,12 +148,6 @@ const Community = () => {
     }
   };
 
-  const handleCreatePost = (newPost) => {
-    console.log("New post created:", newPost);
-    // TODO: Add post to reviews list and call API
-    setShowCreatePost(false);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -315,22 +210,13 @@ const Community = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <Link
-                to={`/community/profile/${currentUser.id}`}
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-colors flex items-center"
-              >
-                <i className="fas fa-user mr-2"></i>
-                Trang cá nhân
-              </Link>
-              <button
-                onClick={() => setShowCreatePost(true)}
-                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center"
-              >
-                <i className="fas fa-plus mr-2"></i>
-                Chia sẻ trải nghiệm
-              </button>
-            </div>
+            <button
+              onClick={() => setShowCreatePost(true)}
+              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center"
+            >
+              <i className="fas fa-plus mr-2"></i>
+              Chia sẻ trải nghiệm
+            </button>
           </div>
         </div>
         {/* Navigation Tabs */}
@@ -347,17 +233,6 @@ const Community = () => {
               >
                 <i className="fas fa-comments mr-2"></i>
                 Bảng tin
-              </button>
-              <button
-                onClick={() => setActiveTab("people")}
-                className={`py-4 px-2 border-b-2 font-semibold transition-colors ${
-                  activeTab === "people"
-                    ? "border-primary-500 text-primary-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                <i className="fas fa-users mr-2"></i>
-                Mọi người
               </button>
               <button
                 onClick={() => setActiveTab("leaderboard")}
@@ -399,19 +274,15 @@ const Community = () => {
                     {/* Header */}
                     <div className="p-6 pb-4">
                       <div className="flex items-start justify-between mb-4">
-                        <Link
-                          to={`/community/profile/${review.user.id}`}
-                          className="flex items-center space-x-3"
-                        >
+                        <div className="flex items-center space-x-3">
                           <img
                             src={review.user.avatar}
                             alt={review.user.name}
-                            // className="w-12 h-12 rounded-full object-cover ring-2 ring-primary-100"
-                            className="w-12 h-12 rounded-full object-cover ring-2 ring-primary-100 hover:ring-primary-300 transition-all cursor-pointer"
+                            className="w-12 h-12 rounded-full object-cover ring-2 ring-primary-100"
                           />
                           <div>
                             <div className="flex items-center space-x-2">
-                              <h4 className="font-semibold text-gray-900 hover:text-primary-600 transition-colors flex items-center">
+                              <h4 className="font-semibold text-gray-900">
                                 {review.user.name}
                               </h4>
                               {review.verified && (
@@ -425,7 +296,7 @@ const Community = () => {
                               <span>{review.date}</span>
                             </div>
                           </div>
-                        </Link>
+                        </div>
                         <div className="flex items-center space-x-2">
                           <span
                             className={`px-2 py-1 text-xs font-medium rounded-full ${getLevelColor(
@@ -620,137 +491,12 @@ const Community = () => {
                 </div>
               </div>
             )}
-
-            {activeTab === "people" && (
-              <div className="space-y-6">
-                {/* Suggested Users Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {suggestedUsers.map((user) => (
-                    <div
-                      key={user.id}
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden"
-                    >
-                      {/* User Card Header */}
-                      <div className="relative h-32 bg-gradient-to-r from-blue-400 to-purple-500">
-                        <div className="absolute -bottom-12 left-6">
-                          <Link to={`/community/profile/${user.id}`}>
-                            <img
-                              src={user.avatar}
-                              alt={user.name}
-                              className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* User Info */}
-                      <div className="pt-16 px-6 pb-6">
-                        <div className="mb-3">
-                          <Link
-                            to={`/community/profile/${user.id}`}
-                            className="hover:text-primary-600 transition-colors"
-                          >
-                            <h4 className="font-bold text-lg text-gray-900">
-                              {user.name}
-                            </h4>
-                          </Link>
-                          <div className="flex items-center space-x-2 mt-1">
-                            <span
-                              className={`px-2 py-0.5 text-xs font-semibold rounded-full ${
-                                user.level === "Gold"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : user.level === "Silver"
-                                  ? "bg-gray-100 text-gray-800"
-                                  : "bg-orange-100 text-orange-800"
-                              }`}
-                            >
-                              {user.level}
-                            </span>
-                            <span className="text-gray-400">•</span>
-                            <i className="fas fa-map-marker-alt text-gray-400 text-sm"></i>
-                            <span className="text-gray-600 text-sm">
-                              {user.location}
-                            </span>
-                          </div>
-                        </div>
-
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                          {user.bio}
-                        </p>
-
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4 mb-4 pb-4 border-b border-gray-100">
-                          <div className="text-center">
-                            <div className="font-bold text-gray-900">
-                              {user.posts}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                              Bài viết
-                            </div>
-                          </div>
-                          <div className="text-center">
-                            <div className="font-bold text-gray-900">
-                              {user.friends}
-                            </div>
-                            <div className="text-xs text-gray-500">Bạn bè</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="font-bold text-primary-600">
-                              {user.points}
-                            </div>
-                            <div className="text-xs text-gray-500">Điểm</div>
-                          </div>
-                        </div>
-
-                        {/* Mutual Friends */}
-                        {user.mutualFriends > 0 && (
-                          <div className="flex items-center text-sm text-gray-600 mb-4">
-                            <i className="fas fa-user-friends mr-2 text-primary-500"></i>
-                            <span>{user.mutualFriends} bạn chung</span>
-                          </div>
-                        )}
-
-                        {/* Action Buttons */}
-                        <div className="flex space-x-3">
-                          {friendRequests[user.id] === "pending" ? (
-                            <button
-                              onClick={() => handleCancelRequest(user.id)}
-                              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                            >
-                              <i className="fas fa-clock mr-2"></i>
-                              Đã gửi lời mời
-                            </button>
-                          ) : (
-                            <>
-                              <button
-                                onClick={() => handleAddFriend(user.id)}
-                                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                              >
-                                <i className="fas fa-user-plus mr-2"></i>
-                                Kết nối
-                              </button>
-                              <Link
-                                to={`/community/profile/${user.id}`}
-                                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                              >
-                                <i className="fas fa-eye mr-2"></i>
-                                Xem trang
-                              </Link>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Stats Card */}
-            {/* <div className="bg-white rounded-2xl shadow-sm p-6">
+            <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <i className="fas fa-chart-line mr-2 text-primary-600"></i>
                 Hoạt động của bạn
@@ -773,10 +519,10 @@ const Community = () => {
                   <div className="text-sm text-purple-800">Shares</div>
                 </div>
               </div>
-            </div> */}
+            </div>
 
             {/* Recent Achievements */}
-            {/* <div className="bg-white rounded-2xl shadow-sm p-6">
+            <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <i className="fas fa-medal mr-2 text-yellow-600"></i>
                 Thành tựu gần đây
@@ -803,7 +549,7 @@ const Community = () => {
                     </div>
                   ))}
               </div>
-            </div> */}
+            </div>
 
             {/* Quick Actions */}
             <div className="bg-white rounded-2xl shadow-sm p-6">
@@ -837,7 +583,7 @@ const Community = () => {
             </div>
 
             {/* Top Contributors */}
-            {/* <div className="bg-white rounded-2xl shadow-sm p-6">
+            <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <i className="fas fa-users mr-2 text-indigo-600"></i>
                 Top Contributors
@@ -869,47 +615,12 @@ const Community = () => {
                   </div>
                 ))}
               </div>
-            </div> */}
-
-            {/* Trending Topics */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                <i className="fas fa-fire mr-2 text-orange-500"></i>
-                Trending
-              </h3>
-              <div className="space-y-3">
-                {[
-                  "#DaLat2025",
-                  "#HaLongBay",
-                  "#SapaTravel",
-                  "#PhuQuocBeach",
-                ].map((tag, index) => (
-                  <button
-                    key={index}
-                    className="w-full text-left p-3 hover:bg-gray-50 rounded-lg transition-colors"
-                  >
-                    <div className="font-semibold text-primary-600">{tag}</div>
-                    <div className="text-sm text-gray-500">
-                      {Math.floor(Math.random() * 1000)} bài viết
-                    </div>
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Create Post Modal */}
-      {showCreatePost && (
-        <CreatePostModal
-          isOpen={showCreatePost}
-          onClose={() => setShowCreatePost(false)}
-          onSubmit={handleCreatePost}
-        />
-      )}
     </div>
   );
 };
 
-export default Community;
+export default CommunityBackup;
