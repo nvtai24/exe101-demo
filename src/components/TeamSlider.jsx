@@ -69,7 +69,7 @@ const TeamSlider = ({ team }) => {
           >
             {team.map((member, index) => (
               <SwiperSlide key={index}>
-                <div className="bg-white rounded-3xl p-8 text-center group border border-gray-200 hover:border-primary-300 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 h-full flex flex-col">
+                <div className="bg-white rounded-3xl p-8 text-center group border border-gray-200 hover:border-primary-300 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 h-full flex flex-col mt-2">
                   {/* Avatar Section - Fixed Height */}
                   <div className="relative mb-8 flex-shrink-0">
                     <div className="relative w-36 h-36 mx-auto">
@@ -84,10 +84,11 @@ const TeamSlider = ({ team }) => {
                     {/* Status Badge */}
                     <div className="absolute -bottom-3 right-20 w-12 h-12">
                       {/* <i className="fas fa-check text-white"></i> */}
-                      <img
+                      <i className="fas fa-check-circle text-blue-500 text-4xl"></i>
+                      {/* <img
                         src="https://img.icons8.com/?size=100&id=yXOHowNYbgM5&format=png&color=000000"
                         alt=""
-                      />
+                      /> */}
                     </div>
                   </div>
 
