@@ -6,6 +6,8 @@ import Home from "../pages/Home";
 import AIPlanner from "../pages/AIPlanner";
 import Destinations from "../pages/Destinations";
 import Tours from "../pages/Tours";
+import LocalBuddy from "../pages/LocalBuddy";
+import GuideDetail from "../pages/GuideDetail";
 import CommunityV2 from "../pages/CommunityV2";
 import Community from "../pages/Community";
 import CommunityBackup from "../pages/CommunityBackup";
@@ -57,6 +59,22 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <TourDetail />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/local-buddy"
+          element={
+            <PageTransition>
+              <LocalBuddy />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/local-buddy/:guideId"
+          element={
+            <PageTransition>
+              <GuideDetail />
             </PageTransition>
           }
         />

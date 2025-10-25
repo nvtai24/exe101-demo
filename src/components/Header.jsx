@@ -59,6 +59,7 @@ const Header = () => {
     { name: "AI Planner", path: "/ai-planner", icon: "fas fa-robot" },
     { name: "Điểm đến", path: "/destinations", icon: "fas fa-map-marker-alt" },
     { name: "Tours", path: "/tours", icon: "fas fa-route" },
+    { name: "Local Buddy", path: "/local-buddy", icon: "fas fa-user-friends" },
     { name: "Cộng đồng", path: "/community", icon: "fas fa-users" },
     { name: "Giới thiệu", path: "/about", icon: "fas fa-info-circle" },
   ];
