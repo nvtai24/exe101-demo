@@ -1034,6 +1034,7 @@ const Community = () => {
           isOpen={showCreatePost}
           onClose={() => setShowCreatePost(false)}
           onSubmit={handleCreatePost}
+          currentUser={currentUser}
         />
       )}
     </div>
