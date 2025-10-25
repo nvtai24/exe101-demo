@@ -47,6 +47,7 @@ This folder contains all sample/mock data used throughout the application. Each 
 - User reviews and posts
 - Achievements and leaderboard
 - Suggested users for friend connections
+- Daily, weekly, and special quests/missions
 
 **Exports**:
 
@@ -55,6 +56,9 @@ This folder contains all sample/mock data used throughout the application. Each 
 - `reviews` - Community reviews/posts
 - `achievements` - Unlockable achievements
 - `leaderboard` - Top users ranking
+- `dailyQuests` - Daily missions (3 quests with progress tracking)
+- `weeklyQuests` - Weekly missions (3 quests with progress tracking)
+- `specialQuests` - Special limited-time missions (2 quests with time limits)
 
 **Used in**:
 
