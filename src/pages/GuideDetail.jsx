@@ -1,88 +1,33 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { getGuideById } from "../data/guides";
 
 const GuideDetail = () => {
   const { guideId } = useParams();
   const navigate = useNavigate();
   const [showChatModal, setShowChatModal] = useState(false);
 
-  // Mock data - In real app, fetch from API based on guideId
-  const guide = {
+  // Get guide data from data file
+  const guide = getGuideById(guideId) || {
+    // Fallback data if guide not found
     id: guideId,
-    name: "Nguyễn Minh Tuấn",
+    name: "Guide không tìm thấy",
     avatar: "https://i.pravatar.cc/150?img=33",
     coverImage: "https://images.unsplash.com/photo-1557804506-669a67965ba0",
-    location: "Hà Nội",
-    languages: ["Tiếng Việt", "English", "한국어 (Korean)"],
-    rating: 4.9,
-    reviewCount: 127,
-    hourlyRate: 150000,
-    specialties: ["Văn hóa", "Ẩm thực", "Lịch sử"],
-    bio: "Xin chào! Tôi là Tuấn, một hướng dẫn viên du lịch với hơn 5 năm kinh nghiệm tại Hà Nội. Tôi đam mê văn hóa và lịch sử Việt Nam, và rất vui được chia sẻ những điều tuyệt vời về thành phố của tôi với bạn.",
-    verified: true,
-    responseTime: "Trong vòng 1 giờ",
-    completedTours: 234,
-    joinedDate: "Tháng 3, 2020",
-    skills: [
-      "Lịch sử Việt Nam",
-      "Ẩm thực đường phố",
-      "Nhiếp ảnh",
-      "Văn hóa truyền thống",
-      "Tour đi bộ",
-      "Tour xe máy",
-    ],
-    services: [
-      {
-        name: "Tour đi bộ nửa ngày",
-        duration: "4 giờ",
-        price: 600000,
-        description: "Khám phá phố cổ Hà Nội và thử ẩm thực đường phố",
-      },
-      {
-        name: "Tour xe máy cả ngày",
-        duration: "8 giờ",
-        price: 1200000,
-        description: "Tour toàn cảnh Hà Nội bằng xe máy",
-      },
-      {
-        name: "Tour ẩm thực",
-        duration: "3 giờ",
-        price: 500000,
-        description: "Khám phá các món ăn đặc sản Hà Nội",
-      },
-    ],
-    reviews: [
-      {
-        id: 1,
-        userName: "John Smith",
-        userAvatar: "https://i.pravatar.cc/150?img=11",
-        rating: 5,
-        date: "2 tuần trước",
-        comment:
-          "Tuấn là một hướng dẫn viên tuyệt vời! Rất am hiểu về lịch sử và văn hóa Hà Nội. Tour ẩm thực rất ngon và giá cả hợp lý.",
-        helpful: 12,
-      },
-      {
-        id: 2,
-        userName: "김민지 (Kim Min-ji)",
-        userAvatar: "https://i.pravatar.cc/150?img=9",
-        rating: 5,
-        date: "1 tháng trước",
-        comment:
-          "한국어를 잘 하셔서 의사소통이 편했어요. 하노이의 숨은 명소들을 소개해주셔서 감사합니다!",
-        helpful: 8,
-      },
-      {
-        id: 3,
-        userName: "Sarah Johnson",
-        userAvatar: "https://i.pravatar.cc/150?img=5",
-        rating: 4,
-        date: "2 tháng trước",
-        comment:
-          "Great tour! Very knowledgeable and friendly. Would recommend to anyone visiting Hanoi.",
-        helpful: 15,
-      },
-    ],
+    location: "Chưa xác định",
+    languages: ["Tiếng Việt"],
+    rating: 0,
+    reviewCount: 0,
+    hourlyRate: 0,
+    specialties: [],
+    bio: "Không tìm thấy thông tin hướng dẫn viên này.",
+    verified: false,
+    responseTime: "N/A",
+    completedTours: 0,
+    joinedDate: "N/A",
+    skills: [],
+    services: [],
+    reviews: [],
   };
 
   const renderStars = (rating) => {
