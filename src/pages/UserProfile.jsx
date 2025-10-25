@@ -69,10 +69,12 @@ const UserProfile = () => {
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${
                       user.level === "Gold"
-                        ? "bg-yellow-100 text-yellow-800"
+                        ? "bg-yellow-200 text-yellow-800"
                         : user.level === "Silver"
-                        ? "bg-gray-100 text-gray-800"
-                        : "bg-orange-100 text-orange-800"
+                        ? "bg-gray-200 text-gray-800"
+                        : user.level === "Bronze"
+                        ? "bg-orange-200 text-orange-800"
+                        : "bg-red-500 text-yellow-400" // Super User
                     }`}
                   >
                     {user.level}

@@ -764,122 +764,110 @@ const Community = () => {
             {activeTab === "people" && (
               <div className="space-y-6">
                 {/* Suggested Users Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {suggestedUsers.map((user) => (
                     <div
                       key={user.id}
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden"
+                      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-5"
                     >
-                      {/* User Card Header */}
-                      <div className="relative h-32 bg-gradient-to-r from-blue-400 to-purple-500">
-                        <div className="absolute -bottom-12 left-6">
-                          <Link to={`/community/profile/${user.id}`}>
-                            <img
-                              src={user.avatar}
-                              alt={user.name}
-                              className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* User Info */}
-                      <div className="pt-16 px-6 pb-6">
-                        <div className="mb-3">
+                      {/* User Info - Compact */}
+                      <div className="flex items-start gap-3 mb-4">
+                        <Link to={`/community/profile/${user.id}`}>
+                          <img
+                            src={user.avatar}
+                            alt={user.name}
+                            className="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100 hover:ring-primary-300 transition-all"
+                          />
+                        </Link>
+                        <div className="flex-1 min-w-0">
                           <Link
                             to={`/community/profile/${user.id}`}
                             className="hover:text-primary-600 transition-colors"
                           >
-                            <h4 className="font-bold text-lg text-gray-900">
+                            <h4 className="font-bold text-gray-900 truncate">
                               {user.name}
                             </h4>
                           </Link>
-                          <div className="flex items-center space-x-2 mt-1">
+                          <div className="flex items-center gap-1.5 mt-0.5">
                             <span
-                              className={`px-2 py-0.5 text-xs font-semibold rounded-full ${
+                              className={`px-1.5 py-0.5 text-xs font-semibold rounded ${
                                 user.level === "Gold"
-                                  ? "bg-yellow-100 text-yellow-800"
+                                  ? "bg-yellow-200 text-yellow-800"
                                   : user.level === "Silver"
-                                  ? "bg-gray-100 text-gray-800"
-                                  : "bg-orange-100 text-orange-800"
+                                  ? "bg-gray-200 text-gray-800"
+                                  : user.level === "Bronze"
+                                  ? "bg-orange-200 text-orange-800"
+                                  : "bg-red-500 text-yellow-400" // Super User
                               }`}
                             >
                               {user.level}
                             </span>
-                            <span className="text-gray-400">•</span>
-                            <i className="fas fa-map-marker-alt text-gray-400 text-sm"></i>
-                            <span className="text-gray-600 text-sm">
+                            <span className="text-gray-400 text-xs">•</span>
+                            <span className="text-gray-500 text-xs truncate">
                               {user.location}
                             </span>
                           </div>
                         </div>
+                      </div>
 
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                          {user.bio}
-                        </p>
-
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4 mb-4 pb-4 border-b border-gray-100">
-                          <div className="text-center">
-                            <div className="font-bold text-gray-900">
-                              {user.posts}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                              Bài viết
-                            </div>
+                      {/* Stats - Simplified */}
+                      <div className="flex items-center justify-around py-3 mb-3 bg-gray-50 rounded-lg">
+                        <div className="text-center">
+                          <div className="font-bold text-gray-900 text-sm">
+                            {user.posts}
                           </div>
-                          <div className="text-center">
-                            <div className="font-bold text-gray-900">
-                              {user.friends}
-                            </div>
-                            <div className="text-xs text-gray-500">Bạn bè</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="font-bold text-primary-600">
-                              {user.points}
-                            </div>
-                            <div className="text-xs text-gray-500">Điểm</div>
-                          </div>
+                          <div className="text-xs text-gray-500">Posts</div>
                         </div>
-
-                        {/* Mutual Friends */}
-                        {user.mutualFriends > 0 && (
-                          <div className="flex items-center text-sm text-gray-600 mb-4">
-                            <i className="fas fa-user-friends mr-2 text-primary-500"></i>
-                            <span>{user.mutualFriends} bạn chung</span>
+                        <div className="w-px h-8 bg-gray-200"></div>
+                        <div className="text-center">
+                          <div className="font-bold text-gray-900 text-sm">
+                            {user.friends}
                           </div>
-                        )}
-
-                        {/* Action Buttons */}
-                        <div className="flex space-x-3">
-                          {friendRequests[user.id] === "pending" ? (
-                            <button
-                              onClick={() => handleCancelRequest(user.id)}
-                              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                            >
-                              <i className="fas fa-clock mr-2"></i>
-                              Đã gửi lời mời
-                            </button>
-                          ) : (
-                            <>
-                              <button
-                                onClick={() => handleAddFriend(user.id)}
-                                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                              >
-                                <i className="fas fa-user-plus mr-2"></i>
-                                Kết nối
-                              </button>
-                              <Link
-                                to={`/community/profile/${user.id}`}
-                                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                              >
-                                <i className="fas fa-eye mr-2"></i>
-                                Xem trang
-                              </Link>
-                            </>
-                          )}
+                          <div className="text-xs text-gray-500">Friends</div>
+                        </div>
+                        <div className="w-px h-8 bg-gray-200"></div>
+                        <div className="text-center">
+                          <div className="font-bold text-primary-600 text-sm">
+                            {user.points}
+                          </div>
+                          <div className="text-xs text-gray-500">Points</div>
                         </div>
                       </div>
+
+                      {/* Mutual Friends - Compact */}
+                      {user.mutualFriends > 0 && (
+                        <div className="flex items-center text-xs text-gray-500 mb-3">
+                          <i className="fas fa-user-friends mr-1.5 text-primary-400"></i>
+                          <span>{user.mutualFriends} bạn chung</span>
+                        </div>
+                      )}
+
+                      {/* Action Buttons - Compact */}
+                      {friendRequests[user.id] === "pending" ? (
+                        <button
+                          onClick={() => handleCancelRequest(user.id)}
+                          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <i className="fas fa-clock text-xs"></i>
+                          Đã gửi
+                        </button>
+                      ) : (
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleAddFriend(user.id)}
+                            className="flex-1 bg-primary-600 hover:bg-primary-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors"
+                          >
+                            <i className="fas fa-user-plus text-xs mr-1"></i>
+                            Kết nối
+                          </button>
+                          <Link
+                            to={`/community/profile/${user.id}`}
+                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors flex items-center justify-center"
+                          >
+                            <i className="fas fa-eye text-sm"></i>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
