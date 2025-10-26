@@ -376,7 +376,7 @@ const Home = () => {
 
           <div className="text-center">
             <Link
-              to="/tours"
+              to="/destinations"
               className="btn btn-outline text-lg px-8 py-4 group"
             >
               Xem thêm
