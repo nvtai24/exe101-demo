@@ -5,6 +5,7 @@ import PageTransition from "./PageTransition";
 import Home from "../pages/Home";
 import AIPlanner from "../pages/AIPlanner";
 import Destinations from "../pages/Destinations";
+import DestinationDetail from "../pages/DestinationDetail";
 import Tours from "../pages/Tours";
 import CommunityV2 from "../pages/CommunityV2";
 import Community from "../pages/Community";
@@ -41,6 +42,14 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <Destinations />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/destinations/:id"
+          element={
+            <PageTransition>
+              <DestinationDetail />
             </PageTransition>
           }
         />
