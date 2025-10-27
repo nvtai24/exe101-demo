@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TourCard from "../components/TourCard";
+import NewsletterModal from "../components/NewsletterModal";
 import { tours } from "../data/tours";
 
 const Home = () => {
@@ -376,7 +377,7 @@ const Home = () => {
 
           <div className="text-center">
             <Link
-              to="/tours"
+              to="/destinations"
               className="btn btn-outline text-lg px-8 py-4 group"
             >
               Xem thêm
@@ -500,6 +501,9 @@ const Home = () => {
           </div>
         </div>
       </section> */}
+
+      {/* Newsletter Modal */}
+      <NewsletterModal />
     </div>
   );
 };

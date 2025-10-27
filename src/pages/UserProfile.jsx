@@ -1,42 +1,15 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { getUserById, defaultUser } from "../data/users";
 
 const UserProfile = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const currentUserId = "current-user-id"; // TODO: Get from auth context
 
-  // Mock data - Replace with real data from API
-  const [user, setUser] = useState({
-    id: userId,
-    name: "Happy Cat",
-    avatar:
-      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3o4eGh2MHFqZnd6cWZqMHcyYXY3MGxwaG9icG5mYXh4MjUwbjlkcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/T70hpBP1L0N7U0jtkq/giphy.gif",
-    coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
-    bio: "Yêu thích khám phá những vùng đất mới, chia sẻ trải nghiệm du lịch",
-    level: "Gold",
-    points: 2500,
-    verified: true,
-    isFriend: false,
-    stats: {
-      posts: 45,
-      friends: 128,
-      checkIns: 23,
-    },
-    posts: [
-      {
-        id: 1,
-        destination: "Đà Lạt",
-        content: "Thành phố ngàn hoa tuyệt đẹp!",
-        images: [
-          "https://cdn.tcdulichtphcm.vn/upload/3-2023/images/2023-07-16/1689492315-1.jpg",
-        ],
-        likes: 24,
-        comments: 5,
-        date: "2 ngày trước",
-      },
-    ],
-  });
+  // Get user data from data file
+  const userData = getUserById(userId) || defaultUser;
+  const [user, setUser] = useState(userData);
 
   const isOwnProfile = userId === currentUserId;
 
@@ -96,10 +69,12 @@ const UserProfile = () => {
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${
                       user.level === "Gold"
-                        ? "bg-yellow-100 text-yellow-800"
+                        ? "bg-yellow-200 text-yellow-800"
                         : user.level === "Silver"
-                        ? "bg-gray-100 text-gray-800"
-                        : "bg-orange-100 text-orange-800"
+                        ? "bg-gray-200 text-gray-800"
+                        : user.level === "Bronze"
+                        ? "bg-orange-200 text-orange-800"
+                        : "bg-red-500 text-yellow-400" // Super User
                     }`}
                   >
                     {user.level}

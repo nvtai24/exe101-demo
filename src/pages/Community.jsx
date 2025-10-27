@@ -1,96 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CreatePostModal from "../components/CreatePostModal";
+import {
+  currentUser,
+  suggestedUsers,
+  reviews,
+  achievements,
+  leaderboard,
+  dailyQuests,
+  weeklyQuests,
+  specialQuests,
+} from "../data/community";
 
 const Community = () => {
   const [activeTab, setActiveTab] = useState("reviews");
   const [userPoints, setUserPoints] = useState(9999);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [friendRequests, setFriendRequests] = useState({});
-
-  const currentUser = {
-    id: "current-user-id",
-    name: "Devip666",
-    avatar:
-      "https://www.bleepstatic.com/content/hl-images/2022/03/11/kali-linux.jpg",
-    level: "Super User",
-    points: 9999,
-  };
-
-  const suggestedUsers = [
-    {
-      id: "user-4",
-      name: "Nguyễn Văn An",
-      avatar: "https://i.pravatar.cc/150?img=12",
-      level: "Gold",
-      points: 2100,
-      mutualFriends: 5,
-      location: "Hà Nội",
-      bio: "Yêu thích khám phá các địa danh lịch sử",
-      posts: 45,
-      friends: 120,
-    },
-    {
-      id: "user-5",
-      name: "Lê Thị Bình",
-      avatar: "https://i.pravatar.cc/150?img=5",
-      level: "Silver",
-      points: 1650,
-      mutualFriends: 3,
-      location: "Đà Nẵng",
-      bio: "Đam mê ẩm thực và văn hóa địa phương",
-      posts: 32,
-      friends: 89,
-    },
-    {
-      id: "user-6",
-      name: "Trần Minh Cường",
-      avatar: "https://i.pravatar.cc/150?img=33",
-      level: "Gold",
-      points: 2800,
-      mutualFriends: 8,
-      location: "TP.HCM",
-      bio: "Nhiếp ảnh gia phong cảnh nghiệp dư",
-      posts: 67,
-      friends: 234,
-    },
-    {
-      id: "user-7",
-      name: "Phạm Thu Hà",
-      avatar: "https://i.pravatar.cc/150?img=9",
-      level: "Bronze",
-      points: 850,
-      mutualFriends: 2,
-      location: "Huế",
-      bio: "Khám phá vẻ đẹp Việt Nam",
-      posts: 23,
-      friends: 56,
-    },
-    {
-      id: "user-8",
-      name: "Hoàng Đức Tài",
-      avatar: "https://i.pravatar.cc/150?img=51",
-      level: "Silver",
-      points: 1450,
-      mutualFriends: 4,
-      location: "Nha Trang",
-      bio: "Du lịch biển là đam mê của tôi",
-      posts: 38,
-      friends: 102,
-    },
-    {
-      id: "user-9",
-      name: "Vũ Mai Linh",
-      avatar: "https://i.pravatar.cc/150?img=10",
-      level: "Gold",
-      points: 3200,
-      mutualFriends: 12,
-      location: "Hội An",
-      bio: "Travel blogger & content creator",
-      posts: 89,
-      friends: 456,
-    },
-  ];
 
   const handleAddFriend = (userId) => {
     setFriendRequests({ ...friendRequests, [userId]: "pending" });
@@ -101,123 +27,6 @@ const Community = () => {
     delete updated[userId];
     setFriendRequests(updated);
   };
-
-  const reviews = [
-    {
-      id: 1,
-      user: {
-        id: "user-1",
-        name: "Rô Nan Đô",
-        avatar:
-          "https://tse2.mm.bing.net/th/id/OIP.cvtvy8bhCp0nMsXFIf52fQHaEK?cb=12&w=1920&h=1080&rs=1&pid=ImgDetMain&o=7&rm=3",
-        level: "Gold",
-        points: 2500,
-      },
-      destination: "Hạ Long Bay",
-      rating: 5,
-      title: "Trải nghiệm tuyệt vời tại Vịnh Hạ Long",
-      content:
-        "Tour du thuyền rất đẹp, hướng dẫn viên nhiệt tình. Cảnh quan thiên nhiên tuyệt vời, đặc biệt là lúc hoàng hôn. Sẽ quay lại lần nữa!",
-      images: [
-        "https://www.chudu24.com/wp-content/uploads/2018/06/H%E1%BA%A1.Long_.Bay_.original.1986.jpg",
-        "https://trekkingtoursapa.com/wp-content/uploads/2023/12/28-3.webp",
-      ],
-      likes: 24,
-      comments: 8,
-      date: "2 ngày trước",
-      verified: true,
-    },
-    {
-      id: 2,
-      user: {
-        id: "user-2",
-        name: "Trần Văn Mười",
-        avatar:
-          "https://tse1.mm.bing.net/th/id/OIP.kMAI7IpT9DIy1LzoNjBIdgHaFj?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3",
-        level: "Silver",
-        points: 1800,
-      },
-      destination: "Hội An",
-      rating: 4,
-      title: "Phố cổ Hội An đẹp như mơ",
-      content:
-        "Đèn lồng rất đẹp, ẩm thực phong phú. Tuy nhiên khá đông khách du lịch. Nên đi vào buổi tối để tránh nắng.",
-      images: [
-        "https://static.vinwonders.com/production/hoi-an-vietnam-map-banner.jpg",
-      ],
-      likes: 18,
-      comments: 5,
-      date: "1 tuần trước",
-      verified: false,
-    },
-    {
-      id: 3,
-      user: {
-        id: "user-3",
-        name: "Pôn Pốc Ba",
-        avatar:
-          "https://images.performgroup.com/di/library/GOAL/30/36/paul-pogba-manchester-united-2018-19_1im0iegikqvsf19h3klr8paoq1.jpg?t=-1354357906&quality=100",
-        level: "Bronze",
-        points: 950,
-      },
-      destination: "Sapa",
-      rating: 5,
-      title: "Ruộng bậc thang Sapa tuyệt đẹp",
-      content:
-        "Trekking ruộng bậc thang rất thú vị, gặp gỡ người dân tộc thân thiện. Cảnh quan thiên nhiên hùng vĩ. Cần chuẩn bị giày leo núi tốt.",
-      images: [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/59/37/1a/caption.jpg?w=800&h=400&s=1",
-        "https://toigingiuvedep.vn/wp-content/uploads/2021/07/hinh-anh-ruong-bac-thang-mua-nuoc-do-dep-nhu-tranh-ve.jpg",
-      ],
-      likes: 32,
-      comments: 12,
-      date: "3 ngày trước",
-      verified: true,
-    },
-  ];
-
-  const achievements = [
-    {
-      id: 1,
-      name: "Người khám phá",
-      description: "Đã check-in tại 10 điểm đến",
-      icon: "🏆",
-      points: 100,
-      unlocked: true,
-    },
-    {
-      id: 2,
-      name: "Nhà phê bình",
-      description: "Đã viết 20 review",
-      icon: "✍️",
-      points: 150,
-      unlocked: true,
-    },
-    {
-      id: 3,
-      name: "Người chia sẻ",
-      description: "Đã chia sẻ 50 bài viết",
-      icon: "📤",
-      points: 200,
-      unlocked: false,
-    },
-    {
-      id: 4,
-      name: "Thành viên VIP",
-      description: "Đạt 5000 điểm",
-      icon: "💎",
-      points: 500,
-      unlocked: false,
-    },
-  ];
-
-  const leaderboard = [
-    { rank: 1, name: "Nguyễn Văn A", points: 2500, level: "Gold" },
-    { rank: 2, name: "Trần Thị B", points: 2200, level: "Gold" },
-    { rank: 3, name: "Lê Văn C", points: 1800, level: "Silver" },
-    { rank: 4, name: "Phạm Thị D", points: 1600, level: "Silver" },
-    { rank: 5, name: "Hoàng Văn E", points: 1400, level: "Silver" },
-  ];
 
   const renderStars = (rating) => {
     const stars = [];
@@ -358,6 +167,17 @@ const Community = () => {
               >
                 <i className="fas fa-users mr-2"></i>
                 Mọi người
+              </button>
+              <button
+                onClick={() => setActiveTab("quests")}
+                className={`py-4 px-2 border-b-2 font-semibold transition-colors ${
+                  activeTab === "quests"
+                    ? "border-primary-500 text-primary-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+              >
+                <i className="fas fa-tasks mr-2"></i>
+                Nhiệm vụ
               </button>
               <button
                 onClick={() => setActiveTab("leaderboard")}
@@ -573,6 +393,326 @@ const Community = () => {
               </div>
             )}
 
+            {activeTab === "quests" && (
+              <div className="space-y-8">
+                {/* Daily Quests */}
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+                      <i className="fas fa-calendar-day mr-3 text-blue-500"></i>
+                      Nhiệm vụ hàng ngày
+                    </h3>
+                    <div className="text-sm text-gray-500">
+                      Làm mới sau:{" "}
+                      <span className="font-semibold text-blue-600">
+                        23:45:12
+                      </span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {dailyQuests.map((quest) => (
+                      <div
+                        key={quest.id}
+                        className={`bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all p-6 border-2 ${
+                          quest.completed
+                            ? "border-green-300 bg-gradient-to-br from-green-50 to-emerald-50"
+                            : "border-gray-100 hover:border-primary-200"
+                        }`}
+                      >
+                        {/* Quest Icon & Points */}
+                        <div className="flex items-start justify-between mb-4">
+                          <div
+                            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${quest.color} flex items-center justify-center text-white text-xl shadow-lg`}
+                          >
+                            <i className={quest.icon}></i>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-primary-600">
+                              +{quest.points}
+                            </div>
+                            <div className="text-xs text-gray-500">điểm</div>
+                          </div>
+                        </div>
+
+                        {/* Quest Info */}
+                        <h4 className="font-bold text-gray-900 text-lg mb-2">
+                          {quest.title}
+                        </h4>
+                        <p className="text-gray-600 text-sm mb-4">
+                          {quest.description}
+                        </p>
+
+                        {/* Progress Bar */}
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between text-sm mb-2">
+                            <span className="text-gray-600">Tiến độ</span>
+                            <span
+                              className={`font-semibold ${quest.textColor}`}
+                            >
+                              {quest.progress}/{quest.goal}
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                            <div
+                              className={`h-full bg-gradient-to-r ${quest.color} transition-all duration-500 rounded-full`}
+                              style={{
+                                width: `${
+                                  (quest.progress / quest.goal) * 100
+                                }%`,
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {/* Action Button */}
+                        {quest.completed ? (
+                          <button
+                            disabled
+                            className="w-full bg-green-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center"
+                          >
+                            <i className="fas fa-check-circle mr-2"></i>
+                            Đã hoàn thành
+                          </button>
+                        ) : (
+                          <button
+                            className={`w-full bg-gradient-to-r ${quest.color} hover:opacity-90 text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center group`}
+                          >
+                            <i className="fas fa-play mr-2 group-hover:scale-110 transition-transform"></i>
+                            Bắt đầu
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Weekly Quests */}
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+                      <i className="fas fa-calendar-week mr-3 text-purple-500"></i>
+                      Nhiệm vụ hàng tuần
+                    </h3>
+                    <div className="text-sm text-gray-500">
+                      Làm mới sau:{" "}
+                      <span className="font-semibold text-purple-600">
+                        6 ngày
+                      </span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {weeklyQuests.map((quest) => (
+                      <div
+                        key={quest.id}
+                        className={`bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all p-6 border-2 ${
+                          quest.completed
+                            ? "border-green-300 bg-gradient-to-br from-green-50 to-emerald-50"
+                            : "border-gray-100 hover:border-primary-200"
+                        }`}
+                      >
+                        {/* Quest Icon & Points */}
+                        <div className="flex items-start justify-between mb-4">
+                          <div
+                            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${quest.color} flex items-center justify-center text-white text-xl shadow-lg`}
+                          >
+                            <i className={quest.icon}></i>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-primary-600">
+                              +{quest.points}
+                            </div>
+                            <div className="text-xs text-gray-500">điểm</div>
+                          </div>
+                        </div>
+
+                        {/* Quest Info */}
+                        <h4 className="font-bold text-gray-900 text-lg mb-2">
+                          {quest.title}
+                        </h4>
+                        <p className="text-gray-600 text-sm mb-4">
+                          {quest.description}
+                        </p>
+
+                        {/* Progress Bar */}
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between text-sm mb-2">
+                            <span className="text-gray-600">Tiến độ</span>
+                            <span
+                              className={`font-semibold ${quest.textColor}`}
+                            >
+                              {quest.progress}/{quest.goal}
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                            <div
+                              className={`h-full bg-gradient-to-r ${quest.color} transition-all duration-500 rounded-full`}
+                              style={{
+                                width: `${
+                                  (quest.progress / quest.goal) * 100
+                                }%`,
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {/* Action Button */}
+                        {quest.completed ? (
+                          <button
+                            disabled
+                            className="w-full bg-green-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center"
+                          >
+                            <i className="fas fa-check-circle mr-2"></i>
+                            Đã hoàn thành
+                          </button>
+                        ) : (
+                          <button
+                            className={`w-full bg-gradient-to-r ${quest.color} hover:opacity-90 text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center group`}
+                          >
+                            <i className="fas fa-play mr-2 group-hover:scale-110 transition-transform"></i>
+                            Tiếp tục
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Special Quests */}
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+                      <i className="fas fa-star mr-3 text-yellow-500"></i>
+                      Nhiệm vụ đặc biệt
+                    </h3>
+                    <div className="px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-full">
+                      <span className="text-sm font-semibold text-orange-700">
+                        <i className="fas fa-fire mr-1"></i>
+                        Thưởng cao!
+                      </span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {specialQuests.map((quest) => (
+                      <div
+                        key={quest.id}
+                        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 border-2 border-orange-200 bg-gradient-to-br from-orange-50 via-white to-yellow-50"
+                      >
+                        {/* Quest Header */}
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex items-center space-x-4">
+                            <div
+                              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${quest.color} flex items-center justify-center text-white text-2xl shadow-lg ring-4 ring-orange-100`}
+                            >
+                              <i className={quest.icon}></i>
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-gray-900 text-xl mb-1">
+                                {quest.title}
+                              </h4>
+                              <div className="flex items-center text-orange-600 text-sm font-semibold">
+                                <i className="fas fa-clock mr-1"></i>
+                                {quest.timeLimit}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
+                              +{quest.points}
+                            </div>
+                            <div className="text-xs text-gray-500">điểm</div>
+                          </div>
+                        </div>
+
+                        {/* Quest Description */}
+                        <p className="text-gray-600 mb-4 leading-relaxed">
+                          {quest.description}
+                        </p>
+
+                        {/* Progress Bar */}
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between text-sm mb-2">
+                            <span className="text-gray-600 font-medium">
+                              Tiến độ
+                            </span>
+                            <span className={`font-bold ${quest.textColor}`}>
+                              {quest.progress}/{quest.goal}
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+                            <div
+                              className={`h-full bg-gradient-to-r ${quest.color} transition-all duration-500 rounded-full relative`}
+                              style={{
+                                width: `${
+                                  (quest.progress / quest.goal) * 100
+                                }%`,
+                              }}
+                            >
+                              <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Action Button */}
+                        {quest.completed ? (
+                          <button
+                            disabled
+                            className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 rounded-xl font-bold text-lg flex items-center justify-center shadow-lg"
+                          >
+                            <i className="fas fa-trophy mr-2"></i>
+                            Đã hoàn thành
+                          </button>
+                        ) : (
+                          <button
+                            className={`w-full bg-gradient-to-r ${quest.color} hover:scale-105 text-white py-3 rounded-xl font-bold text-lg transition-all flex items-center justify-center shadow-lg group`}
+                          >
+                            <i className="fas fa-rocket mr-2 group-hover:scale-110 transition-transform"></i>
+                            Bắt đầu thử thách
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quest Tips */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-200">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
+                      <i className="fas fa-lightbulb text-xl"></i>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-lg mb-2">
+                        💡 Mẹo hoàn thành nhiệm vụ
+                      </h4>
+                      <ul className="space-y-2 text-gray-700">
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                          <span>
+                            Hoàn thành nhiệm vụ hàng ngày để tích lũy điểm nhanh
+                            chóng
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                          <span>
+                            Nhiệm vụ đặc biệt có thời hạn - đừng bỏ lỡ cơ hội
+                            kiếm điểm cao!
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                          <span>
+                            Kết hợp nhiều nhiệm vụ cùng lúc để tối ưu hóa thời
+                            gian
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {activeTab === "achievements" && (
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -624,122 +764,110 @@ const Community = () => {
             {activeTab === "people" && (
               <div className="space-y-6">
                 {/* Suggested Users Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {suggestedUsers.map((user) => (
                     <div
                       key={user.id}
-                      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden"
+                      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-5"
                     >
-                      {/* User Card Header */}
-                      <div className="relative h-32 bg-gradient-to-r from-blue-400 to-purple-500">
-                        <div className="absolute -bottom-12 left-6">
-                          <Link to={`/community/profile/${user.id}`}>
-                            <img
-                              src={user.avatar}
-                              alt={user.name}
-                              className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover hover:scale-105 transition-transform"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* User Info */}
-                      <div className="pt-16 px-6 pb-6">
-                        <div className="mb-3">
+                      {/* User Info - Compact */}
+                      <div className="flex items-start gap-3 mb-4">
+                        <Link to={`/community/profile/${user.id}`}>
+                          <img
+                            src={user.avatar}
+                            alt={user.name}
+                            className="w-14 h-14 rounded-full object-cover ring-2 ring-gray-100 hover:ring-primary-300 transition-all"
+                          />
+                        </Link>
+                        <div className="flex-1 min-w-0">
                           <Link
                             to={`/community/profile/${user.id}`}
                             className="hover:text-primary-600 transition-colors"
                           >
-                            <h4 className="font-bold text-lg text-gray-900">
+                            <h4 className="font-bold text-gray-900 truncate">
                               {user.name}
                             </h4>
                           </Link>
-                          <div className="flex items-center space-x-2 mt-1">
+                          <div className="flex items-center gap-1.5 mt-0.5">
                             <span
-                              className={`px-2 py-0.5 text-xs font-semibold rounded-full ${
+                              className={`px-1.5 py-0.5 text-xs font-semibold rounded ${
                                 user.level === "Gold"
-                                  ? "bg-yellow-100 text-yellow-800"
+                                  ? "bg-yellow-200 text-yellow-800"
                                   : user.level === "Silver"
-                                  ? "bg-gray-100 text-gray-800"
-                                  : "bg-orange-100 text-orange-800"
+                                  ? "bg-gray-200 text-gray-800"
+                                  : user.level === "Bronze"
+                                  ? "bg-orange-200 text-orange-800"
+                                  : "bg-red-500 text-yellow-400" // Super User
                               }`}
                             >
                               {user.level}
                             </span>
-                            <span className="text-gray-400">•</span>
-                            <i className="fas fa-map-marker-alt text-gray-400 text-sm"></i>
-                            <span className="text-gray-600 text-sm">
+                            <span className="text-gray-400 text-xs">•</span>
+                            <span className="text-gray-500 text-xs truncate">
                               {user.location}
                             </span>
                           </div>
                         </div>
+                      </div>
 
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                          {user.bio}
-                        </p>
-
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4 mb-4 pb-4 border-b border-gray-100">
-                          <div className="text-center">
-                            <div className="font-bold text-gray-900">
-                              {user.posts}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                              Bài viết
-                            </div>
+                      {/* Stats - Simplified */}
+                      <div className="flex items-center justify-around py-3 mb-3 bg-gray-50 rounded-lg">
+                        <div className="text-center">
+                          <div className="font-bold text-gray-900 text-sm">
+                            {user.posts}
                           </div>
-                          <div className="text-center">
-                            <div className="font-bold text-gray-900">
-                              {user.friends}
-                            </div>
-                            <div className="text-xs text-gray-500">Bạn bè</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="font-bold text-primary-600">
-                              {user.points}
-                            </div>
-                            <div className="text-xs text-gray-500">Điểm</div>
-                          </div>
+                          <div className="text-xs text-gray-500">Posts</div>
                         </div>
-
-                        {/* Mutual Friends */}
-                        {user.mutualFriends > 0 && (
-                          <div className="flex items-center text-sm text-gray-600 mb-4">
-                            <i className="fas fa-user-friends mr-2 text-primary-500"></i>
-                            <span>{user.mutualFriends} bạn chung</span>
+                        <div className="w-px h-8 bg-gray-200"></div>
+                        <div className="text-center">
+                          <div className="font-bold text-gray-900 text-sm">
+                            {user.friends}
                           </div>
-                        )}
-
-                        {/* Action Buttons */}
-                        <div className="flex space-x-3">
-                          {friendRequests[user.id] === "pending" ? (
-                            <button
-                              onClick={() => handleCancelRequest(user.id)}
-                              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                            >
-                              <i className="fas fa-clock mr-2"></i>
-                              Đã gửi lời mời
-                            </button>
-                          ) : (
-                            <>
-                              <button
-                                onClick={() => handleAddFriend(user.id)}
-                                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                              >
-                                <i className="fas fa-user-plus mr-2"></i>
-                                Kết nối
-                              </button>
-                              <Link
-                                to={`/community/profile/${user.id}`}
-                                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center"
-                              >
-                                <i className="fas fa-eye mr-2"></i>
-                                Xem trang
-                              </Link>
-                            </>
-                          )}
+                          <div className="text-xs text-gray-500">Friends</div>
+                        </div>
+                        <div className="w-px h-8 bg-gray-200"></div>
+                        <div className="text-center">
+                          <div className="font-bold text-primary-600 text-sm">
+                            {user.points}
+                          </div>
+                          <div className="text-xs text-gray-500">Points</div>
                         </div>
                       </div>
+
+                      {/* Mutual Friends - Compact */}
+                      {user.mutualFriends > 0 && (
+                        <div className="flex items-center text-xs text-gray-500 mb-3">
+                          <i className="fas fa-user-friends mr-1.5 text-primary-400"></i>
+                          <span>{user.mutualFriends} bạn chung</span>
+                        </div>
+                      )}
+
+                      {/* Action Buttons - Compact */}
+                      {friendRequests[user.id] === "pending" ? (
+                        <button
+                          onClick={() => handleCancelRequest(user.id)}
+                          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <i className="fas fa-clock text-xs"></i>
+                          Đã gửi
+                        </button>
+                      ) : (
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleAddFriend(user.id)}
+                            className="flex-1 bg-primary-600 hover:bg-primary-700 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-colors"
+                          >
+                            <i className="fas fa-user-plus text-xs mr-1"></i>
+                            Kết nối
+                          </button>
+                          <Link
+                            to={`/community/profile/${user.id}`}
+                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors flex items-center justify-center"
+                          >
+                            <i className="fas fa-eye text-sm"></i>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -906,6 +1034,7 @@ const Community = () => {
           isOpen={showCreatePost}
           onClose={() => setShowCreatePost(false)}
           onSubmit={handleCreatePost}
+          currentUser={currentUser}
         />
       )}
     </div>
