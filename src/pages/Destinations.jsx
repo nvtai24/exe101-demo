@@ -25,12 +25,13 @@ const Destinations = () => {
   const filteredDestinations = locations.filter((dest) => {
     const matchesRegion =
       selectedRegion === "all" || dest.region === selectedRegion;
+    const destCategoryNormalized = dest.category || "Khác";
     const matchesCategory =
-      selectedCategory === "all" || dest.category === selectedCategory;
+      selectedCategory === "all" || destCategoryNormalized === selectedCategory;
     const q = searchTerm.trim().toLowerCase();
     const matchesSearch =
       q === "" ||
-      dest.name.toLowerCase().includes(q) ||
+      (dest.name || "").toLowerCase().includes(q) ||
       (dest.description || "").toLowerCase().includes(q);
     return matchesRegion && matchesCategory && matchesSearch;
   });
@@ -67,6 +68,7 @@ const Destinations = () => {
             value={selectedRegion}
             onChange={(e) => setSelectedRegion(e.target.value)}
             className="px-4 py-2 rounded-md border"
+            aria-label="Chọn vùng"
           >
             <option value="all">Tất cả vùng</option>
             {regionsData.map((r) => (
@@ -80,6 +82,7 @@ const Destinations = () => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-4 py-2 rounded-md border"
+            aria-label="Chọn danh mục"
           >
             <option value="all">Tất cả danh mục</option>
             {uniqueCategories.map((c) => (
@@ -94,6 +97,7 @@ const Destinations = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Tìm kiếm điểm đến..."
             className="px-4 py-2 rounded-md border flex-1"
+            aria-label="Tìm kiếm điểm đến"
           />
         </div>
 
@@ -110,9 +114,10 @@ const Destinations = () => {
                     destination.images?.[0] ||
                     "https://via.placeholder.com/800x450?text=No+Image"
                   }
-                  alt={destination.name}
+                  alt={destination.name || "Destination image"}
                   className="w-full h-full object-cover"
                   onError={(e) =>
+                    // eslint-disable-next-line no-param-reassign
                     (e.currentTarget.src =
                       "https://via.placeholder.com/800x450?text=No+Image")
                   }
@@ -127,7 +132,7 @@ const Destinations = () => {
                       destination.category
                     )}`}
                   >
-                    {destination.category}
+                    {destination.category || "Khác"}
                   </span>
                 </div>
 
@@ -167,3 +172,5 @@ const Destinations = () => {
     </div>
   );
 };
+
+export default Destinations;
