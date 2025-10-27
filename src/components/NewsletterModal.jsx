@@ -7,10 +7,10 @@ const NewsletterModal = () => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
-    // Check if user has already seen the modal
-    const hasSeenNewsletter = localStorage.getItem("hasSeenNewsletter");
+    // Check if user has already subscribed
+    const hasSubscribed = localStorage.getItem("newsletterSubscribed");
 
-    if (!hasSeenNewsletter) {
+    if (!hasSubscribed) {
       // Show modal after 2 seconds delay
       const timer = setTimeout(() => {
         setIsOpen(true);
@@ -22,8 +22,7 @@ const NewsletterModal = () => {
 
   const handleClose = () => {
     setIsOpen(false);
-    // Mark as seen in localStorage
-    localStorage.setItem("hasSeenNewsletter", "true");
+    // Don't save to localStorage when closing - only save after successful submission
   };
 
   const handleSubmit = async (e) => {
@@ -39,12 +38,15 @@ const NewsletterModal = () => {
     // TODO: Send email to backend API
     console.log("Newsletter subscription:", email);
 
+    // Mark as subscribed in localStorage after successful submission
+    localStorage.setItem("newsletterSubscribed", "true");
+
     setShowSuccess(true);
     setIsSubmitting(false);
 
     // Close modal after showing success message
     setTimeout(() => {
-      handleClose();
+      setIsOpen(false);
       setShowSuccess(false);
       setEmail("");
     }, 2000);
@@ -57,7 +59,7 @@ const NewsletterModal = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 animate-fadeIn">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
