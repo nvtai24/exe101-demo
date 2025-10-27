@@ -14,7 +14,7 @@ export const tours = [
     featured: true,
     maxGroupSize: 15,
     reviews: 127,
-    highlights: [
+                                                     highlights: [
       "Du thuyền qua các đảo đá",
       "Tham quan hang động",
       "Chèo kayak",
