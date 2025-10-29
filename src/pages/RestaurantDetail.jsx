@@ -563,7 +563,10 @@ const RestaurantDetail = () => {
       />
 
       {/* Chat Box */}
-      <ChatBox hostInfo={restaurant.hostInfo} restaurantName={restaurant.name} />
+      <ChatBox
+        hostInfo={restaurant.hostInfo}
+        restaurantName={restaurant.name}
+      />
     </div>
   );
 };

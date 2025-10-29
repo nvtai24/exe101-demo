@@ -775,7 +775,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=18",
         rating: 5,
         date: "2024-10-18",
-        comment: "Phở ngon nhất Hà Nội! Nước dùng ngọt thanh, thịt bò tươi mềm.",
+        comment:
+          "Phở ngon nhất Hà Nội! Nước dùng ngọt thanh, thịt bò tươi mềm.",
         helpful: 45,
       },
       {
@@ -784,7 +785,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=28",
         rating: 5,
         date: "2024-10-12",
-        comment: "Quán phở gia truyền 50 năm, chất lượng không bàn cãi. Sáng nào cũng đông!",
+        comment:
+          "Quán phở gia truyền 50 năm, chất lượng không bàn cãi. Sáng nào cũng đông!",
         helpful: 32,
       },
     ],
@@ -863,7 +865,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=50",
         rating: 5,
         date: "2016-05-23",
-        comment: "Great food! The bun cha was delicious. Very authentic Vietnamese cuisine.",
+        comment:
+          "Great food! The bun cha was delicious. Very authentic Vietnamese cuisine.",
         helpful: 999,
       },
       {
@@ -872,7 +875,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=22",
         rating: 5,
         date: "2024-10-20",
-        comment: "Bún chả thơm ngon, chả nướng than hoa rất đặc biệt. Combo Obama là must-try!",
+        comment:
+          "Bún chả thơm ngon, chả nướng than hoa rất đặc biệt. Combo Obama là must-try!",
         helpful: 67,
       },
     ],
@@ -951,7 +955,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=30",
         rating: 4,
         date: "2024-10-22",
-        comment: "Buffet đa dạng, hải sản tươi. Phù hợp cho gia đình và nhóm bạn.",
+        comment:
+          "Buffet đa dạng, hải sản tươi. Phù hợp cho gia đình và nhóm bạn.",
         helpful: 28,
       },
       {
@@ -1040,7 +1045,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=47",
         rating: 5,
         date: "2024-10-25",
-        comment: "Exceptional French cuisine in Hanoi! The degustation menu was outstanding.",
+        comment:
+          "Exceptional French cuisine in Hanoi! The degustation menu was outstanding.",
         helpful: 56,
       },
       {
@@ -1049,7 +1055,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=19",
         rating: 5,
         date: "2024-10-20",
-        comment: "Nhà hàng Pháp đẳng cấp nhất Hà Nội. Không gian sang trọng, món ăn tinh tế.",
+        comment:
+          "Nhà hàng Pháp đẳng cấp nhất Hà Nội. Không gian sang trọng, món ăn tinh tế.",
         helpful: 42,
       },
     ],
@@ -1138,7 +1145,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=14",
         rating: 5,
         date: "2024-10-19",
-        comment: "View sông Sài Gòn tuyệt đẹp, món ăn ngon, phù hợp hẹn hò và kỷ niệm.",
+        comment:
+          "View sông Sài Gòn tuyệt đẹp, món ăn ngon, phù hợp hẹn hò và kỷ niệm.",
         helpful: 38,
       },
     ],
@@ -1311,7 +1319,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=55",
         rating: 5,
         date: "2024-10-27",
-        comment: "Best fine dining in Saigon! Panoramic city views from 51st floor.",
+        comment:
+          "Best fine dining in Saigon! Panoramic city views from 51st floor.",
         helpful: 67,
       },
       {
@@ -1320,7 +1329,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=31",
         rating: 5,
         date: "2024-10-24",
-        comment: "Trải nghiệm ẩm thực đỉnh cao với view 360 độ tuyệt vời. Đắt nhưng xứng đáng!",
+        comment:
+          "Trải nghiệm ẩm thực đỉnh cao với view 360 độ tuyệt vời. Đắt nhưng xứng đáng!",
         helpful: 53,
       },
     ],
@@ -1400,7 +1410,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=58",
         rating: 5,
         date: "2024-10-28",
-        comment: "Spectacular rooftop dining with 360° ocean views. Perfect for sunset!",
+        comment:
+          "Spectacular rooftop dining with 360° ocean views. Perfect for sunset!",
         helpful: 48,
       },
       {
@@ -1409,7 +1420,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=33",
         rating: 5,
         date: "2024-10-25",
-        comment: "Rooftop cao nhất Nha Trang, view biển tuyệt đẹp. Wagyu beef tuyệt vời!",
+        comment:
+          "Rooftop cao nhất Nha Trang, view biển tuyệt đẹp. Wagyu beef tuyệt vời!",
         helpful: 41,
       },
     ],
@@ -1489,7 +1501,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=42",
         rating: 5,
         date: "2024-10-29",
-        comment: "Authentique cuisine française! Chef Pierre Gagnaire est un génie. Meilleur restaurant au Vietnam!",
+        comment:
+          "Authentique cuisine française! Chef Pierre Gagnaire est un génie. Meilleur restaurant au Vietnam!",
         helpful: 89,
       },
       {
@@ -1498,7 +1511,8 @@ export const restaurants = [
         userAvatar: "https://i.pravatar.cc/150?img=20",
         rating: 5,
         date: "2024-10-26",
-        comment: "Nhà hàng Michelin 3 sao duy nhất VN. Trải nghiệm haute cuisine đẳng cấp thế giới!",
+        comment:
+          "Nhà hàng Michelin 3 sao duy nhất VN. Trải nghiệm haute cuisine đẳng cấp thế giới!",
         helpful: 76,
       },
     ],
