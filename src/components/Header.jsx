@@ -96,14 +96,16 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.path)
                     ? "bg-primary-100 text-primary-700 shadow-sm"
                     : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
                 }`}
               >
-                <i className={`${item.icon} text-sm w-4 flex-shrink-0`}></i>
-                <span className="ml-2">{item.name}</span>
+                <i
+                  className={`${item.icon} text-sm w-4 flex-shrink-0 mr-2`}
+                ></i>
+                <span>{item.name}</span>
               </Link>
             ))}
 
@@ -111,16 +113,16 @@ const Header = () => {
             <div className="relative booking-selector">
               <button
                 onClick={() => setIsBookingMenuOpen(!isBookingMenuOpen)}
-                className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   location.pathname.startsWith("/booking")
                     ? "bg-primary-100 text-primary-700 shadow-sm"
                     : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
                 }`}
               >
-                <i className="fas fa-concierge-bell text-sm w-4 flex-shrink-0"></i>
-                <span className="ml-2">Dịch Vụ</span>
+                <i className="fas fa-concierge-bell text-sm w-4 flex-shrink-0 mr-2"></i>
+                <span>Dịch Vụ</span>
                 <i
-                  className={`fas fa-chevron-down text-xs ml-1 transition-transform ${
+                  className={`fas fa-chevron-down text-xs ml-1.5 transition-transform ${
                     isBookingMenuOpen ? "rotate-180" : ""
                   }`}
                 ></i>
@@ -134,16 +136,16 @@ const Header = () => {
                       key={option.path}
                       to={option.path}
                       onClick={() => setIsBookingMenuOpen(false)}
-                      className={`flex items-center px-4 py-2.5 transition-colors ${
+                      className={`flex items-center whitespace-nowrap px-4 py-2.5 transition-colors ${
                         location.pathname === option.path
                           ? "bg-primary-50 text-primary-700"
                           : "text-gray-700 hover:bg-gray-50"
                       }`}
                     >
                       <i
-                        className={`${option.icon} text-base w-5 flex-shrink-0`}
+                        className={`${option.icon} text-base w-5 flex-shrink-0 mr-3`}
                       ></i>
-                      <span className="text-sm font-medium ml-3 flex-1">
+                      <span className="text-sm font-medium flex-1">
                         {option.name}
                       </span>
                       {location.pathname === option.path && (
@@ -236,14 +238,16 @@ const Header = () => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                  className={`flex items-center whitespace-nowrap px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                     isActive(item.path)
                       ? "bg-primary-100 text-primary-700"
                       : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
                   }`}
                 >
-                  <i className={`${item.icon} text-lg w-6 flex-shrink-0`}></i>
-                  <span className="ml-3">{item.name}</span>
+                  <i
+                    className={`${item.icon} text-lg w-6 flex-shrink-0 mr-3`}
+                  ></i>
+                  <span>{item.name}</span>
                 </Link>
               ))}
 
@@ -258,16 +262,16 @@ const Header = () => {
                       key={option.path}
                       to={option.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${
+                      className={`flex items-center whitespace-nowrap px-4 py-3 rounded-lg transition-all duration-200 ${
                         location.pathname === option.path
                           ? "bg-primary-100 text-primary-700"
                           : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
                       }`}
                     >
                       <i
-                        className={`${option.icon} text-lg w-6 flex-shrink-0`}
+                        className={`${option.icon} text-lg w-6 flex-shrink-0 mr-3`}
                       ></i>
-                      <span className="text-base font-medium ml-3 flex-1">
+                      <span className="text-base font-medium flex-1">
                         {option.name}
                       </span>
                       {location.pathname === option.path && (
@@ -288,7 +292,7 @@ const Header = () => {
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                      className={`w-full flex items-center whitespace-nowrap px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-200 ${
                         currentLang === lang.code
                           ? "bg-primary-100 text-primary-700"
                           : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
@@ -297,7 +301,7 @@ const Header = () => {
                       <img
                         src={lang.flag}
                         alt={lang.name}
-                        className="w-7 h-7 object-cover rounded"
+                        className="w-7 h-7 object-cover rounded flex-shrink-0 mr-3"
                       />
                       <span>{lang.name}</span>
                       {currentLang === lang.code && (
