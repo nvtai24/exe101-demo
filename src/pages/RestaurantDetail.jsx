@@ -42,7 +42,6 @@ const RestaurantDetail = () => {
   const tabs = [
     { id: "overview", label: "Tổng quan", icon: "fa-info-circle" },
     { id: "menu", label: "Thực đơn", icon: "fa-utensils" },
-    { id: "features", label: "Tiện nghi", icon: "fa-concierge-bell" },
     { id: "location", label: "Vị trí", icon: "fa-map-marker-alt" },
     { id: "reviews", label: "Đánh giá", icon: "fa-star" },
   ];
@@ -327,47 +326,6 @@ const RestaurantDetail = () => {
                         </div>
                       </div>
                     ))}
-                  </div>
-                )}
-
-                {/* Features Tab */}
-                {activeTab === "features" && (
-                  <div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                      Tiện nghi nhà hàng
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {restaurant.features.map((feature, index) => (
-                        <div
-                          key={index}
-                          className={`flex items-center space-x-3 p-4 rounded-lg ${
-                            feature.available
-                              ? "bg-green-50"
-                              : "bg-gray-50 opacity-50"
-                          }`}
-                        >
-                          <i
-                            className={`fas ${feature.icon} text-xl ${
-                              feature.available
-                                ? "text-green-600"
-                                : "text-gray-400"
-                            }`}
-                          ></i>
-                          <span
-                            className={`font-medium ${
-                              feature.available
-                                ? "text-gray-900"
-                                : "text-gray-500"
-                            }`}
-                          >
-                            {feature.name}
-                          </span>
-                          {feature.available && (
-                            <i className="fas fa-check text-green-600 ml-auto"></i>
-                          )}
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 )}
 
