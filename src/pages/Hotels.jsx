@@ -8,6 +8,8 @@ const Hotels = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState(priceRanges[0]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("popular"); // popular, price-low, price-high, rating
+  const [currentPage, setCurrentPage] = useState(1);
+  const hotelsPerPage = 9; // 3 columns x 3 rows
 
   // Filter hotels
   const filteredHotels = hotels.filter((hotel) => {
@@ -41,6 +43,22 @@ const Hotels = () => {
         return b.reviewCount - a.reviewCount;
     }
   });
+
+  // Pagination
+  const totalPages = Math.ceil(sortedHotels.length / hotelsPerPage);
+  const indexOfLastHotel = currentPage * hotelsPerPage;
+  const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
+  const currentHotels = sortedHotels.slice(indexOfFirstHotel, indexOfLastHotel);
+
+  // Reset to page 1 when filters change
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCity, selectedCategory, selectedPriceRange, searchTerm, sortBy]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 400, behavior: "smooth" });
+  };
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("vi-VN", {
@@ -283,7 +301,7 @@ const Hotels = () => {
           </div>
         </div>
 
-        {/* Results Count */}
+        {/* Results Count & Pagination Info */}
         <div className="flex items-center justify-between mb-6">
           <p className="text-gray-600">
             Tìm thấy{" "}
@@ -291,13 +309,19 @@ const Hotels = () => {
               {sortedHotels.length}
             </span>{" "}
             khách sạn
+            {sortedHotels.length > hotelsPerPage && (
+              <span className="text-gray-500 ml-2">
+                (Trang {currentPage}/{totalPages})
+              </span>
+            )}
           </p>
         </div>
 
         {/* Hotels Grid */}
         {sortedHotels.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sortedHotels.map((hotel) => (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {currentHotels.map((hotel) => (
               <Link
                 key={hotel.id}
                 to={`/booking/hotels/${hotel.id}`}
@@ -376,6 +400,78 @@ const Hotels = () => {
               </Link>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center space-x-2 mt-8">
+              {/* Previous Button */}
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  currentPage === 1
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
+                }`}
+              >
+                <i className="fas fa-chevron-left mr-2"></i>
+                Trước
+              </button>
+
+              {/* Page Numbers */}
+              <div className="flex space-x-1">
+                {[...Array(totalPages)].map((_, index) => {
+                  const pageNumber = index + 1;
+                  // Show first page, last page, current page, and pages around current
+                  if (
+                    pageNumber === 1 ||
+                    pageNumber === totalPages ||
+                    (pageNumber >= currentPage - 1 &&
+                      pageNumber <= currentPage + 1)
+                  ) {
+                    return (
+                      <button
+                        key={pageNumber}
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`w-10 h-10 rounded-lg font-medium transition-all ${
+                          currentPage === pageNumber
+                            ? "bg-primary-600 text-white shadow-md"
+                            : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
+                        }`}
+                      >
+                        {pageNumber}
+                      </button>
+                    );
+                  } else if (
+                    pageNumber === currentPage - 2 ||
+                    pageNumber === currentPage + 2
+                  ) {
+                    return (
+                      <span key={pageNumber} className="px-2 py-2 text-gray-400">
+                        ...
+                      </span>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  currentPage === totalPages
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
+                }`}
+              >
+                Sau
+                <i className="fas fa-chevron-right ml-2"></i>
+              </button>
+            </div>
+          )}
+        </>
         ) : (
           <div className="text-center py-16">
             <i className="fas fa-search text-6xl text-gray-300 mb-4"></i>
