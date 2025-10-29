@@ -52,19 +52,14 @@ const Header = () => {
 
   const bookingOptions = [
     {
-      name: "Khách sạn",
+      name: "Lưu trú",
       path: "/booking/hotels",
-      icon: "fas fa-hotel",
+      icon: "fas fa-bed",
     },
     {
       name: "Nhà hàng",
       path: "/booking/restaurants",
       icon: "fas fa-utensils",
-    },
-    {
-      name: "Resort",
-      path: "/booking/resorts",
-      icon: "fas fa-umbrella-beach",
     },
   ];
 
