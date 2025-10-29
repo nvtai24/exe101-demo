@@ -42,7 +42,7 @@ const RestaurantDetail = () => {
   const tabs = [
     { id: "overview", label: "Tổng quan", icon: "fa-info-circle" },
     { id: "menu", label: "Thực đơn", icon: "fa-utensils" },
-    { id: "features", label: "Tiện nghi", icon: "fa-concierge-bell" },
+    { id: "location", label: "Vị trí", icon: "fa-map-marker-alt" },
     { id: "reviews", label: "Đánh giá", icon: "fa-star" },
   ];
 
@@ -198,11 +198,7 @@ const RestaurantDetail = () => {
               <div className="flex items-center text-sm text-gray-600 space-x-4 pt-4 border-t">
                 <div className="flex items-center">
                   <i className="fas fa-clock mr-2 text-primary-600"></i>
-                  <span>Thứ 2-6: {restaurant.openingHours.weekday}</span>
-                </div>
-                <div className="flex items-center">
-                  <i className="fas fa-calendar-weekend mr-2 text-primary-600"></i>
-                  <span>Cuối tuần: {restaurant.openingHours.weekend}</span>
+                  <span>{restaurant.openingHours}</span>
                 </div>
               </div>
             </div>
@@ -333,43 +329,67 @@ const RestaurantDetail = () => {
                   </div>
                 )}
 
-                {/* Features Tab */}
-                {activeTab === "features" && (
-                  <div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                      Tiện nghi nhà hàng
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {restaurant.features.map((feature, index) => (
-                        <div
-                          key={index}
-                          className={`flex items-center space-x-3 p-4 rounded-lg ${
-                            feature.available
-                              ? "bg-green-50"
-                              : "bg-gray-50 opacity-50"
-                          }`}
-                        >
-                          <i
-                            className={`fas ${feature.icon} text-xl ${
-                              feature.available
-                                ? "text-green-600"
-                                : "text-gray-400"
-                            }`}
-                          ></i>
-                          <span
-                            className={`font-medium ${
-                              feature.available
-                                ? "text-gray-900"
-                                : "text-gray-500"
-                            }`}
-                          >
-                            {feature.name}
-                          </span>
-                          {feature.available && (
-                            <i className="fas fa-check text-green-600 ml-auto"></i>
-                          )}
+                {/* Location Tab */}
+                {activeTab === "location" && (
+                  <div className="space-y-6">
+                    <div>
+                      <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                        Địa chỉ nhà hàng
+                      </h2>
+                      <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                        <div className="flex items-start space-x-3">
+                          <i className="fas fa-map-marker-alt text-primary-600 text-xl mt-1"></i>
+                          <div>
+                            <p className="font-semibold text-gray-900 mb-1">
+                              {restaurant.name}
+                            </p>
+                            <p className="text-gray-600">
+                              {restaurant.location.address}
+                            </p>
+                            <p className="text-gray-500 text-sm mt-2">
+                              {restaurant.location.city}
+                            </p>
+                          </div>
                         </div>
-                      ))}
+                      </div>
+
+                      {/* Map */}
+                      <div className="rounded-xl overflow-hidden shadow-md">
+                        <iframe
+                          src={`https://www.google.com/maps?q=${restaurant.location.coordinates.lat},${restaurant.location.coordinates.lng}&hl=vi&z=16&output=embed`}
+                          width="100%"
+                          height="450"
+                          style={{ border: 0 }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Restaurant Location"
+                        ></iframe>
+                      </div>
+
+                      {/* Directions */}
+                      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.location.coordinates.lat},${restaurant.location.coordinates.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center space-x-2 bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+                        >
+                          <i className="fas fa-directions"></i>
+                          <span>Chỉ đường</span>
+                        </a>
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            restaurant.name + " " + restaurant.location.address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center space-x-2 bg-white text-gray-700 border-2 border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        >
+                          <i className="fas fa-map"></i>
+                          <span>Xem trên Google Maps</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -517,31 +537,41 @@ const RestaurantDetail = () => {
                   Liên hệ
                 </h3>
                 <div className="space-y-3">
-                  <a
-                    href={`tel:${restaurant.contact.phone}`}
-                    className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
-                  >
-                    <i className="fas fa-phone w-5"></i>
-                    <span className="text-sm">{restaurant.contact.phone}</span>
-                  </a>
-                  <a
-                    href={`mailto:${restaurant.contact.email}`}
-                    className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
-                  >
-                    <i className="fas fa-envelope w-5"></i>
-                    <span className="text-sm">{restaurant.contact.email}</span>
-                  </a>
-                  <a
-                    href={`https://${restaurant.contact.website}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
-                  >
-                    <i className="fas fa-globe w-5"></i>
-                    <span className="text-sm">
-                      {restaurant.contact.website}
-                    </span>
-                  </a>
+                  {restaurant.contact.phone && (
+                    <a
+                      href={`tel:${restaurant.contact.phone}`}
+                      className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
+                    >
+                      <i className="fas fa-phone w-5"></i>
+                      <span className="text-sm">
+                        {restaurant.contact.phone}
+                      </span>
+                    </a>
+                  )}
+                  {restaurant.contact.email && (
+                    <a
+                      href={`mailto:${restaurant.contact.email}`}
+                      className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
+                    >
+                      <i className="fas fa-envelope w-5"></i>
+                      <span className="text-sm">
+                        {restaurant.contact.email}
+                      </span>
+                    </a>
+                  )}
+                  {restaurant.contact.website && (
+                    <a
+                      href={`https://${restaurant.contact.website}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
+                    >
+                      <i className="fas fa-globe w-5"></i>
+                      <span className="text-sm">
+                        {restaurant.contact.website}
+                      </span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -557,7 +587,10 @@ const RestaurantDetail = () => {
       />
 
       {/* Chat Box */}
-      <ChatBox hostInfo={restaurant.hostInfo} hotelName={restaurant.name} />
+      <ChatBox
+        hostInfo={restaurant.hostInfo}
+        restaurantName={restaurant.name}
+      />
     </div>
   );
 };
