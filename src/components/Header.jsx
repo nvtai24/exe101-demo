@@ -3,19 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isBookingMenuOpen, setIsBookingMenuOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("vi");
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Scroll effect removed - keeping solid header for better UX
 
   // Close language menu when clicking outside
   useEffect(() => {
@@ -23,11 +16,14 @@ const Header = () => {
       if (isLangMenuOpen && !event.target.closest(".language-selector")) {
         setIsLangMenuOpen(false);
       }
+      if (isBookingMenuOpen && !event.target.closest(".booking-selector")) {
+        setIsBookingMenuOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isLangMenuOpen]);
+  }, [isLangMenuOpen, isBookingMenuOpen]);
 
   const languages = [
     {
@@ -53,6 +49,24 @@ const Header = () => {
     // - Update all page content
     console.log("Language changed to:", langCode);
   };
+
+  const bookingOptions = [
+    {
+      name: "Khách sạn",
+      path: "/booking/hotels",
+      icon: "fas fa-hotel",
+    },
+    {
+      name: "Nhà hàng",
+      path: "/booking/restaurants",
+      icon: "fas fa-utensils",
+    },
+    {
+      name: "Resort",
+      path: "/booking/resorts",
+      icon: "fas fa-umbrella-beach",
+    },
+  ];
 
   const navItems = [
     { name: "Trang chủ", path: "/", icon: "fas fa-home" },
@@ -87,16 +101,64 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.path)
                     ? "bg-primary-100 text-primary-700 shadow-sm"
                     : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
                 }`}
               >
-                <i className={`${item.icon} text-sm`}></i>
-                <span>{item.name}</span>
+                <i className={`${item.icon} text-sm w-4 flex-shrink-0`}></i>
+                <span className="ml-2">{item.name}</span>
               </Link>
             ))}
+
+            {/* Dịch Vụ Dropdown */}
+            <div className="relative booking-selector">
+              <button
+                onClick={() => setIsBookingMenuOpen(!isBookingMenuOpen)}
+                className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  location.pathname.startsWith("/booking")
+                    ? "bg-primary-100 text-primary-700 shadow-sm"
+                    : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
+                }`}
+              >
+                <i className="fas fa-concierge-bell text-sm w-4 flex-shrink-0"></i>
+                <span className="ml-2">Dịch Vụ</span>
+                <i
+                  className={`fas fa-chevron-down text-xs ml-1 transition-transform ${
+                    isBookingMenuOpen ? "rotate-180" : ""
+                  }`}
+                ></i>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isBookingMenuOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                  {bookingOptions.map((option) => (
+                    <Link
+                      key={option.path}
+                      to={option.path}
+                      onClick={() => setIsBookingMenuOpen(false)}
+                      className={`flex items-center px-4 py-2.5 transition-colors ${
+                        location.pathname === option.path
+                          ? "bg-primary-50 text-primary-700"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      <i
+                        className={`${option.icon} text-base w-5 flex-shrink-0`}
+                      ></i>
+                      <span className="text-sm font-medium ml-3 flex-1">
+                        {option.name}
+                      </span>
+                      {location.pathname === option.path && (
+                        <i className="fas fa-check text-primary-600 text-sm ml-2"></i>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* CTA Button & Language Selector */}
@@ -179,16 +241,47 @@ const Header = () => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                  className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                     isActive(item.path)
                       ? "bg-primary-100 text-primary-700"
                       : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
                   }`}
                 >
-                  <i className={`${item.icon} text-lg w-5`}></i>
-                  <span>{item.name}</span>
+                  <i className={`${item.icon} text-lg w-6 flex-shrink-0`}></i>
+                  <span className="ml-3">{item.name}</span>
                 </Link>
               ))}
+
+              {/* Mobile Dịch Vụ Section */}
+              <div className="pt-3 border-t border-gray-200">
+                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Dịch Vụ
+                </div>
+                <div className="space-y-1">
+                  {bookingOptions.map((option) => (
+                    <Link
+                      key={option.path}
+                      to={option.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${
+                        location.pathname === option.path
+                          ? "bg-primary-100 text-primary-700"
+                          : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
+                      }`}
+                    >
+                      <i
+                        className={`${option.icon} text-lg w-6 flex-shrink-0`}
+                      ></i>
+                      <span className="text-base font-medium ml-3 flex-1">
+                        {option.name}
+                      </span>
+                      {location.pathname === option.path && (
+                        <i className="fas fa-check text-primary-600 text-sm ml-2"></i>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
               {/* Mobile Language Selector */}
               <div className="pt-3 border-t border-gray-200">
