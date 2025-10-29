@@ -204,10 +204,14 @@ const Community = () => {
             </nav>
           </div>
         </div>
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Main Content Grid - Conditional Layout */}
+        <div
+          className={`grid grid-cols-1 gap-8 ${
+            activeTab === "reviews" ? "lg:grid-cols-3" : ""
+          }`}
+        >
           {/* Main Content */}
-          <div className="lg:col-span-2">
+          <div className={activeTab === "reviews" ? "lg:col-span-2" : ""}>
             {activeTab === "reviews" && (
               <div className="space-y-6">
                 {/* Reviews Feed */}
@@ -395,6 +399,79 @@ const Community = () => {
 
             {activeTab === "quests" && (
               <div className="space-y-8">
+                {/* Quest Tips at the top - Refined Design */}
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-orange-400 to-yellow-500 px-6 py-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                        <i className="fas fa-lightbulb text-white text-lg"></i>
+                      </div>
+                      <h4 className="text-xl font-bold text-white">
+                        Mẹo hoàn thành nhiệm vụ
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Tips Grid */}
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {/* Tip 1 */}
+                      <div className="group p-4 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i className="fas fa-calendar-check text-white text-sm"></i>
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-gray-900 text-sm mb-1">
+                              Ưu tiên hàng ngày
+                            </h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">
+                              Hoàn thành nhiệm vụ hàng ngày để tích lũy điểm ổn
+                              định
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Tip 2 */}
+                      <div className="group p-4 rounded-xl bg-gradient-to-br from-purple-50 to-white border border-purple-100 hover:border-purple-300 hover:shadow-md transition-all">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i className="fas fa-clock text-white text-sm"></i>
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-gray-900 text-sm mb-1">
+                              Nắm bắt thời hạn
+                            </h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">
+                              Nhiệm vụ đặc biệt có giới hạn thời gian - đừng bỏ
+                              lỡ!
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Tip 3 */}
+                      <div className="group p-4 rounded-xl bg-gradient-to-br from-green-50 to-white border border-green-100 hover:border-green-300 hover:shadow-md transition-all">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i className="fas fa-layer-group text-white text-sm"></i>
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-gray-900 text-sm mb-1">
+                              Kết hợp thông minh
+                            </h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">
+                              Làm nhiều nhiệm vụ cùng lúc để tối ưu thời gian
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Daily Quests */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -673,43 +750,6 @@ const Community = () => {
                     ))}
                   </div>
                 </div>
-
-                {/* Quest Tips */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-200">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white flex-shrink-0">
-                      <i className="fas fa-lightbulb text-xl"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-lg mb-2">
-                        💡 Mẹo hoàn thành nhiệm vụ
-                      </h4>
-                      <ul className="space-y-2 text-gray-700">
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
-                          <span>
-                            Hoàn thành nhiệm vụ hàng ngày để tích lũy điểm nhanh
-                            chóng
-                          </span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
-                          <span>
-                            Nhiệm vụ đặc biệt có thời hạn - đừng bỏ lỡ cơ hội
-                            kiếm điểm cao!
-                          </span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
-                          <span>
-                            Kết hợp nhiều nhiệm vụ cùng lúc để tối ưu hóa thời
-                            gian
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
             )}
 
@@ -875,36 +915,37 @@ const Community = () => {
             )}
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Quick Stats Card */}
-            {/* <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                <i className="fas fa-chart-line mr-2 text-primary-600"></i>
-                Hoạt động của bạn
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 bg-blue-50 rounded-xl">
-                  <div className="text-2xl font-bold text-blue-600">12</div>
-                  <div className="text-sm text-blue-800">Reviews</div>
-                </div>
-                <div className="text-center p-3 bg-green-50 rounded-xl">
-                  <div className="text-2xl font-bold text-green-600">8</div>
-                  <div className="text-sm text-green-800">Check-ins</div>
-                </div>
-                <div className="text-center p-3 bg-red-50 rounded-xl">
-                  <div className="text-2xl font-bold text-red-600">45</div>
-                  <div className="text-sm text-red-800">Likes</div>
-                </div>
-                <div className="text-center p-3 bg-purple-50 rounded-xl">
-                  <div className="text-2xl font-bold text-purple-600">23</div>
-                  <div className="text-sm text-purple-800">Shares</div>
+          {/* Sidebar - Only show on "reviews" tab */}
+          {activeTab === "reviews" && (
+            <div className="space-y-6">
+              {/* Quick Stats Card */}
+              <div className="bg-white rounded-2xl shadow-sm p-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                  <i className="fas fa-chart-line mr-2 text-primary-600"></i>
+                  Hoạt động của bạn
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-3 bg-blue-50 rounded-xl">
+                    <div className="text-2xl font-bold text-blue-600">12</div>
+                    <div className="text-sm text-blue-800">Reviews</div>
+                  </div>
+                  <div className="text-center p-3 bg-green-50 rounded-xl">
+                    <div className="text-2xl font-bold text-green-600">8</div>
+                    <div className="text-sm text-green-800">Check-ins</div>
+                  </div>
+                  <div className="text-center p-3 bg-red-50 rounded-xl">
+                    <div className="text-2xl font-bold text-red-600">45</div>
+                    <div className="text-sm text-red-800">Likes</div>
+                  </div>
+                  <div className="text-center p-3 bg-purple-50 rounded-xl">
+                    <div className="text-2xl font-bold text-purple-600">23</div>
+                    <div className="text-sm text-purple-800">Shares</div>
+                  </div>
                 </div>
               </div>
-            </div> */}
 
-            {/* Recent Achievements */}
-            {/* <div className="bg-white rounded-2xl shadow-sm p-6">
+              {/* Recent Achievements */}
+              {/* <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <i className="fas fa-medal mr-2 text-yellow-600"></i>
                 Thành tựu gần đây
@@ -933,8 +974,8 @@ const Community = () => {
               </div>
             </div> */}
 
-            {/* Quick Actions */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
+              {/* Quick Actions */}
+              {/* <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <i className="fas fa-zap mr-2 text-orange-600"></i>
                 Kiếm điểm nhanh
@@ -962,10 +1003,10 @@ const Community = () => {
                   <span className="text-purple-200 text-sm">+10 điểm</span>
                 </button>
               </div>
-            </div>
+            </div> */}
 
-            {/* Top Contributors */}
-            {/* <div className="bg-white rounded-2xl shadow-sm p-6">
+              {/* Top Contributors */}
+              {/* <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <i className="fas fa-users mr-2 text-indigo-600"></i>
                 Top Contributors
@@ -999,32 +1040,35 @@ const Community = () => {
               </div>
             </div> */}
 
-            {/* Trending Topics */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                <i className="fas fa-fire mr-2 text-orange-500"></i>
-                Trending
-              </h3>
-              <div className="space-y-3">
-                {[
-                  "#DaLat2025",
-                  "#HaLongBay",
-                  "#SapaTravel",
-                  "#PhuQuocBeach",
-                ].map((tag, index) => (
-                  <button
-                    key={index}
-                    className="w-full text-left p-3 hover:bg-gray-50 rounded-lg transition-colors"
-                  >
-                    <div className="font-semibold text-primary-600">{tag}</div>
-                    <div className="text-sm text-gray-500">
-                      {Math.floor(Math.random() * 1000)} bài viết
-                    </div>
-                  </button>
-                ))}
+              {/* Trending Topics */}
+              <div className="bg-white rounded-2xl shadow-sm p-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                  <i className="fas fa-fire mr-2 text-orange-500"></i>
+                  Trending
+                </h3>
+                <div className="space-y-3">
+                  {[
+                    "#DaLat2025",
+                    "#HaLongBay",
+                    "#SapaTravel",
+                    "#PhuQuocBeach",
+                  ].map((tag, index) => (
+                    <button
+                      key={index}
+                      className="w-full text-left p-3 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                      <div className="font-semibold text-primary-600">
+                        {tag}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {Math.floor(Math.random() * 1000)} bài viết
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
