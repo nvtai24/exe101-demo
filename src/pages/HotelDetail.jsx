@@ -49,6 +49,7 @@ const HotelDetail = () => {
     { id: "overview", label: "Tổng quan", icon: "fa-info-circle" },
     { id: "rooms", label: "Loại phòng", icon: "fa-bed" },
     { id: "amenities", label: "Tiện nghi", icon: "fa-concierge-bell" },
+    { id: "location", label: "Vị trí", icon: "fa-map-marker-alt" },
     { id: "reviews", label: "Đánh giá", icon: "fa-star" },
   ];
 
@@ -392,6 +393,71 @@ const HotelDetail = () => {
                           )}
                         </div>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Location Tab */}
+                {activeTab === "location" && (
+                  <div className="space-y-6">
+                    <div>
+                      <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                        Địa chỉ khách sạn
+                      </h2>
+                      <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                        <div className="flex items-start space-x-3">
+                          <i className="fas fa-map-marker-alt text-primary-600 text-xl mt-1"></i>
+                          <div>
+                            <p className="font-semibold text-gray-900 mb-1">
+                              {hotel.name}
+                            </p>
+                            <p className="text-gray-600">
+                              {hotel.location.address}
+                            </p>
+                            <p className="text-gray-500 text-sm mt-2">
+                              {hotel.location.city}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Map */}
+                      <div className="rounded-xl overflow-hidden shadow-md">
+                        <iframe
+                          src={`https://www.google.com/maps?q=${hotel.location.coordinates.lat},${hotel.location.coordinates.lng}&hl=vi&z=16&output=embed`}
+                          width="100%"
+                          height="450"
+                          style={{ border: 0 }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Hotel Location"
+                        ></iframe>
+                      </div>
+
+                      {/* Directions */}
+                      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${hotel.location.coordinates.lat},${hotel.location.coordinates.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center space-x-2 bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+                        >
+                          <i className="fas fa-directions"></i>
+                          <span>Chỉ đường</span>
+                        </a>
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            hotel.name + " " + hotel.location.address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center space-x-2 bg-white text-gray-700 border-2 border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        >
+                          <i className="fas fa-map"></i>
+                          <span>Xem trên Google Maps</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 )}
