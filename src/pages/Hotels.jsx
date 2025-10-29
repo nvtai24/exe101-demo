@@ -49,24 +49,139 @@ const Hotels = () => {
     }).format(price);
   };
 
+  // Featured hotels for slider (top rated)
+  const featuredHotels = [...hotels]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
+
+  // Slider state
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-play slider
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % featuredHotels.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [featuredHotels.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % featuredHotels.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? featuredHotels.length - 1 : prev - 1
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div
-        className="relative h-80 bg-cover bg-center flex items-center"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600')`,
-        }}
-      >
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <h1 className="text-white text-4xl lg:text-5xl font-bold mb-4">
-            Đặt phòng khách sạn
-          </h1>
-          <p className="text-white/90 text-lg max-w-2xl">
-            Khám phá và đặt phòng tại các khách sạn, resort cao cấp trên toàn
-            quốc
-          </p>
+      {/* Featured Hotels Slider */}
+      <div className="relative h-[500px] overflow-hidden bg-gray-900">
+        {/* Slides */}
+        {featuredHotels.map((hotel, index) => (
+          <div
+            key={hotel.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url('${hotel.images[0]}')`,
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+              <div className="max-w-2xl">
+                {/* Badge */}
+                <div className="flex items-center space-x-3 mb-4">
+                  <span className="px-4 py-1.5 bg-primary-600 text-white text-sm font-semibold rounded-full">
+                    Đề xuất
+                  </span>
+                  <span className="px-4 py-1.5 bg-yellow-500 text-white text-sm font-semibold rounded-full flex items-center">
+                    <i className="fas fa-star mr-1"></i>
+                    {hotel.rating} ({hotel.reviewCount} đánh giá)
+                  </span>
+                </div>
+
+                {/* Hotel Name */}
+                <h1 className="text-white text-4xl lg:text-6xl font-bold mb-4">
+                  {hotel.name}
+                </h1>
+
+                {/* Location */}
+                <div className="flex items-center text-white/90 text-lg mb-4">
+                  <i className="fas fa-map-marker-alt mr-2"></i>
+                  <span>{hotel.location.city}</span>
+                </div>
+
+                {/* Description */}
+                <p className="text-white/80 text-lg mb-6 line-clamp-2">
+                  {hotel.description}
+                </p>
+
+                {/* Amenities */}
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {hotel.amenities.slice(0, 4).map((amenity, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center text-white/90 text-sm bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg"
+                    >
+                      <i className={`fas ${amenity.icon} mr-2`}></i>
+                      <span>{amenity.name}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <div>
+                  <Link
+                    to={`/booking/hotels/${hotel.id}`}
+                    className="btn btn-primary text-lg px-8 py-3 inline-flex items-center"
+                  >
+                    Xem chi tiết & Đặt phòng
+                    <i className="fas fa-arrow-right ml-2"></i>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all"
+        >
+          <i className="fas fa-chevron-left"></i>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all"
+        >
+          <i className="fas fa-chevron-right"></i>
+        </button>
+
+        {/* Dots Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+          {featuredHotels.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentSlide
+                  ? "bg-white w-8"
+                  : "bg-white/50 hover:bg-white/70"
+              }`}
+            />
+          ))}
         </div>
       </div>
 
