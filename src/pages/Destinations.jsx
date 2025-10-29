@@ -1,502 +1,566 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import TourCard from "../components/TourCard";
-import { tours, tourCategories } from "../data/tours";
 
 const Destinations = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [priceRange, setPriceRange] = useState("all");
-  const [sortBy, setSortBy] = useState("featured");
+  const [selectedRegion, setSelectedRegion] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredTours = tours
-    .filter((tour) => {
-      const matchesCategory =
-        selectedCategory === "all" || tour.category === selectedCategory;
-      const matchesSearch =
-        tour.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        tour.description.toLowerCase().includes(searchTerm.toLowerCase());
+  const destinations = [
+    {
+      id: 1,
+      name: "Hà Nội",
+      region: "Miền Bắc",
+      image:
+        "https://static.vinwonders.com/production/gioi-thieu-ve-ha-noi-banner.jpg",
+      description: "Thủ đô ngàn năm văn hiến với phố cổ, văn hóa truyền thống",
+      highlights: ["Văn Miếu", "Phố cổ", "Hồ Hoàn Kiếm", "Múa rối nước"],
+      rating: 4.8,
+      category: "Culture",
+      bestTime: "Tháng 10-4",
+      duration: "2-3 ngày",
+    },
+    {
+      id: 2,
+      name: "Hạ Long Bay",
+      region: "Miền Bắc",
+      image: "https://wallpaperaccess.com/full/200944.jpg",
+      description: "Di sản thế giới với hàng nghìn đảo đá vôi tuyệt đẹp",
+      highlights: ["Du thuyền", "Chèo kayak", "Hang động", "Hoàng hôn"],
+      rating: 4.9,
+      category: "Nature",
+      bestTime: "Tháng 10-4",
+      duration: "2-3 ngày",
+    },
+    {
+      id: 3,
+      name: "Sapa",
+      region: "Miền Bắc",
+      image:
+        "https://impresstravel.com/wp-content/uploads/2021/03/Sapa-Trekking-Homestay-Market-6.jpg",
+      description: "Ruộng bậc thang tuyệt đẹp và văn hóa dân tộc thiểu số",
+      highlights: ["Ruộng bậc thang", "Fansipan", "Bản Cát Cát", "Chợ Sapa"],
+      rating: 4.7,
+      category: "Nature",
+      bestTime: "Tháng 9-11",
+      duration: "3-4 ngày",
+    },
+    {
+      id: 4,
+      name: "Hội An",
+      region: "Miền Trung",
+      image:
+        "https://focusasiatravel.vn/wp-content/uploads/2018/09/Ph%E1%BB%91-C%E1%BB%95-H%E1%BB%99i-An1.jpg",
+      description: "Phố cổ UNESCO với kiến trúc cổ kính và đèn lồng",
+      highlights: ["Phố cổ", "Đèn lồng", "Ẩm thực", "Sông Hoài"],
+      rating: 4.8,
+      category: "Culture",
+      bestTime: "Tháng 2-8",
+      duration: "2-3 ngày",
+    },
+    {
+      id: 5,
+      name: "Đà Nẵng",
+      region: "Miền Trung",
+      image: "https://btnmt.1cdn.vn/2023/07/04/302-202307041611213.jpg",
+      description:
+        "Thành phố biển hiện đại với bãi biển đẹp và ẩm thực phong phú",
+      highlights: ["Bãi biển", "Cầu Rồng", "Bà Nà Hills", "Ẩm thực"],
+      rating: 4.6,
+      category: "Beach",
+      bestTime: "Tháng 2-8",
+      duration: "3-4 ngày",
+    },
+    {
+      id: 6,
+      name: "Huế",
+      region: "Miền Trung",
+      image:
+        "https://dulichconvoi.com/wp-content/uploads/2024/03/352521770_6922050131.jpg",
+      description: "Cố đô với kiến trúc cung đình và lăng tẩm cổ kính",
+      highlights: ["Đại Nội", "Lăng Tự Đức", "Chùa Thiên Mụ", "Cơm hến"],
+      rating: 4.5,
+      category: "Culture",
+      bestTime: "Tháng 1-4",
+      duration: "2-3 ngày",
+    },
+    {
+      id: 7,
+      name: "Nha Trang",
+      region: "Miền Nam",
+      image:
+        "https://th.bing.com/th/id/R.966392878fff0d549c42218f5ffcfc80?rik=H5NcVjNlNyAUTw&pid=ImgRaw&r=0",
+      description:
+        "Thành phố biển với bãi cát trắng và hoạt động thể thao nước",
+      highlights: ["Bãi biển", "Lặn biển", "Vinpearl", "Tháp Bà"],
+      rating: 4.4,
+      category: "Beach",
+      bestTime: "Tháng 1-8",
+      duration: "3-4 ngày",
+    },
+    {
+      id: 8,
+      name: "Đà Lạt",
+      region: "Miền Nam",
+      image:
+        "https://ik.imagekit.io/tvlk/loc-asset/gNr3hLh55ZCkPJisyxFK-v9MmzxPu57ZRVI+10VZ2S4b1PNW4T++cbA6yK4gzhAhs9o2HLZ9vs7gy3rpcIU+oKi5EygzQLRjTUv7fRblEVA=/images/1548760200339-1500x1125-FIT_AND_TRIM-035bfa2b07fa55cd6db5652d8c2a62e0.jpeg?tr=dpr-3",
+      description:
+        "Thành phố ngàn hoa với khí hậu mát mẻ và cảnh quan thiên nhiên",
+      highlights: ["Hồ Xuân Hương", "Vườn hoa", "Dinh Bảo Đại", "Cà phê"],
+      rating: 4.7,
+      category: "Nature",
+      bestTime: "Quanh năm",
+      duration: "3-4 ngày",
+    },
+    {
+      id: 9,
+      name: "Phú Quốc",
+      region: "Miền Nam",
+      image:
+        "https://static.vinwonders.com/production/how-many-days-in-phu-quoc-2.jpg",
+      description: "Đảo ngọc với bãi biển đẹp và resort cao cấp",
+      highlights: ["Bãi Trường", "Vinpearl Land", "Lặn biển", "Hải sản"],
+      rating: 4.8,
+      category: "Beach",
+      bestTime: "Tháng 11-4",
+      duration: "4-5 ngày",
+    },
+    {
+      id: 10,
+      name: "TP. Hồ Chí Minh",
+      region: "Miền Nam",
+      image:
+        "https://vietnamnomad.com/wp-content/uploads/2021/01/Ho-Chi-Minh-City-Travel-Guide-2021-Vietnamnomad.jpg",
+      description:
+        "Thành phố năng động với ẩm thực phong phú và cuộc sống về đêm",
+      highlights: [
+        "Chợ Bến Thành",
+        "Nhà thờ Đức Bà",
+        "Ẩm thực",
+        "Cuộc sống đêm",
+      ],
+      rating: 4.3,
+      category: "Culture",
+      bestTime: "Tháng 12-4",
+      duration: "2-3 ngày",
+    },
+  ];
 
-      let matchesPrice = true;
-      if (priceRange !== "all") {
-        switch (priceRange) {
-          case "under-1m":
-            matchesPrice = tour.price < 1000000;
-            break;
-          case "1m-3m":
-            matchesPrice = tour.price >= 1000000 && tour.price < 3000000;
-            break;
-          case "3m-5m":
-            matchesPrice = tour.price >= 3000000 && tour.price < 5000000;
-            break;
-          case "over-5m":
-            matchesPrice = tour.price >= 5000000;
-            break;
-        }
-      }
+  const regions = [
+    { id: "all", name: "Tất cả", icon: "🇻🇳" },
+    { id: "Miền Bắc", name: "Miền Bắc", icon: "🏔️" },
+    { id: "Miền Trung", name: "Miền Trung", icon: "🏛️" },
+    { id: "Miền Nam", name: "Miền Nam", icon: "🏖️" },
+  ];
 
-      return matchesCategory && matchesSearch && matchesPrice;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case "price-low":
-          return a.price - b.price;
-        case "price-high":
-          return b.price - a.price;
-        case "rating":
-          return b.rating - a.rating;
-        case "featured":
-        default:
-          return b.featured - a.featured;
-      }
-    });
+  const filteredDestinations = destinations.filter((dest) => {
+    const matchesRegion =
+      selectedRegion === "all" || dest.region === selectedRegion;
+    const matchesSearch =
+      dest.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      dest.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesRegion && matchesSearch;
+  });
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(true);
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
 
-  // Featured tours for slider
-  const featuredTours = tours.filter((tour) => tour.featured).slice(0, 5);
-
-  // Auto-slide functionality with infinite loop
-  useEffect(() => {
-    if (featuredTours.length === 0 || isHovered) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
-        const nextSlide = prev + 1;
-        return nextSlide;
-      });
-    }, 2500); // 2.5 giây mỗi slide
-
-    return () => clearInterval(interval);
-  }, [featuredTours.length, isHovered]);
-
-  // Handle infinite loop transition
-  useEffect(() => {
-    if (currentSlide === featuredTours.length) {
-      // Khi đến slide duplicate cuối cùng
-      const timeout = setTimeout(() => {
-        setIsTransitioning(false); // Tắt transition để reset không bị giật
-        setCurrentSlide(0); // Reset về slide đầu tiên
-      }, 1000); // = thời gian transition
-
-      return () => clearTimeout(timeout);
-    } else {
-      setIsTransitioning(true); // Bật lại transition bình thường
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<i key={i} className="fas fa-star text-yellow-400"></i>);
     }
-  }, [currentSlide, featuredTours.length]);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => prev + 1);
+    if (hasHalfStar) {
+      stars.push(
+        <i key="half" className="fas fa-star-half-alt text-yellow-400"></i>
+      );
+    }
+
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(
+        <i key={`empty-${i}`} className="far fa-star text-gray-300"></i>
+      );
+    }
+
+    return stars;
   };
 
-  const prevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(featuredTours.length - 1);
-    } else {
-      setCurrentSlide((prev) => prev - 1);
+  const getCategoryColor = (category) => {
+    switch (category) {
+      case "Culture":
+        return "bg-purple-100 text-purple-800";
+      case "Nature":
+        return "bg-green-100 text-green-800";
+      case "Beach":
+        return "bg-blue-100 text-blue-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Banner with Slider */}
-      <div
-        className="relative h-[600px]"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Background Slider */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            className={`flex h-full ${
-              isTransitioning
-                ? "transition-transform duration-1000 ease-in-out"
-                : ""
-            }`}
-            style={{
-              transform: `translateX(-${
-                currentSlide * (100 / (featuredTours.length + 1))
-              }%)`,
-              width: `${(featuredTours.length + 1) * 100}%`,
-            }}
-          >
-            {featuredTours.map((tour, index) => (
-              <div
-                key={`${tour.id}-${index}`}
-                className="flex-shrink-0 w-full h-full"
-                style={{ width: `${100 / (featuredTours.length + 1)}%` }}
-              >
-                <div
-                  className="w-full h-full bg-cover bg-center bg-no-repeat"
-                  style={{
-                    backgroundImage: `url('${tour.image}')`,
-                  }}
-                />
-              </div>
-            ))}
-            {/* Duplicate first slide for infinite effect */}
-            {featuredTours.length > 0 && (
-              <div
-                key={`${featuredTours[0].id}-duplicate`}
-                className="flex-shrink-0 w-full h-full"
-                style={{ width: `${100 / (featuredTours.length + 1)}%` }}
-              >
-                <div
-                  className="w-full h-full bg-cover bg-center bg-no-repeat"
-                  style={{
-                    backgroundImage: `url('${featuredTours[0].image}')`,
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Simple Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+      {/* Hero Banner with Background Image */}
+      <div className="relative h-[600px] bg-gradient-to-r from-blue-900/80 to-purple-900/80">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-viet-nam-cover.jpeg')",
+          }}
+        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-purple-900/70" />
 
         {/* Banner Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="w-full">
-            {/* Featured Tour Content */}
-            {featuredTours.map((tour, index) => {
-              const displayIndex =
-                currentSlide >= featuredTours.length ? 0 : currentSlide;
-              return (
-                <div
-                  key={`content-${tour.id}`}
-                  className={`transition-all duration-1000 ${
-                    index === displayIndex
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4 absolute inset-0"
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+          {/* Title */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
+              Khám phá Việt Nam
+            </h1>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+              Những điểm đến tuyệt vời nhất từ Bắc đến Nam
+            </p>
+          </div>
+
+          {/* Quick Stats Overlay */}
+          <div className="mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/20">
+                <div className="text-2xl font-bold text-white">
+                  {/* {destinations.length} */}
+                  36+
+                </div>
+                <div className="text-sm text-blue-100">Điểm đến</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/20">
+                <div className="text-2xl font-bold text-white">4.6 ★</div>
+                <div className="text-sm text-blue-100">Đánh giá TB</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/20">
+                <div className="text-2xl font-bold text-white">3 miền</div>
+                <div className="text-sm text-blue-100">Khắp Việt Nam</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/20">
+                <div className="text-2xl font-bold text-white">100+</div>
+                <div className="text-sm text-blue-100">Tours có sẵn</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Search and Filter Overlay */}
+          <div className="max-w-4xl mx-auto w-full">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
+                <div className="lg:col-span-3">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <i className="fas fa-search text-white/70"></i>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Tìm kiếm điểm đến..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all backdrop-blur-sm"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <select
+                    value={selectedRegion}
+                    onChange={(e) => setSelectedRegion(e.target.value)}
+                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:ring-2 focus:ring-white/50 focus:border-white/50 backdrop-blur-sm"
+                  >
+                    {regions.map((region) => (
+                      <option
+                        key={region.id}
+                        value={region.id}
+                        className="text-gray-900"
+                      >
+                        {region.icon} {region.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Quick Filters */}
+              <div className="flex flex-wrap gap-3">
+                <span className="text-sm font-medium text-white/90">
+                  Lọc nhanh:
+                </span>
+                <button
+                  onClick={() => setSelectedRegion("Miền Bắc")}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors border ${
+                    selectedRegion === "Miền Bắc"
+                      ? "bg-white/30 text-white border-white/50"
+                      : "bg-white/10 text-white/80 border-white/20 hover:bg-white/20"
                   }`}
                 >
-                  {index === displayIndex && (
-                    <div className="text-center text-white max-w-4xl mx-auto">
-                      {/* Tour Info */}
-                      <div>
-                        <div className="inline-flex items-center px-3 py-1.5 bg-blue-500/60 backdrop-blur-sm rounded-full mb-4">
-                          <i className="fas fa-star text-yellow-400 mr-2 text-sm"></i>
-                          <span className="text-sm font-medium">
-                            Tour nổi bật
-                          </span>
-                        </div>
-
-                        <h1 className="text-3xl lg:text-5xl font-bold mb-4 leading-tight text-white">
-                          {tour.title}
-                        </h1>
-
-                        <p className="text-lg text-blue-100 mb-6 line-clamp-3">
-                          {tour.description}
-                        </p>
-
-                        <div className="flex items-center justify-center space-x-8 mb-8">
-                          <div className="flex items-center">
-                            <i className="fas fa-clock mr-2 text-blue-300"></i>
-                            <span>{tour.duration}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <i className="fas fa-star mr-2 text-yellow-400"></i>
-                            <span>{tour.rating}/5</span>
-                          </div>
-                          <div className="flex items-center">
-                            <i className="fas fa-users mr-2 text-green-300"></i>
-                            <span>Max {tour.maxPeople} người</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-col gap-4 items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                          <div className="text-4xl lg:text-5xl font-bold">
-                            {tour.price.toLocaleString()}₫
-                          </div>
-
-                          <Link
-                            to={`/tours/${tour.id}`}
-                            className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors text-lg"
-                          >
-                            Xem chi tiết
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                  🏔️ Miền Bắc
+                </button>
+                <button
+                  onClick={() => setSelectedRegion("Miền Trung")}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors border ${
+                    selectedRegion === "Miền Trung"
+                      ? "bg-white/30 text-white border-white/50"
+                      : "bg-white/10 text-white/80 border-white/20 hover:bg-white/20"
+                  }`}
+                >
+                  🏛️ Miền Trung
+                </button>
+                <button
+                  onClick={() => setSelectedRegion("Miền Nam")}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors border ${
+                    selectedRegion === "Miền Nam"
+                      ? "bg-white/30 text-white border-white/50"
+                      : "bg-white/10 text-white/80 border-white/20 hover:bg-white/20"
+                  }`}
+                >
+                  🏖️ Miền Nam
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedRegion("all");
+                    setSearchTerm("");
+                  }}
+                  className="px-3 py-1.5 text-xs font-medium rounded-full bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors"
+                >
+                  <i className="fas fa-refresh mr-1"></i>
+                  Xóa bộ lọc
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Slider Navigation */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all z-20"
-        >
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all z-20"
-        >
-          <i className="fas fa-chevron-right"></i>
-        </button>
-
-        {/* Dots Indicator */}
-
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-          {featuredTours.map((_, index) => {
-            const displayIndex =
-              currentSlide >= featuredTours.length ? 0 : currentSlide;
-
-            return (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === displayIndex
-                    ? "bg-white scale-125"
-                    : "bg-white/50 hover:bg-white/75"
-                }`}
-              />
-            );
-          })}
         </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Page Title */}
-        {/* <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-4">
-            Tất cả Tours du lịch
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Khám phá thêm nhiều tour du lịch chất lượng cao với giá cả hợp lý
-          </p>
-        </div> */}
-
-        {/* Search & Filters */}
-        <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Tìm kiếm & Lọc tours
-            </h3>
-            <div className="text-sm text-gray-600">
-              Hiển thị {filteredTours.length} tour
-            </div>
-          </div>
-
-          {/* Search and Main Filters */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
-            {/* Search */}
-            <div className="lg:col-span-1">
-              <div className="relative">
-                <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm tour..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+        {/* Destinations Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {filteredDestinations.map((destination) => (
+            <div
+              key={destination.id}
+              className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group h-full flex flex-col"
+            >
+              <div className="relative overflow-hidden h-48">
+                <img
+                  src={destination.image}
+                  alt={destination.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute top-3 left-3">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    {destination.region}
+                  </span>
+                </div>
+                <div className="absolute top-3 right-3">
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(
+                      destination.category
+                    )}`}
+                  >
+                    {destination.category}
+                  </span>
+                </div>
+                <div className="absolute bottom-3 right-3">
+                  <div className="flex items-center space-x-1 bg-white/95 backdrop-blur-sm rounded-full px-2.5 py-1">
+                    <i className="fas fa-star text-yellow-400 text-xs"></i>
+                    <span className="text-xs font-semibold text-gray-900">
+                      {destination.rating}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-primary-600 transition-colors">
+                  {destination.name}
+                </h3>
+
+                <p className="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">
+                  {destination.description}
+                </p>
+
+                <div className="mb-4 flex-grow">
+                  <div className="flex flex-wrap gap-1.5 min-h-[2rem]">
+                    {destination.highlights
+                      .slice(0, 3)
+                      .map((highlight, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-md"
+                        >
+                          {highlight}
+                        </span>
+                      ))}
+                    {destination.highlights.length > 3 && (
+                      <span className="inline-flex items-center px-2 py-1 bg-gray-200 text-gray-600 text-xs font-medium rounded-md">
+                        +{destination.highlights.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-2 mb-5">
+                  <div className="flex items-center justify-between text-xs text-gray-600">
+                    <span className="flex items-center">
+                      <i className="fas fa-clock mr-1.5 text-gray-400"></i>
+                      {destination.duration}
+                    </span>
+                    <span className="flex items-center">
+                      <i className="fas fa-calendar mr-1.5 text-gray-400"></i>
+                      {destination.bestTime}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <div className="flex items-center space-x-0.5">
+                      {renderStars(destination.rating)}
+                      <span className="ml-2 text-xs text-gray-600">
+                        ({destination.rating})
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  // to={`/destinations/${destination.id}`}
+                  className="btn btn-primary w-full text-sm py-2.5 mt-auto"
+                >
+                  <i className="fas fa-info-circle mr-2"></i>
+                  Xem chi tiết
+                </Link>
               </div>
             </div>
-
-            {/* Category */}
-            <div>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
-              >
-                <option value="all">Tất cả danh mục</option>
-                {tourCategories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Price Range */}
-            <div>
-              <select
-                value={priceRange}
-                onChange={(e) => setPriceRange(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
-              >
-                <option value="all">Tất cả mức giá</option>
-                <option value="under-1m">Dưới 1 triệu</option>
-                <option value="1m-3m">1-3 triệu</option>
-                <option value="3m-5m">3-5 triệu</option>
-                <option value="over-5m">Trên 5 triệu</option>
-              </select>
-            </div>
-
-            {/* Sort */}
-            <div>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
-              >
-                <option value="featured">Nổi bật</option>
-                <option value="price-low">Giá thấp đến cao</option>
-                <option value="price-high">Giá cao đến thấp</option>
-                <option value="rating">Đánh giá cao</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Quick Category Filters */}
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-sm font-medium text-gray-700">
-              Lọc nhanh:
-            </span>
-            <button
-              onClick={() => setSelectedCategory("all")}
-              className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
-                selectedCategory === "all"
-                  ? "bg-primary-100 text-primary-800"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              Tất cả
-            </button>
-            {tourCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
-                  selectedCategory === category.id
-                    ? "bg-primary-100 text-primary-800"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-            <button
-              onClick={() => {
-                setSearchTerm("");
-                setSelectedCategory("all");
-                setPriceRange("all");
-                setSortBy("featured");
-              }}
-              className="px-3 py-1.5 text-xs font-medium rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors ml-auto"
-            >
-              <i className="fas fa-refresh mr-1"></i>
-              Xóa bộ lọc
-            </button>
-          </div>
+          ))}
         </div>
 
-        {/* Tours Grid */}
-        {filteredTours.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {filteredTours.map((tour) => (
-              <TourCard key={tour.id} tour={tour} />
-            ))}
-          </div>
-        ) : (
+        {/* No Results */}
+        {filteredDestinations.length === 0 && (
           <div className="text-center py-16">
             <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
               <i className="fas fa-search text-gray-400 text-3xl"></i>
             </div>
             <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">
-              Không tìm thấy tour nào
+              Không tìm thấy điểm đến nào
             </h3>
             <p className="text-gray-600 mb-8 max-w-md mx-auto">
-              Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm để tìm tour phù hợp
+              Hãy thử thay đổi từ khóa tìm kiếm hoặc bộ lọc để tìm điểm đến phù
+              hợp
             </p>
             <button
               onClick={() => {
                 setSearchTerm("");
-                setSelectedCategory("all");
-                setPriceRange("all");
-                setSortBy("featured");
+                setSelectedRegion("all");
               }}
               className="btn btn-primary"
             >
               <i className="fas fa-refresh mr-2"></i>
-              Xem tất cả tours
+              Xem tất cả điểm đến
             </button>
           </div>
         )}
 
-        {/* CTA Section */}
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2835&q=80')`,
-            }}
-          />
-
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-indigo-900/75 to-purple-900/80"></div>
-
-          {/* Floating Elements */}
-          <div className="absolute top-8 left-8 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute bottom-12 right-12 w-32 h-32 bg-yellow-400/20 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 right-8 w-16 h-16 bg-pink-500/15 rounded-full blur-lg"></div>
-
-          {/* Content */}
-          <div className="relative z-10 text-white p-12 text-center">
-            <div className="w-20 h-20 mx-auto mb-8 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center ring-4 ring-white/20">
-              <i className="fas fa-robot text-white text-3xl"></i>
-            </div>
-
-            <h3 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-              Chưa tìm thấy tour phù hợp?
+        {/* CTA Sections */}
+        <div className="mt-16 space-y-8">
+          {/* Popular Categories */}
+          <div className="bg-white rounded-xl shadow-sm p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              Khám phá theo chủ đề
             </h3>
-
-            <p className="text-xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Để AI giúp bạn tạo kế hoạch du lịch cá nhân hóa dựa trên sở thích,
-              ngân sách và thời gian của bạn
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link
-                to="/ai-planner"
-                className="group relative bg-white text-primary-600 hover:bg-blue-50 font-bold text-lg px-10 py-5 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 min-w-[200px]"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Văn hóa - Lịch sử */}
+              <div
+                className="text-center p-6 rounded-lg hover:shadow-md transition-all cursor-pointer relative overflow-hidden group"
+                style={{
+                  backgroundImage:
+                    "url('https://congdankhuyenhoc.qltns.mediacdn.vn/449484899827462144/2022/8/24/imge1742-16613197159321913372738.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               >
-                <div className="flex items-center justify-center">
-                  <i className="fas fa-magic mr-3 text-xl group-hover:animate-bounce"></i>
-                  <span>Tạo kế hoạch AI</span>
+                <div className="absolute inset-0 bg-purple-900/30 group-hover:bg-purple-900/40 transition-all"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-red-700/70 rounded-full flex items-center justify-center">
+                    <i className="fas fa-landmark text-white text-xl"></i>
+                  </div>
+                  <h4 className="font-semibold text-white mb-2">
+                    Văn hóa - Lịch sử
+                  </h4>
+                  <p className="text-sm text-blue-100">
+                    Khám phá di sản và văn hóa Việt Nam
+                  </p>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </Link>
-
-              <Link
-                to="/contact"
-                className="group relative border-3 border-white/80 text-white hover:bg-white hover:text-primary-600 font-bold text-lg px-10 py-5 rounded-2xl transition-all duration-300 backdrop-blur-sm hover:shadow-xl hover:scale-105 min-w-[200px]"
+              </div>
+              {/* Thiên nhiên */}
+              <div
+                className="text-center p-6 rounded-lg hover:shadow-md transition-all cursor-pointer relative overflow-hidden group"
+                style={{
+                  backgroundImage:
+                    "url('https://vietrektravel.com/Upload/News/Chiem-Nguong-Cac-Ky-Quan-Thien-Nhien-The-Gioi-Tai-Viet-Nam.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               >
-                <div className="flex items-center justify-center">
-                  <i className="fas fa-headset mr-3 text-xl group-hover:scale-110 transition-transform"></i>
-                  <span>Tư vấn trực tiếp</span>
+                <div className="absolute inset-0 bg-green-900/30 group-hover:bg-green-900/40 transition-all"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-green-500/80 rounded-full flex items-center justify-center">
+                    <i className="fas fa-mountain text-white text-xl"></i>
+                  </div>
+                  <h4 className="font-semibold text-white mb-2">Thiên nhiên</h4>
+                  <p className="text-sm text-blue-100">
+                    Hòa mình vào thiên nhiên tuyệt đẹp
+                  </p>
                 </div>
-              </Link>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/80">
-              <div className="flex items-center space-x-2">
-                <i className="fas fa-check-circle text-green-400"></i>
-                <span className="text-sm">Miễn phí tư vấn</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <i className="fas fa-clock text-blue-400"></i>
-                <span className="text-sm">24/7 hỗ trợ</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <i className="fas fa-shield-alt text-purple-400"></i>
-                <span className="text-sm">Đảm bảo chất lượng</span>
+              {/* Biển đảo */}
+              <div
+                className="text-center p-6 rounded-lg hover:shadow-md transition-all cursor-pointer relative overflow-hidden group"
+                style={{
+                  backgroundImage:
+                    "url('https://petrotimes.vn/stores/news_dataimages/nguyenhoan/062019/10/15/2337_Di_sYn_vYn_hoa_du_lYch_biYn_YYo_ViYt_Nam.jpg?randTime=1560369037')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="absolute inset-0 bg-blue-900/30 group-hover:bg-blue-900/40 transition-all"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/80 rounded-full flex items-center justify-center">
+                    <i className="fas fa-umbrella-beach text-white text-xl"></i>
+                  </div>
+                  <h4 className="font-semibold text-white mb-2">Biển đảo</h4>
+                  <p className="text-sm text-blue-100">
+                    Thư giãn tại những bãi biển đẹp
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* <div className="bg-gradient-to-r from-primary-600 to-accent-600 rounded-xl text-white p-8 text-center">
+            <div className="w-16 h-16 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center">
+              <i className="fas fa-robot text-white text-2xl"></i>
+            </div>
+            <h3 className="text-2xl font-bold mb-4">
+              Để AI lên kế hoạch cho bạn
+            </h3>
+            <p className="text-lg text-blue-100 mb-6 max-w-2xl mx-auto">
+              Chỉ cần cho biết sở thích và ngân sách, AI sẽ tạo lịch trình hoàn
+              hảo
+            </p>
+            <Link
+              to="/ai-planner"
+              className="inline-flex items-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <i className="fas fa-magic mr-2"></i>
+              Bắt đầu ngay
+            </Link>
+          </div> */}
         </div>
       </div>
     </div>
