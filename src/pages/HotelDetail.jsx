@@ -13,6 +13,8 @@ const HotelDetail = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [activeTab, setActiveTab] = useState("overview"); // overview, rooms, reviews, amenities
+  const [currentRoomPage, setCurrentRoomPage] = useState(1);
+  const roomsPerPage = 5;
 
   if (!hotel) {
     return (
@@ -289,70 +291,128 @@ const HotelDetail = () => {
                 {/* Rooms Tab */}
                 {activeTab === "rooms" && (
                   <div className="space-y-6">
-                    {hotel.roomTypes.map((room) => (
-                      <div
-                        key={room.id}
-                        className="border border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors"
-                      >
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                          <div className="md:col-span-1">
-                            <img
-                              src={room.images[0]}
-                              alt={room.name}
-                              className="w-full h-48 object-cover rounded-lg"
-                            />
-                          </div>
-                          <div className="md:col-span-2">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                              {room.name}
-                            </h3>
-                            <p className="text-gray-600 mb-4">
-                              {room.description}
-                            </p>
-                            <div className="grid grid-cols-2 gap-4 mb-4">
-                              <div className="flex items-center text-sm text-gray-600">
-                                <i className="fas fa-expand mr-2 text-primary-600"></i>
-                                {room.size}
-                              </div>
-                              <div className="flex items-center text-sm text-gray-600">
-                                <i className="fas fa-users mr-2 text-primary-600"></i>
-                                Tối đa {room.maxGuests} khách
-                              </div>
-                              <div className="flex items-center text-sm text-gray-600">
-                                <i className="fas fa-bed mr-2 text-primary-600"></i>
-                                {room.bedType}
-                              </div>
+                    {hotel.roomTypes
+                      .slice(
+                        (currentRoomPage - 1) * roomsPerPage,
+                        currentRoomPage * roomsPerPage
+                      )
+                      .map((room) => (
+                        <div
+                          key={room.id}
+                          className="border border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors"
+                        >
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="md:col-span-1">
+                              <img
+                                src={room.images[0]}
+                                alt={room.name}
+                                className="w-full h-48 object-cover rounded-lg"
+                              />
                             </div>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {room.amenities.map((amenity, index) => (
-                                <span
-                                  key={index}
-                                  className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                            <div className="md:col-span-2">
+                              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                                {room.name}
+                              </h3>
+                              <p className="text-gray-600 mb-4">
+                                {room.description}
+                              </p>
+                              <div className="grid grid-cols-2 gap-4 mb-4">
+                                <div className="flex items-center text-sm text-gray-600">
+                                  <i className="fas fa-expand mr-2 text-primary-600"></i>
+                                  {room.size}
+                                </div>
+                                <div className="flex items-center text-sm text-gray-600">
+                                  <i className="fas fa-users mr-2 text-primary-600"></i>
+                                  Tối đa {room.maxGuests} khách
+                                </div>
+                                <div className="flex items-center text-sm text-gray-600">
+                                  <i className="fas fa-bed mr-2 text-primary-600"></i>
+                                  {room.bedType}
+                                </div>
+                              </div>
+                              <div className="flex flex-wrap gap-2 mb-4">
+                                {room.amenities.map((amenity, index) => (
+                                  <span
+                                    key={index}
+                                    className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                                  >
+                                    {amenity}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className="flex items-center justify-between pt-4 border-t">
+                                <div>
+                                  <p className="text-sm text-gray-500">
+                                    Giá từ
+                                  </p>
+                                  <p className="text-2xl font-bold text-primary-600">
+                                    {formatPrice(room.price)}
+                                  </p>
+                                  <p className="text-sm text-gray-500">/đêm</p>
+                                </div>
+                                <button
+                                  onClick={() => handleBookRoom(room)}
+                                  className="btn btn-primary"
                                 >
-                                  {amenity}
-                                </span>
-                              ))}
-                            </div>
-                            <div className="flex items-center justify-between pt-4 border-t">
-                              <div>
-                                <p className="text-sm text-gray-500">Giá từ</p>
-                                <p className="text-2xl font-bold text-primary-600">
-                                  {formatPrice(room.price)}
-                                </p>
-                                <p className="text-sm text-gray-500">/đêm</p>
+                                  <i className="fas fa-calendar-check mr-2"></i>
+                                  Đặt phòng
+                                </button>
                               </div>
-                              <button
-                                onClick={() => handleBookRoom(room)}
-                                className="btn btn-primary"
-                              >
-                                <i className="fas fa-calendar-check mr-2"></i>
-                                Đặt phòng
-                              </button>
                             </div>
                           </div>
                         </div>
+                      ))}
+
+                    {/* Pagination */}
+                    {hotel.roomTypes.length > roomsPerPage && (
+                      <div className="flex justify-center items-center space-x-2 mt-8">
+                        <button
+                          onClick={() =>
+                            setCurrentRoomPage((prev) => Math.max(prev - 1, 1))
+                          }
+                          disabled={currentRoomPage === 1}
+                          className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <i className="fas fa-chevron-left"></i>
+                        </button>
+
+                        {[
+                          ...Array(
+                            Math.ceil(hotel.roomTypes.length / roomsPerPage)
+                          ),
+                        ].map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentRoomPage(index + 1)}
+                            className={`px-4 py-2 rounded-lg border ${
+                              currentRoomPage === index + 1
+                                ? "bg-primary-600 text-white border-primary-600"
+                                : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                            }`}
+                          >
+                            {index + 1}
+                          </button>
+                        ))}
+
+                        <button
+                          onClick={() =>
+                            setCurrentRoomPage((prev) =>
+                              Math.min(
+                                prev + 1,
+                                Math.ceil(hotel.roomTypes.length / roomsPerPage)
+                              )
+                            )
+                          }
+                          disabled={
+                            currentRoomPage ===
+                            Math.ceil(hotel.roomTypes.length / roomsPerPage)
+                          }
+                          className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <i className="fas fa-chevron-right"></i>
+                        </button>
                       </div>
-                    ))}
+                    )}
                   </div>
                 )}
 
