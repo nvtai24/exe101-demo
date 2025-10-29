@@ -322,156 +322,159 @@ const Hotels = () => {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {currentHotels.map((hotel) => (
-              <Link
-                key={hotel.id}
-                to={`/booking/hotels/${hotel.id}`}
-                className="group bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                {/* Hotel Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={hotel.images[0]}
-                    alt={hotel.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    onError={(e) => {
-                      e.target.src =
-                        "https://via.placeholder.com/800x600?text=Hotel+Image";
-                    }}
-                  />
-                  <div className="absolute top-3 right-3 bg-white px-3 py-1 rounded-full shadow-md">
-                    <span className="text-xs font-semibold text-gray-700">
-                      {hotel.category}
-                    </span>
-                  </div>
-                  {/* Rating Badge */}
-                  <div className="absolute bottom-3 left-3 bg-primary-600 text-white px-3 py-1 rounded-lg shadow-lg flex items-center space-x-1">
-                    <i className="fas fa-star text-yellow-300"></i>
-                    <span className="font-semibold">{hotel.rating}</span>
-                    <span className="text-xs">({hotel.reviewCount})</span>
-                  </div>
-                </div>
-
-                {/* Hotel Info */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
-                    {hotel.name}
-                  </h3>
-
-                  <div className="flex items-center text-sm text-gray-600 mb-3">
-                    <i className="fas fa-map-marker-alt mr-2 text-primary-600"></i>
-                    <span>{hotel.location.city}</span>
-                  </div>
-
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                    {hotel.description}
-                  </p>
-
-                  {/* Amenities Preview */}
-                  <div className="flex items-center space-x-3 mb-4 text-gray-500">
-                    {hotel.amenities.slice(0, 4).map((amenity, index) => (
-                      <i
-                        key={index}
-                        className={`fas ${amenity.icon} text-sm`}
-                        title={amenity.name}
-                      ></i>
-                    ))}
-                    {hotel.amenities.length > 4 && (
-                      <span className="text-xs text-gray-400">
-                        +{hotel.amenities.length - 4}
+                <Link
+                  key={hotel.id}
+                  to={`/booking/hotels/${hotel.id}`}
+                  className="group bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  {/* Hotel Image */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={hotel.images[0]}
+                      alt={hotel.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onError={(e) => {
+                        e.target.src =
+                          "https://via.placeholder.com/800x600?text=Hotel+Image";
+                      }}
+                    />
+                    <div className="absolute top-3 right-3 bg-white px-3 py-1 rounded-full shadow-md">
+                      <span className="text-xs font-semibold text-gray-700">
+                        {hotel.category}
                       </span>
-                    )}
-                  </div>
-
-                  {/* Price */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <div>
-                      <p className="text-xs text-gray-500">Giá từ</p>
-                      <p className="text-xl font-bold text-primary-600">
-                        {formatPrice(hotel.startingPrice)}
-                      </p>
-                      <p className="text-xs text-gray-500">/đêm</p>
                     </div>
-                    <button className="btn btn-primary btn-sm group-hover:bg-primary-700">
-                      Xem chi tiết
-                      <i className="fas fa-arrow-right ml-2"></i>
-                    </button>
+                    {/* Rating Badge */}
+                    <div className="absolute bottom-3 left-3 bg-primary-600 text-white px-3 py-1 rounded-lg shadow-lg flex items-center space-x-1">
+                      <i className="fas fa-star text-yellow-300"></i>
+                      <span className="font-semibold">{hotel.rating}</span>
+                      <span className="text-xs">({hotel.reviewCount})</span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex justify-center items-center space-x-2 mt-8">
-              {/* Previous Button */}
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                  currentPage === 1
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
-                }`}
-              >
-                <i className="fas fa-chevron-left mr-2"></i>
-                Trước
-              </button>
+                  {/* Hotel Info */}
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                      {hotel.name}
+                    </h3>
 
-              {/* Page Numbers */}
-              <div className="flex space-x-1">
-                {[...Array(totalPages)].map((_, index) => {
-                  const pageNumber = index + 1;
-                  // Show first page, last page, current page, and pages around current
-                  if (
-                    pageNumber === 1 ||
-                    pageNumber === totalPages ||
-                    (pageNumber >= currentPage - 1 &&
-                      pageNumber <= currentPage + 1)
-                  ) {
-                    return (
-                      <button
-                        key={pageNumber}
-                        onClick={() => handlePageChange(pageNumber)}
-                        className={`w-10 h-10 rounded-lg font-medium transition-all ${
-                          currentPage === pageNumber
-                            ? "bg-primary-600 text-white shadow-md"
-                            : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
-                        }`}
-                      >
-                        {pageNumber}
+                    <div className="flex items-center text-sm text-gray-600 mb-3">
+                      <i className="fas fa-map-marker-alt mr-2 text-primary-600"></i>
+                      <span>{hotel.location.city}</span>
+                    </div>
+
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                      {hotel.description}
+                    </p>
+
+                    {/* Amenities Preview */}
+                    <div className="flex items-center space-x-3 mb-4 text-gray-500">
+                      {hotel.amenities.slice(0, 4).map((amenity, index) => (
+                        <i
+                          key={index}
+                          className={`fas ${amenity.icon} text-sm`}
+                          title={amenity.name}
+                        ></i>
+                      ))}
+                      {hotel.amenities.length > 4 && (
+                        <span className="text-xs text-gray-400">
+                          +{hotel.amenities.length - 4}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Price */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <div>
+                        <p className="text-xs text-gray-500">Giá từ</p>
+                        <p className="text-xl font-bold text-primary-600">
+                          {formatPrice(hotel.startingPrice)}
+                        </p>
+                        <p className="text-xs text-gray-500">/đêm</p>
+                      </div>
+                      <button className="btn btn-primary btn-sm group-hover:bg-primary-700">
+                        Xem chi tiết
+                        <i className="fas fa-arrow-right ml-2"></i>
                       </button>
-                    );
-                  } else if (
-                    pageNumber === currentPage - 2 ||
-                    pageNumber === currentPage + 2
-                  ) {
-                    return (
-                      <span key={pageNumber} className="px-2 py-2 text-gray-400">
-                        ...
-                      </span>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-
-              {/* Next Button */}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                  currentPage === totalPages
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
-                }`}
-              >
-                Sau
-                <i className="fas fa-chevron-right ml-2"></i>
-              </button>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
-          )}
-        </>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center space-x-2 mt-8">
+                {/* Previous Button */}
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                    currentPage === 1
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
+                  }`}
+                >
+                  <i className="fas fa-chevron-left mr-2"></i>
+                  Trước
+                </button>
+
+                {/* Page Numbers */}
+                <div className="flex space-x-1">
+                  {[...Array(totalPages)].map((_, index) => {
+                    const pageNumber = index + 1;
+                    // Show first page, last page, current page, and pages around current
+                    if (
+                      pageNumber === 1 ||
+                      pageNumber === totalPages ||
+                      (pageNumber >= currentPage - 1 &&
+                        pageNumber <= currentPage + 1)
+                    ) {
+                      return (
+                        <button
+                          key={pageNumber}
+                          onClick={() => handlePageChange(pageNumber)}
+                          className={`w-10 h-10 rounded-lg font-medium transition-all ${
+                            currentPage === pageNumber
+                              ? "bg-primary-600 text-white shadow-md"
+                              : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
+                          }`}
+                        >
+                          {pageNumber}
+                        </button>
+                      );
+                    } else if (
+                      pageNumber === currentPage - 2 ||
+                      pageNumber === currentPage + 2
+                    ) {
+                      return (
+                        <span
+                          key={pageNumber}
+                          className="px-2 py-2 text-gray-400"
+                        >
+                          ...
+                        </span>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                    currentPage === totalPages
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm"
+                  }`}
+                >
+                  Sau
+                  <i className="fas fa-chevron-right ml-2"></i>
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-16">
             <i className="fas fa-search text-6xl text-gray-300 mb-4"></i>
