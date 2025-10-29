@@ -198,11 +198,7 @@ const RestaurantDetail = () => {
               <div className="flex items-center text-sm text-gray-600 space-x-4 pt-4 border-t">
                 <div className="flex items-center">
                   <i className="fas fa-clock mr-2 text-primary-600"></i>
-                  <span>Thứ 2-6: {restaurant.openingHours.weekday}</span>
-                </div>
-                <div className="flex items-center">
-                  <i className="fas fa-calendar-weekend mr-2 text-primary-600"></i>
-                  <span>Cuối tuần: {restaurant.openingHours.weekend}</span>
+                  <span>{restaurant.openingHours}</span>
                 </div>
               </div>
             </div>
@@ -517,31 +513,41 @@ const RestaurantDetail = () => {
                   Liên hệ
                 </h3>
                 <div className="space-y-3">
-                  <a
-                    href={`tel:${restaurant.contact.phone}`}
-                    className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
-                  >
-                    <i className="fas fa-phone w-5"></i>
-                    <span className="text-sm">{restaurant.contact.phone}</span>
-                  </a>
-                  <a
-                    href={`mailto:${restaurant.contact.email}`}
-                    className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
-                  >
-                    <i className="fas fa-envelope w-5"></i>
-                    <span className="text-sm">{restaurant.contact.email}</span>
-                  </a>
-                  <a
-                    href={`https://${restaurant.contact.website}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
-                  >
-                    <i className="fas fa-globe w-5"></i>
-                    <span className="text-sm">
-                      {restaurant.contact.website}
-                    </span>
-                  </a>
+                  {restaurant.contact.phone && (
+                    <a
+                      href={`tel:${restaurant.contact.phone}`}
+                      className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
+                    >
+                      <i className="fas fa-phone w-5"></i>
+                      <span className="text-sm">
+                        {restaurant.contact.phone}
+                      </span>
+                    </a>
+                  )}
+                  {restaurant.contact.email && (
+                    <a
+                      href={`mailto:${restaurant.contact.email}`}
+                      className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
+                    >
+                      <i className="fas fa-envelope w-5"></i>
+                      <span className="text-sm">
+                        {restaurant.contact.email}
+                      </span>
+                    </a>
+                  )}
+                  {restaurant.contact.website && (
+                    <a
+                      href={`https://${restaurant.contact.website}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-3 text-gray-600 hover:text-primary-600 transition-colors"
+                    >
+                      <i className="fas fa-globe w-5"></i>
+                      <span className="text-sm">
+                        {restaurant.contact.website}
+                      </span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -557,7 +563,7 @@ const RestaurantDetail = () => {
       />
 
       {/* Chat Box */}
-      <ChatBox hostInfo={restaurant.hostInfo} hotelName={restaurant.name} />
+      <ChatBox hostInfo={restaurant.hostInfo} restaurantName={restaurant.name} />
     </div>
   );
 };

@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const ChatBox = ({ hostInfo, hotelName }) => {
+const ChatBox = ({ hostInfo, hotelName, restaurantName }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const placeName = restaurantName || hotelName;
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: "host",
-      text: `Xin chào! Tôi là ${hostInfo.name}, chủ của ${hotelName}. Tôi có thể giúp gì cho bạn?`,
+      text: `Xin chào! Tôi là ${hostInfo.name}, chủ của ${placeName}. Tôi có thể giúp gì cho bạn?`,
       time: new Date().toLocaleTimeString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
