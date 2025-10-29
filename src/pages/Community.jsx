@@ -756,47 +756,53 @@ const Community = () => {
             {activeTab === "achievements" && (
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {achievements.map((achievement) => (
-                    <div
-                      key={achievement.id}
-                      className={`bg-white rounded-2xl shadow-sm p-6 transition-all hover:shadow-md ${
-                        achievement.unlocked
-                          ? "ring-2 ring-green-200 bg-gradient-to-br from-green-50 to-emerald-50"
-                          : "opacity-75"
-                      }`}
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div
-                          className={`text-4xl ${
-                            achievement.unlocked ? "" : "grayscale opacity-50"
-                          }`}
-                        >
-                          {achievement.icon}
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-bold text-gray-900 mb-2">
-                            {achievement.name}
-                          </h4>
-                          <p className="text-gray-600 text-sm mb-3">
-                            {achievement.description}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-primary-600 font-bold">
-                              +{achievement.points} điểm
-                            </span>
-                            {achievement.unlocked && (
-                              <div className="flex items-center text-green-600">
-                                <i className="fas fa-check-circle mr-1"></i>
-                                <span className="text-sm font-medium">
-                                  Đã mở khóa
-                                </span>
-                              </div>
-                            )}
+                  {achievements
+                    .sort((a, b) => {
+                      // Sắp xếp: unlocked (true) lên trước, unlocked (false) xuống sau
+                      if (a.unlocked === b.unlocked) return 0;
+                      return a.unlocked ? -1 : 1;
+                    })
+                    .map((achievement) => (
+                      <div
+                        key={achievement.id}
+                        className={`bg-white rounded-2xl shadow-sm p-6 transition-all hover:shadow-md ${
+                          achievement.unlocked
+                            ? "ring-2 ring-green-200 bg-gradient-to-br from-green-50 to-emerald-50"
+                            : "opacity-75"
+                        }`}
+                      >
+                        <div className="flex items-start space-x-4">
+                          <div
+                            className={`text-4xl ${
+                              achievement.unlocked ? "" : "grayscale opacity-50"
+                            }`}
+                          >
+                            {achievement.icon}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-gray-900 mb-2">
+                              {achievement.name}
+                            </h4>
+                            <p className="text-gray-600 text-sm mb-3">
+                              {achievement.description}
+                            </p>
+                            <div className="flex items-center justify-between">
+                              <span className="text-primary-600 font-bold">
+                                +{achievement.points} điểm
+                              </span>
+                              {achievement.unlocked && (
+                                <div className="flex items-center text-green-600">
+                                  <i className="fas fa-check-circle mr-1"></i>
+                                  <span className="text-sm font-medium">
+                                    Đã mở khóa
+                                  </span>
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
             )}
