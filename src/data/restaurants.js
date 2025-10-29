@@ -663,12 +663,16 @@ export const restaurants = [
             name: "Cơm sườn bì chả",
             price: 45000,
             description: "Sườn nướng, bì, chả",
+            image:
+              "https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=400",
           },
           {
             id: "2",
             name: "Cơm gà xối mỡ",
             price: 50000,
             description: "Gà luộc xối mỡ hành",
+            image:
+              "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400",
           },
         ],
       },
@@ -751,18 +755,24 @@ export const restaurants = [
             name: "Phở bò tái",
             price: 65000,
             description: "Phở với thịt bò tái",
+            image:
+              "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400",
           },
           {
             id: "2",
             name: "Phở bò chín",
             price: 70000,
             description: "Phở với thịt bò chín",
+            image:
+              "https://images.unsplash.com/photo-1555126634-323283e090fa?w=400",
           },
           {
             id: "3",
             name: "Phở đặc biệt",
             price: 80000,
             description: "Phở đầy đủ các loại thịt",
+            image:
+              "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400",
           },
         ],
       },
@@ -847,12 +857,17 @@ export const restaurants = [
             name: "Bún chả Hà Nội",
             price: 50000,
             description: "Bún chả truyền thống",
+            image:
+              "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400",
           },
           {
             id: "2",
             name: "Combo Obama",
             price: 80000,
             description: "Bún chả + chả giò + bia Hà Nội",
+            image:
+              "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400",
+            popular: true,
           },
         ],
       },
@@ -937,12 +952,17 @@ export const restaurants = [
             name: "Buffet Premium",
             price: 299000,
             description: "Buffet lẩu nướng cao cấp",
+            image:
+              "https://images.unsplash.com/photo-1541417904950-b855846fe074?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "Buffet Standard",
             price: 249000,
             description: "Buffet lẩu nướng tiêu chuẩn",
+            image:
+              "https://images.unsplash.com/photo-1544025162-d76694265947?w=400",
           },
         ],
       },
@@ -1027,12 +1047,17 @@ export const restaurants = [
             name: "Degustation Menu 5 courses",
             price: 1200000,
             description: "5 món signature của chef",
+            image:
+              "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "A la carte",
             price: 850000,
             description: "Gọi món theo menu",
+            image:
+              "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
           },
         ],
       },
@@ -1118,12 +1143,17 @@ export const restaurants = [
             name: "Grilled Australian Beef",
             price: 890000,
             description: "Thịt bò Úc nướng",
+            image:
+              "https://images.unsplash.com/photo-1558030006-450675393462?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "Mediterranean Seafood Platter",
             price: 950000,
             description: "Hải sản Địa Trung Hải",
+            image:
+              "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400",
           },
         ],
       },
@@ -1208,12 +1238,17 @@ export const restaurants = [
             name: "Omakase Premium 12 pieces",
             price: 1500000,
             description: "12 miếng sushi do chef chọn",
+            image:
+              "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "Sashimi Deluxe",
             price: 950000,
             description: "Sashimi cao cấp",
+            image:
+              "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400",
           },
         ],
       },
@@ -1301,12 +1336,17 @@ export const restaurants = [
             name: "Signature Degustation 8 courses",
             price: 2500000,
             description: "8 món signature + wine pairing",
+            image:
+              "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "Chef's Selection 6 courses",
             price: 1800000,
             description: "6 món của chef",
+            image:
+              "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
           },
         ],
       },
@@ -1392,12 +1432,17 @@ export const restaurants = [
             name: "Wagyu Beef Tenderloin",
             price: 2200000,
             description: "Thăn bò Wagyu A5",
+            image:
+              "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "Lobster Thermidor",
             price: 1800000,
             description: "Tôm hùm nướng phô mai",
+            image:
+              "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400",
           },
         ],
       },
@@ -1483,12 +1528,17 @@ export const restaurants = [
             name: "Menu Dégustation 10 courses",
             price: 4500000,
             description: "10 món haute cuisine + wine pairing",
+            image:
+              "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
+            popular: true,
           },
           {
             id: "2",
             name: "Menu Prestige 7 courses",
             price: 2800000,
             description: "7 món signature",
+            image:
+              "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400",
           },
         ],
       },
