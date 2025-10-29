@@ -61,6 +61,11 @@ const Header = () => {
       path: "/booking/restaurants",
       icon: "fas fa-utensils",
     },
+    {
+      name: "Local Buddy",
+      path: "/local-buddy",
+      icon: "fas fa-user-friends",
+    },
   ];
 
   const navItems = [
@@ -68,8 +73,13 @@ const Header = () => {
     { name: "AI Planner", path: "/ai-planner", icon: "fas fa-robot" },
     { name: "Điểm đến", path: "/destinations", icon: "fas fa-map-marker-alt" },
     // { name: "Tours", path: "/tours", icon: "fas fa-route" },
-    { name: "Local Buddy", path: "/local-buddy", icon: "fas fa-user-friends" },
     { name: "Cộng đồng", path: "/community", icon: "fas fa-users" },
+    {
+      name: "Dịch Vụ",
+      path: "/services",
+      icon: "fas fa-concierge-bell",
+      isDropdown: true,
+    },
     { name: "Giới thiệu", path: "/about", icon: "fas fa-info-circle" },
   ];
 
@@ -92,70 +102,76 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  isActive(item.path)
-                    ? "bg-primary-100 text-primary-700 shadow-sm"
-                    : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
-                }`}
-              >
-                <i
-                  className={`${item.icon} text-sm w-4 flex-shrink-0 mr-2`}
-                ></i>
-                <span>{item.name}</span>
-              </Link>
-            ))}
-
-            {/* Dịch Vụ Dropdown */}
-            <div className="relative booking-selector">
-              <button
-                onClick={() => setIsBookingMenuOpen(!isBookingMenuOpen)}
-                className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  location.pathname.startsWith("/booking")
-                    ? "bg-primary-100 text-primary-700 shadow-sm"
-                    : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
-                }`}
-              >
-                <i className="fas fa-concierge-bell text-sm w-4 flex-shrink-0 mr-2"></i>
-                <span>Dịch Vụ</span>
-                <i
-                  className={`fas fa-chevron-down text-xs ml-1.5 transition-transform ${
-                    isBookingMenuOpen ? "rotate-180" : ""
-                  }`}
-                ></i>
-              </button>
-
-              {/* Dropdown Menu */}
-              {isBookingMenuOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
-                  {bookingOptions.map((option) => (
-                    <Link
-                      key={option.path}
-                      to={option.path}
-                      onClick={() => setIsBookingMenuOpen(false)}
-                      className={`flex items-center whitespace-nowrap px-4 py-2.5 transition-colors ${
-                        location.pathname === option.path
-                          ? "bg-primary-50 text-primary-700"
-                          : "text-gray-700 hover:bg-gray-50"
+            {navItems.map((item) =>
+              item.isDropdown ? (
+                // Dịch Vụ Dropdown
+                <div key={item.path} className="relative booking-selector">
+                  <button
+                    onClick={() => setIsBookingMenuOpen(!isBookingMenuOpen)}
+                    className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      location.pathname.startsWith("/booking") ||
+                      location.pathname.startsWith("/local-buddy")
+                        ? "bg-primary-100 text-primary-700 shadow-sm"
+                        : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
+                    }`}
+                  >
+                    <i
+                      className={`${item.icon} text-sm w-4 flex-shrink-0 mr-2`}
+                    ></i>
+                    <span>{item.name}</span>
+                    <i
+                      className={`fas fa-chevron-down text-xs ml-1.5 transition-transform ${
+                        isBookingMenuOpen ? "rotate-180" : ""
                       }`}
-                    >
-                      <i
-                        className={`${option.icon} text-base w-5 flex-shrink-0 mr-3`}
-                      ></i>
-                      <span className="text-sm font-medium flex-1">
-                        {option.name}
-                      </span>
-                      {location.pathname === option.path && (
-                        <i className="fas fa-check text-primary-600 text-sm ml-2"></i>
-                      )}
-                    </Link>
-                  ))}
+                    ></i>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isBookingMenuOpen && (
+                    <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                      {bookingOptions.map((option) => (
+                        <Link
+                          key={option.path}
+                          to={option.path}
+                          onClick={() => setIsBookingMenuOpen(false)}
+                          className={`flex items-center whitespace-nowrap px-4 py-2.5 transition-colors ${
+                            location.pathname === option.path
+                              ? "bg-primary-50 text-primary-700"
+                              : "text-gray-700 hover:bg-gray-50"
+                          }`}
+                        >
+                          <i
+                            className={`${option.icon} text-base w-5 flex-shrink-0 mr-3`}
+                          ></i>
+                          <span className="text-sm font-medium flex-1">
+                            {option.name}
+                          </span>
+                          {location.pathname === option.path && (
+                            <i className="fas fa-check text-primary-600 text-sm ml-2"></i>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              ) : (
+                // Regular nav item
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive(item.path)
+                      ? "bg-primary-100 text-primary-700 shadow-sm"
+                      : "text-gray-500 hover:text-primary-600 hover:bg-primary-50"
+                  }`}
+                >
+                  <i
+                    className={`${item.icon} text-sm w-4 flex-shrink-0 mr-2`}
+                  ></i>
+                  <span>{item.name}</span>
+                </Link>
+              )
+            )}
           </nav>
 
           {/* CTA Button & Language Selector */}
