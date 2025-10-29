@@ -16,6 +16,10 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import TourDetail from "../pages/TourDetail";
 import UserProfile from "../pages/UserProfile";
+import Hotels from "../pages/Hotels";
+import HotelDetail from "../pages/HotelDetail";
+import Restaurants from "../pages/Restaurants";
+import RestaurantDetail from "../pages/RestaurantDetail";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -135,6 +139,38 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <Contact />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/booking/hotels"
+          element={
+            <PageTransition>
+              <Hotels />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/booking/hotels/:id"
+          element={
+            <PageTransition>
+              <HotelDetail />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/booking/restaurants"
+          element={
+            <PageTransition>
+              <Restaurants />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/booking/restaurants/:id"
+          element={
+            <PageTransition>
+              <RestaurantDetail />
             </PageTransition>
           }
         />
