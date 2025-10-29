@@ -68,5 +68,49 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".scrollbar-thin": {
+          "scrollbar-width": "thin",
+          "scrollbar-color": "rgb(192 132 252) rgb(243 244 246)",
+        },
+        ".scrollbar-webkit": {
+          "&::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: "rgb(243 244 246)",
+            borderRadius: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "rgb(192 132 252)",
+            borderRadius: "8px",
+            border: "2px solid rgb(243 244 246)",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            background: "rgb(168 85 247)",
+          },
+        },
+        ".scrollbar-thumb-purple-300": {
+          "scrollbar-color": "rgb(216 180 254) rgb(243 244 246)",
+          "&::-webkit-scrollbar-thumb": {
+            background: "rgb(216 180 254)",
+          },
+        },
+        ".scrollbar-thumb-purple-400": {
+          "scrollbar-color": "rgb(192 132 252) rgb(243 244 246)",
+          "&::-webkit-scrollbar-thumb": {
+            background: "rgb(192 132 252)",
+          },
+        },
+        ".scrollbar-track-gray-100": {
+          "&::-webkit-scrollbar-track": {
+            background: "rgb(243 244 246)",
+          },
+        },
+      };
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
+  ],
 };
