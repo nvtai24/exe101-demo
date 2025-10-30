@@ -20,13 +20,13 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
       // 1. Giọng nữ Việt Nam (có chứa "female", "woman", "nữ", "cô" trong tên)
       // 2. Bất kỳ giọng Việt Nam nào (vi-VN, vi)
       // 3. Giọng đầu tiên trong danh sách
-      
+
       let selectedVoice = null;
-      
+
       // Tìm giọng nữ Việt Nam
       const femaleViVoices = availableVoices.filter((v) => {
         const isVietnamese = v.lang.includes("vi") || v.lang === "vi-VN";
-        const isFemale = 
+        const isFemale =
           v.name.toLowerCase().includes("female") ||
           v.name.toLowerCase().includes("woman") ||
           v.name.toLowerCase().includes("nữ") ||
@@ -41,8 +41,8 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
         selectedVoice = femaleViVoices[0];
       } else {
         // Nếu không có giọng nữ, tìm bất kỳ giọng Việt nào
-        const viVoices = availableVoices.filter((v) => 
-          v.lang.includes("vi") || v.lang === "vi-VN"
+        const viVoices = availableVoices.filter(
+          (v) => v.lang.includes("vi") || v.lang === "vi-VN"
         );
         if (viVoices.length > 0) {
           selectedVoice = viVoices[0];
@@ -52,15 +52,21 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
       }
 
       setSelectedVoice(selectedVoice);
-      
+
       // Log để debug
-      console.log("Available Vietnamese voices:", 
-        availableVoices.filter(v => v.lang.includes("vi")).map(v => ({
-          name: v.name,
-          lang: v.lang,
-          gender: v.name.toLowerCase().includes("female") || 
-                  v.name.toLowerCase().includes("woman") ? "Female" : "Unknown"
-        }))
+      console.log(
+        "Available Vietnamese voices:",
+        availableVoices
+          .filter((v) => v.lang.includes("vi"))
+          .map((v) => ({
+            name: v.name,
+            lang: v.lang,
+            gender:
+              v.name.toLowerCase().includes("female") ||
+              v.name.toLowerCase().includes("woman")
+                ? "Female"
+                : "Unknown",
+          }))
       );
     };
 
@@ -255,8 +261,8 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
                   👩 Giọng nữ Việt Nam được đề xuất
                 </div>
                 <div>
-                  Trải nghiệm nghe tốt nhất với giọng nữ người Việt. 
-                  Nếu không có sẵn, vui lòng cài đặt giọng Việt trong hệ thống.
+                  Trải nghiệm nghe tốt nhất với giọng nữ người Việt. Nếu không
+                  có sẵn, vui lòng cài đặt giọng Việt trong hệ thống.
                 </div>
               </div>
             </div>
@@ -279,7 +285,7 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
               {voices.filter((v) => v.lang.includes("vi")).length === 0 && (
                 <option disabled>Không tìm thấy giọng Việt Nam</option>
               )}
-              
+
               {/* Ưu tiên hiển thị giọng Việt Nam trước */}
               {voices
                 .filter((v) => v.lang.includes("vi"))
@@ -291,12 +297,11 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
                   return (
                     <option key={voice.name} value={voice.name}>
                       {isFemale ? "👩 " : ""}
-                      {voice.name} ({voice.lang})
-                      {isFemale ? " - Giọng nữ" : ""}
+                      {voice.name} ({voice.lang}){isFemale ? " - Giọng nữ" : ""}
                     </option>
                   );
                 })}
-              
+
               {/* Các giọng khác */}
               {voices.filter((v) => !v.lang.includes("vi")).length > 0 && (
                 <optgroup label="Giọng ngôn ngữ khác">
@@ -333,11 +338,18 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
                       Chưa có giọng tiếng Việt
                     </div>
                     <div className="mb-2">
-                      Để có trải nghiệm tốt nhất, vui lòng cài đặt giọng đọc tiếng Việt:
+                      Để có trải nghiệm tốt nhất, vui lòng cài đặt giọng đọc
+                      tiếng Việt:
                     </div>
                     <ul className="list-disc list-inside space-y-1 text-gray-600">
-                      <li>Windows: Settings → Time & Language → Speech → Add voices</li>
-                      <li>MacOS: System Preferences → Accessibility → Spoken Content</li>
+                      <li>
+                        Windows: Settings → Time & Language → Speech → Add
+                        voices
+                      </li>
+                      <li>
+                        MacOS: System Preferences → Accessibility → Spoken
+                        Content
+                      </li>
                       <li>Chrome: Cài extension "Google Text-to-Speech"</li>
                     </ul>
                   </div>
@@ -422,11 +434,12 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
               setRate(1);
               setPitch(1);
               setNaturalSpeech(true);
-              
+
               // Tìm giọng nữ Việt Nam
               const femaleViVoices = voices.filter((v) => {
-                const isVietnamese = v.lang.includes("vi") || v.lang === "vi-VN";
-                const isFemale = 
+                const isVietnamese =
+                  v.lang.includes("vi") || v.lang === "vi-VN";
+                const isFemale =
                   v.name.toLowerCase().includes("female") ||
                   v.name.toLowerCase().includes("woman") ||
                   v.name.toLowerCase().includes("nữ");
