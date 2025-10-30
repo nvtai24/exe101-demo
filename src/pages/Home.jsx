@@ -1,19 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TourCard from "../components/TourCard";
 import NewsletterModal from "../components/NewsletterModal";
-import { tours } from "../data/tours";
 
 const Home = () => {
-  const featuredTours = tours.filter((tour) => tour.featured);
-
-  const stats = [
-    { number: "500+", label: "Tours đã tổ chức", icon: "fas fa-route" },
-    { number: "10K+", label: "Khách hàng hài lòng", icon: "fas fa-users" },
-    { number: "50+", label: "Điểm đến", icon: "fas fa-map-marker-alt" },
-    { number: "5★", label: "Đánh giá trung bình", icon: "fas fa-star" },
-  ];
-
   const features = [
     {
       icon: "fas fa-robot",
@@ -240,8 +229,127 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Grid Section */}
+      {/* Services Section */}
       <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-6">
+              Dịch vụ của chúng tôi
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Khám phá các dịch vụ du lịch toàn diện từ lưu trú, ẩm thực đến
+              hướng dẫn viên địa phương
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Hotel Service */}
+            <Link
+              to="/booking/hotels"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div className="aspect-w-16 aspect-h-12 relative overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+                  alt="Hotels & Resorts"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="inline-flex items-center px-4 py-2 bg-blue-500 rounded-full text-white font-semibold mb-3">
+                    <i className="fas fa-hotel mr-2"></i>
+                    Khách sạn & Resort
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  Dịch vụ Lưu trú
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Đặt phòng khách sạn, resort cao cấp với giá tốt nhất. Từ khách
+                  sạn bình dân đến resort 5 sao sang trọng.
+                </p>
+                <div className="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                  Khám phá ngay
+                  <i className="fas fa-arrow-right ml-2"></i>
+                </div>
+              </div>
+            </Link>
+
+            {/* Restaurant Service */}
+            <Link
+              to="/booking/restaurants"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div className="aspect-w-16 aspect-h-12 relative overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800"
+                  alt="Restaurants"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="inline-flex items-center px-4 py-2 bg-orange-500 rounded-full text-white font-semibold mb-3">
+                    <i className="fas fa-utensils mr-2"></i>
+                    Nhà hàng
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
+                  Dịch vụ Nhà hàng
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Đặt bàn tại các nhà hàng nổi tiếng, thưởng thức ẩm thực đặc
+                  sắc từ truyền thống đến hiện đại.
+                </p>
+                <div className="flex items-center text-orange-600 font-semibold group-hover:translate-x-2 transition-transform">
+                  Khám phá ngay
+                  <i className="fas fa-arrow-right ml-2"></i>
+                </div>
+              </div>
+            </Link>
+
+            {/* Local Buddy Service */}
+            <Link
+              to="/local-buddy"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div className="aspect-w-16 aspect-h-12 relative overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800"
+                  alt="Local Buddy"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="inline-flex items-center px-4 py-2 bg-green-500 rounded-full text-white font-semibold mb-3">
+                    <i className="fas fa-users mr-2"></i>
+                    Local Buddy
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
+                  Hướng dẫn viên địa phương
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Kết nối với người dân địa phương, khám phá những trải nghiệm
+                  độc đáo và văn hóa bản địa.
+                </p>
+                <div className="flex items-center text-green-600 font-semibold group-hover:translate-x-2 transition-transform">
+                  Khám phá ngay
+                  <i className="fas fa-arrow-right ml-2"></i>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-6">
@@ -352,36 +460,6 @@ const Home = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Tours Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-6">
-              Tours nổi bật
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Những tour du lịch được yêu thích nhất với giá trị tuyệt vời và
-              trải nghiệm độc đáo
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {featuredTours.map((tour) => (
-              <TourCard key={tour.id} tour={tour} />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link
-              to="/destinations"
-              className="btn btn-outline text-lg px-8 py-4 group"
-            >
-              Xem thêm
-            </Link>
           </div>
         </div>
       </section>
