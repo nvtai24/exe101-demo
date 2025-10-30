@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { locations } from "../data/location";
 import MediaGallery from "../components/MediaGallery";
@@ -10,6 +10,62 @@ const DestinationDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const loc = locations.find((l) => l.id === id);
+  const [weather, setWeather] = useState(null);
+  const [weatherLoading, setWeatherLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("overview");
+
+  // Fetch weather data
+  useEffect(() => {
+    if (loc?.coordinates) {
+      fetchWeatherData(loc.coordinates.lat, loc.coordinates.lng);
+    }
+  }, [loc]);
+
+  const fetchWeatherData = async (lat, lng) => {
+    try {
+      setWeatherLoading(true);
+      // Using Open-Meteo API (free, no API key required)
+      const response = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=Asia/Bangkok&forecast_days=3`
+      );
+      const data = await response.json();
+      setWeather(data);
+    } catch (error) {
+      console.error("Error fetching weather:", error);
+    } finally {
+      setWeatherLoading(false);
+    }
+  };
+
+  const getWeatherIcon = (code) => {
+    // WMO Weather interpretation codes
+    if (code === 0)
+      return { icon: "fa-sun", name: "Nắng đẹp", color: "text-yellow-500" };
+    if (code <= 3)
+      return { icon: "fa-cloud-sun", name: "Có mây", color: "text-gray-400" };
+    if (code <= 48)
+      return { icon: "fa-cloud", name: "Nhiều mây", color: "text-gray-500" };
+    if (code <= 67)
+      return { icon: "fa-cloud-rain", name: "Mưa", color: "text-blue-500" };
+    if (code <= 77)
+      return { icon: "fa-snowflake", name: "Tuyết", color: "text-blue-300" };
+    if (code <= 82)
+      return {
+        icon: "fa-cloud-showers-heavy",
+        name: "Mưa to",
+        color: "text-blue-600",
+      };
+    return { icon: "fa-bolt", name: "Dông bão", color: "text-purple-600" };
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const days = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+    return {
+      day: days[date.getDay()],
+      date: `${date.getDate()}/${date.getMonth() + 1}`,
+    };
+  };
 
   if (!loc) {
     return (
@@ -28,48 +84,176 @@ const DestinationDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-3xl font-bold">{loc.name}</h1>
-            <div className="text-sm text-gray-600 mt-1">
-              {loc.region} • {loc.category}
-            </div>
-          </div>
-          <div className="space-x-2">
-            <Link to="/destinations" className="btn btn-ghost">
+      {/* Hero Section */}
+      <div className="relative h-[400px] overflow-hidden">
+        <img
+          src={
+            loc.images?.[0] ||
+            "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600"
+          }
+          alt={loc.name}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+        <div className="absolute bottom-0 left-0 right-0 p-8">
+          <div className="max-w-7xl mx-auto">
+            <Link
+              to="/destinations"
+              className="inline-flex items-center text-white/90 hover:text-white mb-4 transition-colors"
+            >
+              <i className="fas fa-arrow-left mr-2"></i>
               Quay về danh sách
             </Link>
+
+            <h1 className="text-5xl font-bold text-white mb-4">{loc.name}</h1>
+
+            <div className="flex flex-wrap items-center gap-4 text-white/90">
+              <div className="flex items-center">
+                <i className="fas fa-map-marker-alt mr-2"></i>
+                {loc.region}
+              </div>
+              <div className="flex items-center">
+                <i className="fas fa-tag mr-2"></i>
+                {loc.category}
+              </div>
+              {loc.openingHours && (
+                <div className="flex items-center">
+                  <i className="fas fa-clock mr-2"></i>
+                  {loc.openingHours}
+                </div>
+              )}
+              {loc.price && (
+                <div className="flex items-center">
+                  <i className="fas fa-ticket-alt mr-2"></i>
+                  {loc.price}
+                </div>
+              )}
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-6">
-            {/* Intro & Info */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="flex items-start gap-6">
-                <div className="w-48 h-36 overflow-hidden rounded-lg">
-                  <img
-                    src={loc.images?.[0]}
-                    alt={loc.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h2 className="text-xl font-semibold mb-2">Giới thiệu</h2>
-                  <p className="text-gray-700 mb-2">{loc.description}</p>
-                  <p className="text-gray-600 text-sm mb-1">
-                    <strong>Lịch sử:</strong> {loc.history}
-                  </p>
-                  {/* Opening hours and price intentionally removed from detail view per request */}
-                </div>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+            {/* Navigation Tabs */}
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+              <div className="flex border-b">
+                {[
+                  {
+                    id: "overview",
+                    label: "Tổng quan",
+                    icon: "fa-info-circle",
+                  },
+                  { id: "media", label: "Hình ảnh & Video", icon: "fa-images" },
+                  { id: "reviews", label: "Đánh giá", icon: "fa-star" },
+                  { id: "faq", label: "FAQ", icon: "fa-question-circle" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
+                      activeTab === tab.id
+                        ? "bg-primary-50 text-primary-600 border-b-2 border-primary-600"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    }`}
+                  >
+                    <i className={`fas ${tab.icon} mr-2`}></i>
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="p-6">
+                {/* Overview Tab */}
+                {activeTab === "overview" && (
+                  <div className="space-y-6">
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                        Giới thiệu
+                      </h2>
+                      <p className="text-gray-700 leading-relaxed mb-4">
+                        {loc.description}
+                      </p>
+                    </div>
+
+                    {loc.highlights && loc.highlights.length > 0 && (
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">
+                          Điểm nổi bật
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {loc.highlights.map((highlight, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-center p-3 bg-primary-50 rounded-lg"
+                            >
+                              <i className="fas fa-check-circle text-primary-600 mr-3"></i>
+                              <span className="text-gray-800">{highlight}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {loc.history && (
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">
+                          Lịch sử & Văn hóa
+                        </h3>
+                        <p className="text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                          {loc.history}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Media Tab */}
+                {activeTab === "media" && (
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                      Hình ảnh & Video
+                    </h2>
+                    <MediaGallery images={loc.images} videos={loc.videos} />
+                  </div>
+                )}
+
+                {/* Reviews Tab */}
+                {activeTab === "reviews" && (
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-2xl font-bold text-gray-900">
+                        Đánh giá từ cộng đồng
+                      </h2>
+                      <div className="text-sm text-gray-600">
+                        {loc.reviews?.length || 0} đánh giá
+                      </div>
+                    </div>
+                    <ReviewsList reviews={loc.reviews} />
+                  </div>
+                )}
+
+                {/* FAQ Tab */}
+                {activeTab === "faq" && (
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                      Câu hỏi thường gặp
+                    </h2>
+                    <FAQList faqs={loc.faqs} />
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Map & Directions */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h3 className="text-lg font-semibold mb-4">Bản đồ & chỉ đường</h3>
-              <div className="w-full h-64 rounded-md overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <i className="fas fa-map-marked-alt text-primary-600 mr-3"></i>
+                Bản đồ & Chỉ đường
+              </h3>
+              <div className="w-full h-80 rounded-lg overflow-hidden mb-4">
                 <iframe
                   title={`map-${loc.id}`}
                   src={mapSrc}
@@ -80,68 +264,222 @@ const DestinationDetail = () => {
                   loading="lazy"
                 ></iframe>
               </div>
-              <div className="mt-3 text-sm text-gray-600">
-                Mở trong Google Maps:{" "}
-                <a
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${loc.coordinates.lat},${loc.coordinates.lng}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-primary-600 underline"
-                >
-                  Chỉ đường
-                </a>
-              </div>
-            </div>
-
-            {/* Media Gallery */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Media</h3>
-              </div>
-              <MediaGallery images={loc.images} videos={loc.videos} />
-            </div>
-
-            {/* Reviews */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Reviews & Cộng đồng</h3>
-                <div className="text-sm text-gray-600">
-                  {loc.reviews?.length || 0} đánh giá
-                </div>
-              </div>
-              <ReviewsList reviews={loc.reviews} />
-            </div>
-
-            {/* FAQ */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h3 className="text-lg font-semibold mb-3">FAQ</h3>
-              <FAQList faqs={loc.faqs} />
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${loc.coordinates.lat},${loc.coordinates.lng}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center w-full px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+              >
+                <i className="fas fa-directions mr-2"></i>
+                Chỉ đường đến đây
+              </a>
             </div>
           </div>
 
           <aside className="space-y-6">
-            {/* Quick Info card + Voice */}
-            <div className="bg-white rounded-lg p-5 shadow-sm">
-              <h4 className="font-semibold mb-3">Thông tin nhanh</h4>
-              {/* Opening hours and price removed from quick info card per request */}
-              <div className="text-sm text-gray-700 mb-3">
-                <strong>Vị trí:</strong> {loc.region}
+            {/* Weather Widget */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
+                <h4 className="font-bold text-lg text-white flex items-center">
+                  <i className="fas fa-cloud-sun mr-2"></i>
+                  Dự báo thời tiết 3 ngày
+                </h4>
+              </div>
+
+              {weatherLoading ? (
+                <div className="text-center py-12">
+                  <i className="fas fa-spinner fa-spin text-4xl text-blue-500 mb-3"></i>
+                  <p className="text-sm text-gray-600">Đang tải thời tiết...</p>
+                </div>
+              ) : weather?.daily ? (
+                <div className="p-4">
+                  <div className="grid grid-cols-1 gap-3">
+                    {weather.daily.time.slice(0, 3).map((date, idx) => {
+                      const dateInfo = formatDate(date);
+                      const weatherInfo = getWeatherIcon(
+                        weather.daily.weathercode[idx]
+                      );
+                      const isToday = idx === 0;
+
+                      return (
+                        <div
+                          key={idx}
+                          className={`relative rounded-lg p-4 transition-all ${
+                            isToday
+                              ? "bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300"
+                              : "bg-gray-50 hover:bg-gray-100 border border-gray-200"
+                          }`}
+                        >
+                          {isToday && (
+                            <div className="absolute top-2 right-2">
+                              <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                Hôm nay
+                              </span>
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-between mb-3">
+                            <div>
+                              <div
+                                className={`font-bold text-lg ${
+                                  isToday ? "text-blue-700" : "text-gray-900"
+                                }`}
+                              >
+                                {dateInfo.day}
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                {dateInfo.date}
+                              </div>
+                            </div>
+                            <div className="text-center">
+                              <i
+                                className={`fas ${weatherInfo.icon} text-4xl ${weatherInfo.color}`}
+                              ></i>
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <div className="text-sm font-medium text-gray-700">
+                              {weatherInfo.name}
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-2">
+                                <div className="flex items-center">
+                                  <i className="fas fa-temperature-high text-red-500 mr-1"></i>
+                                  <span className="font-bold text-gray-900">
+                                    {Math.round(
+                                      weather.daily.temperature_2m_max[idx]
+                                    )}
+                                    °
+                                  </span>
+                                </div>
+                                <span className="text-gray-400">|</span>
+                                <div className="flex items-center">
+                                  <i className="fas fa-temperature-low text-blue-500 mr-1"></i>
+                                  <span className="text-gray-700">
+                                    {Math.round(
+                                      weather.daily.temperature_2m_min[idx]
+                                    )}
+                                    °
+                                  </span>
+                                </div>
+                              </div>
+
+                              <div className="flex items-center bg-white px-3 py-1 rounded-full">
+                                <i className="fas fa-tint text-blue-500 mr-1.5 text-sm"></i>
+                                <span className="font-semibold text-gray-700 text-sm">
+                                  {
+                                    weather.daily.precipitation_probability_max[
+                                      idx
+                                    ]
+                                  }
+                                  %
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-8 px-4">
+                  <i className="fas fa-exclamation-triangle text-3xl text-yellow-500 mb-2"></i>
+                  <p className="text-sm text-gray-600">
+                    Không thể tải dữ liệu thời tiết
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Voice Player */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h4 className="font-bold text-lg mb-4 flex items-center text-gray-900">
+                <i className="fas fa-headphones text-primary-600 mr-2"></i>
+                Audio Guide
+              </h4>
+              <div className="mb-3 text-sm text-gray-600">
+                <i className="fas fa-info-circle mr-2"></i>
+                Nghe câu chuyện về lịch sử và văn hóa của {loc.name}
               </div>
               <VoicePlayer
-                text={`${loc.name}. ${loc.history}. ${loc.description}`}
+                text={
+                  loc.audioGuideScript ||
+                  `${loc.name}. ${loc.history}. ${loc.description}`
+                }
                 audioUrl={loc.audioStory}
               />
             </div>
 
-            <div className="bg-white rounded-lg p-5 shadow-sm">
-              <h4 className="font-semibold mb-3">Chia sẻ</h4>
-              <div className="flex gap-2">
-                <button className="px-3 py-2 rounded-md border text-sm">
-                  <i className="fab fa-facebook mr-2"></i> Facebook
+            {/* Quick Actions */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h4 className="font-bold text-lg mb-4 text-gray-900">
+                Hành động nhanh
+              </h4>
+              <div className="space-y-3">
+                <button className="w-full px-4 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-medium flex items-center justify-center">
+                  <i className="fab fa-facebook mr-2"></i>
+                  Chia sẻ Facebook
                 </button>
-                <button className="px-3 py-2 rounded-md border text-sm">
-                  Zalo
+                <button className="w-full px-4 py-3 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors font-medium flex items-center justify-center">
+                  <i className="fas fa-comment mr-2"></i>
+                  Chia sẻ Zalo
                 </button>
+                <button className="w-full px-4 py-3 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors font-medium flex items-center justify-center">
+                  <i className="fas fa-heart mr-2"></i>
+                  Lưu vào yêu thích
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Info */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h4 className="font-bold text-lg mb-4 text-gray-900">
+                Thông tin nhanh
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-start">
+                  <i className="fas fa-map-marker-alt text-primary-600 mt-1 mr-3"></i>
+                  <div>
+                    <div className="text-sm text-gray-500">Vị trí</div>
+                    <div className="font-medium text-gray-900">
+                      {loc.region}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <i className="fas fa-tag text-primary-600 mt-1 mr-3"></i>
+                  <div>
+                    <div className="text-sm text-gray-500">Danh mục</div>
+                    <div className="font-medium text-gray-900">
+                      {loc.category}
+                    </div>
+                  </div>
+                </div>
+                {loc.openingHours && (
+                  <div className="flex items-start">
+                    <i className="fas fa-clock text-primary-600 mt-1 mr-3"></i>
+                    <div>
+                      <div className="text-sm text-gray-500">Giờ mở cửa</div>
+                      <div className="font-medium text-gray-900">
+                        {loc.openingHours}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {loc.price && (
+                  <div className="flex items-start">
+                    <i className="fas fa-ticket-alt text-primary-600 mt-1 mr-3"></i>
+                    <div>
+                      <div className="text-sm text-gray-500">Giá vé</div>
+                      <div className="font-medium text-gray-900">
+                        {loc.price}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </aside>

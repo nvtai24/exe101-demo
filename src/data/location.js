@@ -18,6 +18,8 @@ export const locations = [
     ],
     videos: ["https://www.youtube.com/watch?v=sample"],
     audioStory: null,
+    audioGuideScript:
+      "Chào mừng bạn đến với Hà Nội - thủ đô ngàn năm văn hiến của Việt Nam. Hà Nội được vua Lý Thái Tổ dời đô về đây từ năm 1010, đặt tên là Thăng Long - nghĩa là rồng bay lên. Theo truyền thuyết, vua nhìn thấy một con rồng vàng bay lên từ sông Hồng, báo hiệu đây là vùng đất linh thiêng. Trải qua hơn một nghìn năm, Hà Nội đã trở thành trung tâm chính trị, văn hóa của đất nước. Phố cổ Hà Nội với 36 phố phường mang tên nghề, mỗi con phố là một câu chuyện về nghề thủ công truyền thống. Hồ Hoàn Kiếm với truyền thuyết về thanh kiếm thần, nơi vua Lê Lợi trả lại thanh kiếm cho Rùa Thần sau khi đánh thắng quân Minh. Văn Miếu - Quốc Tử Giám, ngôi trường đại học đầu tiên của Việt Nam, nơi lưu giữ 82 tấm bia tiến sĩ được UNESCO công nhận là di sản tư liệu thế giới. Hãy để chính bạn khám phá sức quyến rũ của Hà Nội, từ những tách cà phê trứng thơm ngon đến những gánh phở nóng hổi vào buổi sáng sớm.",
     faqs: [
       {
         q: "Nên đến Hà Nội vào mùa nào?",
@@ -63,6 +65,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Vịnh Hạ Long - một trong những kỳ quan thiên nhiên thế giới. Tên gọi Hạ Long nghĩa là 'rồng hạ xuống', xuất phát từ truyền thuyết rằng một gia đình rồng đã xuống vịnh này để giúp người Việt chống giặc ngoại xâm. Những con rồng nhả ra ngọc và ngà, biến thành hàng nghìn hòn đảo đá vôi, tạo thành hàng rào thiên nhiên bảo vệ đất nước. Vịnh Hạ Long có hơn 1600 hòn đảo lớn nhỏ, được hình thành qua 500 triệu năm tiến hóa địa chất. Nhiều hòn đảo có hình dáng độc đáo như đảo Đầu Người, Hòn Gà Chọi, Hòn Rùa. Hang Sửng Sốt, một trong những hang động đẹp nhất vịnh, được phát hiện bởi người Pháp năm 1901. Bên trong hang có những khối thạch nhũ lấp lánh đủ màu sắc dưới ánh đèn. Vào năm 1994 và 2000, UNESCO đã hai lần công nhận Vịnh Hạ Long là Di sản Thiên nhiên Thế giới. Đây không chỉ là nơi có cảnh quan tuyệt đẹp mà còn là nhà của nhiều loài sinh vật quý hiếm, một hệ sinh thái độc đáo cần được bảo vệ.",
     faqs: [
       {
         q: "Cần chuẩn bị gì khi đi Hạ Long?",
@@ -97,6 +101,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Hội An - thành phố cổ được UNESCO công nhận là Di sản Văn hóa Thế giới năm 1999. Từ thế kỷ 16 đến 18, Hội An là cảng thương mại quốc tế sầm uất nhất Đông Nam Á, nơi giao thương của thương nhân Nhật Bản, Trung Quốc, Hà Lan, và Bồ Đào Nha. Chùa Cầu - biểu tượng của Hội An, được xây dựng bởi người Nhật vào năm 1593 để nối liền khu phố Nhật và khu phố Trung Hoa. Theo truyền thuyết, Chùa Cầu được xây để trấn yểm một con quái vật có đầu ở Ấn Độ, thân ở Hội An và đuôi ở Nhật Bản, thường gây ra động đất. Những ngôi nhà cổ Hội An mang dấu ấn kiến trúc Việt - Trung - Nhật hòa quyện độc đáo. Nhà cổ Tấn Ký, được xây dựng cách đây hơn 200 năm, là ví dụ điển hình với cấu trúc gỗ quý hiếm và các chi tiết chạm khắc tinh xảo. Vào mỗi tháng âm lịch, vào ngày rằm, phố cổ tắt hết đèn điện, thắp lên hàng nghìn chiếc đèn lồng rực rỡ, tái hiện không khí thời xưa. Cao lầu, món ăn đặc sản của Hội An, được làm từ nước giếng Bá Lễ, thịt lợn xá xíu và rau sống, tạo nên hương vị không thể nhầm lẫn.",
     faqs: [],
     reviews: [],
   },
@@ -370,6 +376,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Vườn Quốc gia Phong Nha - Kẻ Bàng - vương quốc hang động của thế giới. Được UNESCO công nhận là Di sản Thiên nhiên Thế giới lần thứ nhất năm 2003 và mở rộng năm 2015, đây là khu vực có hệ thống hang động karst lớn nhất và đẹp nhất hành tinh. Tên Phong Nha có nghĩa là 'hang động với gió và răng', mô tả những khối thạch nhũ nhọn như răng nanh và luồng gió mát từ sâu trong hang thổi ra. Hang Sơn Đoòng, được thám hiểm lần đầu năm 2009 bởi đội khảo sát hang động Hoàng gia Anh, là hang động tự nhiên lớn nhất thế giới được biết đến. Hang rộng tới 200 mét, cao 150 mét và dài hơn 5 km. Bên trong hang có cả một hệ sinh thái riêng với rừng cây nguyên sinh, sông suối và những mây trời lơ lửng. Người dân địa phương kể rằng, năm 1991, ông Hồ Khanh - một người dân bản địa - đã phát hiện ra lối vào hang khi tìm kiếm gỗ quý trong rừng. Tiếng nước chảy vang dội và gió lạnh thổi ra khiến ông sợ hãi và không dám bước vào. Phải đến 18 năm sau, ông mới dẫn đường cho đoàn thám hiểm quốc tế tìm lại hang động này. Động Phong Nha, với chiều dài 7729 mét, là hang động được thám hiểm sớm nhất. Từ thế kỷ 9, hang đã được người Chăm sử dụng làm nơi thờ cúng. Bên trong hang có hàng trăm khối thạch nhũ kỳ ảo với những cái tên thơ mộng như 'Sư tử đá', 'Tiên cá', 'Phật Di Lặc'. Vườn quốc gia này còn là nhà của hơn 800 loài động thực vật, trong đó có nhiều loài quý hiếm như vượn chà vá chân vàng, sơn dương và cây nghiến ba lá - loài thực vật có từ thời khủng long.",
     faqs: [
       {
         q: "Có thể tham quan tự do không?",
@@ -449,6 +457,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Sa Pa - thiên đường mây trắng của miền Bắc Việt Nam. Nằm ở độ cao 1500 mét so với mực nước biển, Sa Pa được người Pháp phát hiện vào năm 1903 và nhanh chóng trở thành khu nghỉ dưỡng ưa thích của giới quý tộc. Tên Sa Pa trong tiếng H'Mông có nghĩa là 'cát sa', ám chỉ những vùng đất màu mỡ ven suối. Đây là nơi sinh sống của 6 dân tộc thiểu số: H'Mông, Dao, Tày, Giáy, Xa Phó và Kinh. Mỗi dân tộc có trang phục, ngôn ngữ và phong tục riêng biệt, tạo nên bức tranh văn hóa đa sắc màu. Ruộng bậc thang Sa Pa được bình chọn là một trong 7 cánh đồng lúa đẹp nhất thế giới bởi tạp chí Travel + Leisure. Vào mùa nước đổ (tháng 4-5), ruộng bậc thang như những tấm gương soi bầu trời. Mùa lúa chín (tháng 9-10), toàn bộ thung lũng chuyển sang màu vàng óng ánh. Đỉnh Fansipan cao 3143 mét, được mệnh danh là 'nóc nhà Đông Dương', là điểm đến của những người đam mê chinh phục. Từ năm 2016, cáp treo Fansipan - cáp treo ba dây dài nhất thế giới - đã giúp du khách dễ dàng chinh phục đỉnh núi này trong 15 phút. Chợ tình Sa Pa, diễn ra vào tối thứ 7 hàng tuần, là nơi giới trẻ các dân tộc gặp gỡ, làm quen và tìm hiểu nhau qua các trò chơi dân gian.",
     faqs: [
       {
         q: "Thời điểm đẹp nhất để đến Sa Pa?",
@@ -500,6 +510,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Đà Lạt - thành phố ngàn hoa, được mệnh danh là 'Paris của phương Đông'. Năm 1893, bác sĩ Alexandre Yersin - người phát hiện ra vi khuẩn dịch hạch - đã lần đầu tiên đặt chân đến vùng đất này và bị mê hoặc bởi khí hậu mát mẻ, không khí trong lành. Ông đã đề xuất với Toàn quyền Đông Dương xây dựng Đà Lạt thành khu nghỉ dưỡng. Từ năm 1897, người Pháp bắt đầu xây dựng những biệt thự kiểu châu Âu, tạo nên phong cách kiến trúc độc đáo còn tồn tại đến ngày nay. Dinh Bảo Đại, nơi vua Bảo Đại - vị vua cuối cùng của triều Nguyễn - nghỉ dưỡng, là minh chứng cho sự hòa quyện kiến trúc Pháp và Việt. Hồ Xuân Hương hình trăng khuyết, trái tim của thành phố, được đặt tên theo nữ thi sĩ tài danh thế kỷ 18. Vào buổi sáng sớm, sương mù bao phủ mặt hồ tạo nên khung cảnh mơ màng, lãng mạn. Thiền viện Trúc Lâm, nằm trên đồi Phượng Hoàng, là ngôi chùa lớn nhất Đà Lạt với kiến trúc Thiền tông hiện đại. Từ đây có thể ngắm toàn cảnh thành phố và hồ Tuyền Lâm xanh biếc. Đà Lạt còn nổi tiếng với các loại hoa như hoa đà lạt, hoa mimosa, hoa anh đào. Mỗi mùa mang một sắc hoa khác nhau, khiến thành phố này luôn đầy màu sắc và hương thơm.",
     faqs: [
       {
         q: "Đà Lạt có lạnh không?",
@@ -551,6 +563,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Nha Trang - viên ngọc xanh của biển Đông. Tên Nha Trang xuất phát từ tiếng Chăm 'Yakram' nghĩa là 'sông tre', sau được Việt hóa thành Nha Trang. Từ thế kỷ thứ 2, đây là một trong những trung tâm quan trọng của Vương quốc Chăm Pa. Tháp Bà Ponagar, được xây dựng từ thế kỷ thứ 8, là minh chứng cho nền văn minh Chăm Pa rực rỡ. Trong kiến trúc tháp, người ta vẫn chưa tìm ra công thức kết dính các viên gạch mà người Chăm đã sử dụng - một bí ẩn kỹ thuật đến nay vẫn chưa được giải mã. Bãi biển Nha Trang dài 6 km, với bờ cát trắng mịn và nước biển trong xanh, được tạp chí National Geographic bình chọn là một trong 29 vịnh đẹp nhất thế giới. Viện Hải dương học Nha Trang, được thành lập từ năm 1923, là viện nghiên cứu biển đầu tiên ở Đông Nam Á. Tại đây có hơn 20000 mẫu vật sinh vật biển, trong đó nhiều loài độc đáo chỉ có ở vùng biển Việt Nam. Hòn Mun, cách Nha Trang 10km về phía Đông Nam, là khu bảo tồn biển đầu tiên của Việt Nam với hơn 350 loài san hô và 190 loài rong biển. Tắm bùn khoáng nóng Tháp Bà, với dòng nước khoáng nóng từ 40-45 độ C giàu khoáng chất, đã trở thành trải nghiệm không thể bỏ lỡ khi đến Nha Trang.",
     faqs: [
       {
         q: "Thời điểm đẹp nhất để đi Nha Trang?",
@@ -654,6 +668,8 @@ export const locations = [
     ],
     videos: [],
     audioStory: null,
+    audioGuideScript:
+      "Phú Quốc - đảo ngọc thiên đường của Việt Nam. Tên gọi Phú Quốc xuất phát từ 'phú' là giàu có và 'quốc' là đất nước, ý nói đảo này là vùng đất phì nhiêu, giàu có. Trong lịch sử, Phú Quốc từng là nơi ẩn náu của Nguyễn Ánh - vị vua sau này lên ngôi với niên hiệu Gia Long - khi chạy trốn loạn Tây Sơn. Tại đây, ông đã được thương nhân Pháp giúp đỡ, đặt nền móng cho mối quan hệ Việt - Pháp sau này. Nước mắm Phú Quốc, với lịch sử hơn 200 năm, được làm từ cá cơm tươi sống theo phương pháp truyền thống. Năm 2001, nước mắm Phú Quốc được công nhận chỉ dẫn địa lý, là loại nước mắm duy nhất của Việt Nam được châu Âu công nhận và nhập khẩu. Rừng nguyên sinh Phú Quốc còn nguyên vẹn hơn 50% diện tích của đảo, là nơi sinh sống của nhiều loài động thực vật quý hiếm như chó Phú Quốc - giống chó có lưng gờ duy nhất trên thế giới. Bãi Sao, với bãi cát trắng mịn như bột, nước biển trong xanh như ngọc lam, được bình chọn là một trong những bãi biển đẹp nhất châu Á. Chợ đêm Phú Quốc, với hơn 100 quầy hàng, là thiên đường ẩm thực hải sản tươi sống. Từ ghẹ hấp, mực nướng, đến nhím biển, du khách có thể thưởng thức muôn vàn món ngon của biển cả. Sunset Sanato, với những cây cầu gỗ vươn ra biển, đã trở thành địa điểm check-in nổi tiếng nhất Phú Quốc, nơi mọi người đến để ngắm hoàng hôn tuyệt đẹp.",
     faqs: [
       {
         q: "Phú Quốc có gì hấp dẫn?",
