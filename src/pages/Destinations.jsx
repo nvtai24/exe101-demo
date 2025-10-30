@@ -37,6 +37,8 @@ const Destinations = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState("grid"); // grid or list
+  const [currentPage, setCurrentPage] = useState(1);
+  const destinationsPerPage = 9; // 9 destinations per page (3x3 grid)
 
   const filteredDestinations = locations.filter((dest) => {
     const matchesRegion =
@@ -51,6 +53,19 @@ const Destinations = () => {
       (dest.description || "").toLowerCase().includes(q);
     return matchesRegion && matchesCategory && matchesSearch;
   });
+
+  // Pagination logic
+  const totalPages = Math.ceil(
+    filteredDestinations.length / destinationsPerPage
+  );
+  const startIndex = (currentPage - 1) * destinationsPerPage;
+  const endIndex = startIndex + destinationsPerPage;
+  const currentDestinations = filteredDestinations.slice(startIndex, endIndex);
+
+  // Reset to page 1 when filters change
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedRegion, selectedCategory, searchTerm]);
 
   const uniqueCategories = Array.from(
     new Set(locations.map((l) => l.category || "Khác"))
@@ -261,6 +276,11 @@ const Destinations = () => {
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">
             {filteredDestinations.length} điểm đến
+            {totalPages > 1 && (
+              <span className="text-base font-normal text-gray-500 ml-2">
+                (Trang {currentPage}/{totalPages})
+              </span>
+            )}
           </h2>
           <select className="px-4 py-2 border border-gray-300 rounded-lg text-sm">
             <option>Phổ biến nhất</option>
@@ -272,7 +292,7 @@ const Destinations = () => {
         {/* Destinations Grid/List */}
         {viewMode === "grid" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredDestinations.map((destination) => (
+            {currentDestinations.map((destination) => (
               <Link
                 key={destination.id}
                 to={`/destinations/${destination.id}`}
@@ -352,7 +372,7 @@ const Destinations = () => {
           </div>
         ) : (
           <div className="space-y-6">
-            {filteredDestinations.map((destination) => (
+            {currentDestinations.map((destination) => (
               <Link
                 key={destination.id}
                 to={`/destinations/${destination.id}`}
@@ -444,6 +464,86 @@ const Destinations = () => {
               className="btn btn-primary"
             >
               Xóa bộ lọc
+            </button>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && filteredDestinations.length > 0 && (
+          <div className="mt-12 flex justify-center items-center gap-2">
+            {/* Previous Button */}
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                currentPage === 1
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 border border-gray-300"
+              }`}
+            >
+              <i className="fas fa-chevron-left mr-2"></i>
+              Trước
+            </button>
+
+            {/* Page Numbers */}
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => {
+                  // Show first page, last page, current page and adjacent pages
+                  const showPage =
+                    page === 1 ||
+                    page === totalPages ||
+                    (page >= currentPage - 1 && page <= currentPage + 1);
+
+                  // Show ellipsis
+                  const showEllipsisBefore =
+                    page === currentPage - 2 && currentPage > 3;
+                  const showEllipsisAfter =
+                    page === currentPage + 2 && currentPage < totalPages - 2;
+
+                  if (!showPage && !showEllipsisBefore && !showEllipsisAfter) {
+                    return null;
+                  }
+
+                  if (showEllipsisBefore || showEllipsisAfter) {
+                    return (
+                      <span key={page} className="px-4 py-2 text-gray-400">
+                        ...
+                      </span>
+                    );
+                  }
+
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                        currentPage === page
+                          ? "bg-primary-600 text-white shadow-lg"
+                          : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 border border-gray-300"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                }
+              )}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                currentPage === totalPages
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 border border-gray-300"
+              }`}
+            >
+              Sau
+              <i className="fas fa-chevron-right ml-2"></i>
             </button>
           </div>
         )}

@@ -366,7 +366,7 @@ export const locations = [
     price: "Chi phí tour hang động: 200k-1.5tr tùy loại tour",
     coordinates: { lat: 17.5208, lng: 106.2956 },
     images: [
-      "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c0?auto=format&fit=crop&w=1280&q=80",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1280&q=80",
     ],
     videos: [],
     audioStory: null,
@@ -421,6 +421,262 @@ export const locations = [
         author: "Nam",
         text: "Trải nghiệm sông nước rất thú vị và ấm cúng.",
         rating: 4,
+        images: [],
+      },
+    ],
+  },
+  {
+    id: "sapa",
+    name: "Sa Pa",
+    region: "Miền Bắc",
+    category: "Nature",
+    description:
+      "Thị trấn miền núi nổi tiếng với ruộng bậc thang, văn hóa dân tộc thiểu số và khí hậu mát mẻ quanh năm.",
+    highlights: [
+      "Ruộng bậc thang Mù Cang Chải",
+      "Đỉnh Fansipan",
+      "Bản Cát Cát",
+      "Thác Bạc",
+      "Chợ tình Sa Pa",
+    ],
+    history:
+      "Sa Pa được người Pháp phát hiện vào đầu thế kỷ 20 và phát triển thành khu nghỉ dưỡng cao cấp. Nơi đây là quê hương của nhiều dân tộc thiểu số như H'Mông, Dao, Tày.",
+    openingHours: "Mở cửa: 24/7 (tour theo lịch trình)",
+    price: "Tour 2-3 ngày: 1.5tr - 3tr/người",
+    coordinates: { lat: 22.3363, lng: 103.8438 },
+    images: [
+      "https://images.unsplash.com/photo-1583339793403-3d9b001b6008?auto=format&fit=crop&w=1280&q=80",
+    ],
+    videos: [],
+    audioStory: null,
+    faqs: [
+      {
+        q: "Thời điểm đẹp nhất để đến Sa Pa?",
+        a: "Tháng 9-11 (mùa lúa chín) và tháng 3-5 (mùa hoa).",
+      },
+      {
+        q: "Có cần chuẩn bị gì khi đi Sa Pa?",
+        a: "Áo ấm, giày trekking, áo mưa (mùa mưa).",
+      },
+    ],
+    reviews: [
+      {
+        id: 1,
+        author: "Minh",
+        text: "Ruộng bậc thang tuyệt đẹp, không khí trong lành!",
+        rating: 5,
+        images: [],
+      },
+      {
+        id: 2,
+        author: "Hương",
+        text: "Phong cảnh hùng vĩ, trải nghiệm homestay rất thú vị.",
+        rating: 5,
+        images: [],
+      },
+    ],
+  },
+  {
+    id: "dalat",
+    name: "Đà Lạt",
+    region: "Miền Trung",
+    category: "Nature",
+    description:
+      "Thành phố ngàn hoa với khí hậu mát mẻ quanh năm, kiến trúc Pháp cổ và các vườn hoa rực rỡ.",
+    highlights: [
+      "Hồ Xuân Hương",
+      "Thiền viện Trúc Lâm",
+      "Thác Datanla",
+      "Ga Đà Lạt",
+      "Vườn hoa thành phố",
+    ],
+    history:
+      "Đà Lạt được người Pháp xây dựng từ năm 1897 như một thành phố nghỉ dưỡng cao cấp với kiến trúc châu Âu đặc trưng.",
+    openingHours: "Mở cửa: 24/7 (các điểm tham quan có giờ riêng)",
+    price: "Tham quan miễn phí đến 50k/điểm",
+    coordinates: { lat: 11.9404, lng: 108.4583 },
+    images: [
+      "https://images.unsplash.com/photo-1628155361099-c6b0c2b7e428?auto=format&fit=crop&w=1280&q=80",
+    ],
+    videos: [],
+    audioStory: null,
+    faqs: [
+      {
+        q: "Đà Lạt có lạnh không?",
+        a: "Nhiệt độ trung bình 15-24°C, mát mẻ quanh năm.",
+      },
+      {
+        q: "Nên đi Đà Lạt bao nhiêu ngày?",
+        a: "2-3 ngày là hợp lý để khám phá các điểm chính.",
+      },
+    ],
+    reviews: [
+      {
+        id: 1,
+        author: "Thu",
+        text: "Thành phố lãng mạn, thích hợp cho couple!",
+        rating: 5,
+        images: [],
+      },
+      {
+        id: 2,
+        author: "Khoa",
+        text: "Nhiều cafe đẹp, view núi rừng tuyệt vời.",
+        rating: 4,
+        images: [],
+      },
+    ],
+  },
+  {
+    id: "nhatrang",
+    name: "Nha Trang",
+    region: "Miền Trung",
+    category: "Beach",
+    description:
+      "Thành phố biển với bãi tắm đẹp, hoạt động lặn biển và cuộc sống về đêm sôi động.",
+    highlights: [
+      "Bãi biển Nha Trang",
+      "Vinpearl Land",
+      "Tháp Bà Ponagar",
+      "Viện Hải dương học",
+      "Đảo Hòn Mun",
+    ],
+    history:
+      "Nha Trang đã trở thành một trung tâm du lịch biển hàng đầu Việt Nam với bãi biển dài 6km và nhiều resort cao cấp.",
+    openingHours: "Mở cửa: 24/7 (các hoạt động biển từ 7:00-18:00)",
+    price: "Miễn phí biển công cộng, tour đảo 300k-800k/người",
+    coordinates: { lat: 12.2388, lng: 109.1967 },
+    images: [
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1280&q=80",
+    ],
+    videos: [],
+    audioStory: null,
+    faqs: [
+      {
+        q: "Thời điểm đẹp nhất để đi Nha Trang?",
+        a: "Tháng 3-9 là mùa nắng đẹp, biển êm.",
+      },
+      {
+        q: "Nha Trang có hoạt động gì thú vị?",
+        a: "Lặn biển, dù lượn, tour 4 đảo, tắm bùn khoáng.",
+      },
+    ],
+    reviews: [
+      {
+        id: 1,
+        author: "Duy",
+        text: "Biển đẹp, nước trong xanh. Rất nhiều hoạt động!",
+        rating: 5,
+        images: [],
+      },
+      {
+        id: 2,
+        author: "Linh",
+        text: "Resort đẹp, đồ ăn hải sản tươi ngon.",
+        rating: 4,
+        images: [],
+      },
+    ],
+  },
+  {
+    id: "hoian",
+    name: "Hội An",
+    region: "Miền Trung",
+    category: "Culture",
+    description:
+      "Phố cổ di sản thế giới với kiến trúc cổ kính, đèn lồng rực rỡ và nét văn hóa giao thoa Đông - Tây.",
+    highlights: [
+      "Phố cổ Hội An",
+      "Cầu Nhật Bản",
+      "Chùa Cầu",
+      "Bãi biển An Bàng",
+      "Làng rau Trà Quế",
+    ],
+    history:
+      "Hội An từng là cảng thương mại quốc tế sầm uất từ thế kỷ 16-17, nơi giao lưu văn hóa giữa Nhật Bản, Trung Quốc và phương Tây.",
+    openingHours: "Mở cửa: 24/7 (phố cổ đẹp nhất vào tối)",
+    price: "Vé tham quan phố cổ: 120k/người",
+    coordinates: { lat: 15.8801, lng: 108.338 },
+    images: [
+      "https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1280&q=80",
+    ],
+    videos: [],
+    audioStory: null,
+    faqs: [
+      {
+        q: "Hội An có gì đặc biệt?",
+        a: "Kiến trúc cổ, đèn lồng đầy màu sắc, ẩm thực độc đáo.",
+      },
+      {
+        q: "Nên dành bao nhiêu ngày cho Hội An?",
+        a: "2-3 ngày để khám phá phố cổ và bãi biển.",
+      },
+    ],
+    reviews: [
+      {
+        id: 1,
+        author: "Mai",
+        text: "Phố cổ cực kỳ đẹp về đêm với đèn lồng!",
+        rating: 5,
+        images: [],
+      },
+      {
+        id: 2,
+        author: "Tuấn",
+        text: "Nơi hoàn hảo để chụp ảnh và thưởng thức ẩm thực.",
+        rating: 5,
+        images: [],
+      },
+    ],
+  },
+  {
+    id: "phuquoc",
+    name: "Phú Quốc",
+    region: "Miền Nam",
+    category: "Beach",
+    description:
+      "Đảo ngọc thiên đường với bãi biển đẹp như tranh vẽ, hoạt động thể thao dưới nước và resort sang trọng.",
+    highlights: [
+      "Bãi Sao",
+      "Bãi Dài",
+      "VinWonders Phú Quốc",
+      "Chợ đêm Phú Quốc",
+      "Safari Phú Quốc",
+      "Làng chài Hàm Ninh",
+    ],
+    history:
+      "Phú Quốc nổi tiếng với sản xuất nước mắm và tiêu, đã phát triển thành điểm du lịch nghỉ dưỡng hàng đầu Việt Nam.",
+    openingHours: "Mở cửa: 24/7 (tour và khu vui chơi có giờ riêng)",
+    price: "Bãi biển miễn phí, tour từ 500k-1.5tr/người",
+    coordinates: { lat: 10.2899, lng: 103.984 },
+    images: [
+      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1280&q=80",
+    ],
+    videos: [],
+    audioStory: null,
+    faqs: [
+      {
+        q: "Phú Quốc có gì hấp dẫn?",
+        a: "Bãi biển đẹp, lặn ngắm san hô, câu cá, sunset sanato.",
+      },
+      {
+        q: "Mùa nào đẹp nhất để đến Phú Quốc?",
+        a: "Tháng 11 - tháng 3 là mùa khô, biển đẹp nhất.",
+      },
+    ],
+    reviews: [
+      {
+        id: 1,
+        author: "Hải",
+        text: "Bãi biển tuyệt vời, nước biển trong vắt!",
+        rating: 5,
+        images: [],
+      },
+      {
+        id: 2,
+        author: "Nga",
+        text: "Resort đẳng cấp, dịch vụ tốt. Rất đáng đi!",
+        rating: 5,
         images: [],
       },
     ],
