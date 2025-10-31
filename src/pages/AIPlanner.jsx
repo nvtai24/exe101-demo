@@ -1072,7 +1072,7 @@ const AIPlanner = () => {
 
                   {/* Lock Overlay - Full Card Coverage */}
                   {isLocked && (
-                    <div className="absolute inset-0backdrop-blur-md flex items-center justify-center z-30 rounded-xl">
+                    <div className="absolute inset-0 backdrop-blur-md flex items-center justify-center z-30 rounded-xl">
                       <div className="bg-white rounded-2xl shadow-2xl p-8 text-center max-w-xs border-2 border-purple-300">
                         <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                           <i className="fas fa-lock text-3xl text-white"></i>
