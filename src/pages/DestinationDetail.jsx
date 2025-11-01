@@ -173,9 +173,21 @@ const DestinationDetail = () => {
                       <h2 className="text-2xl font-bold text-gray-900 mb-4">
                         Giới thiệu
                       </h2>
-                      <p className="text-gray-700 leading-relaxed mb-4">
-                        {loc.description}
-                      </p>
+                      {loc.introduction ? (
+                        <div className="text-gray-700 leading-relaxed space-y-4">
+                          {loc.introduction
+                            .split("\n\n")
+                            .map((paragraph, idx) => (
+                              <p key={idx} className="text-justify">
+                                {paragraph}
+                              </p>
+                            ))}
+                        </div>
+                      ) : (
+                        <p className="text-gray-700 leading-relaxed mb-4">
+                          {loc.description}
+                        </p>
+                      )}
                     </div>
 
                     {loc.highlights && loc.highlights.length > 0 && (

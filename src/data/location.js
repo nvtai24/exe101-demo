@@ -6,6 +6,8 @@ export const locations = [
     category: "Culture",
     description:
       "Thủ đô ngàn năm văn hiến với phố cổ, kiến trúc, văn hóa và ẩm thực đặc sắc.",
+    introduction:
+      "Hà Nội - thủ đô ngàn năm văn hiến của Việt Nam, là nơi hội tụ giữa truyền thống và hiện đại. Được thành lập từ năm 1010 dưới triều đại nhà Lý với tên gọi Thăng Long, Hà Nội đã trải qua hơn một thiên niên kỷ với những thăng trầm của lịch sử. Ngày nay, thành phố vẫn giữ được nét đẹp cổ kính qua khu phố cổ 36 phố phường, nơi mỗi con phố mang tên một nghề truyền thống như Hàng Bạc, Hàng Mã, Hàng Đào...\n\nHồ Hoàn Kiếm là trái tim của thành phố, nơi lưu giữ truyền thuyết thanh kiếm thần linh thiêng. Xung quanh hồ, bạn sẽ cảm nhận được nhịp sống đặc trưng của người Hà Nội: buổi sáng tập thể dục, buổi tối đi dạo, cuối tuần phố đi bộ nhộn nhịp. Văn Miếu - Quốc Tử Giám, ngôi trường đại học đầu tiên của Việt Nam được xây dựng từ năm 1070, là minh chứng cho truyền thống hiếu học của dân tộc.\n\nẨm thực Hà Nội là một trong những điều không thể bỏ qua: từ tô phở nóng hổi buổi sáng, bún chả trưa, đến cà phê trứng hay trà đá vỉa hè buổi chiều. Hà Nội còn nổi tiếng với những món ăn đường phố phong phú, các làng nghề truyền thống như Bát Tràng (gốm sứ), Vạn Phúc (lụa), và nhiều di tích lịch sử được UNESCO công nhận.",
     highlights: ["Văn Miếu", "Hồ Hoàn Kiếm", "Phố cổ", "Ẩm thực đường phố"],
     history:
       "Hà Nội là trung tâm chính trị, văn hoá của Việt Nam từ nhiều thế kỷ. Có lịch sử lâu đời với nhiều di tích như Văn Miếu, Hoàng thành Thăng Long.",
@@ -53,6 +55,8 @@ export const locations = [
     region: "Miền Bắc",
     category: "Nature",
     description: "Di sản thế giới với hàng nghìn đảo đá vôi tuyệt đẹp.",
+    introduction:
+      "Vịnh Hạ Long - một trong những kỳ quan thiên nhiên thế giới, được UNESCO công nhận hai lần (1994 và 2000) là Di sản Thiên nhiên Thế giới. Vịnh có hơn 1.600 hòn đảo đá vôi lớn nhỏ với diện tích khoảng 1.553 km², được hình thành qua 500 triệu năm tiến hóa địa chất.\n\nTên gọi 'Hạ Long' có nghĩa là 'Rồng hạ xuống', xuất phát từ truyền thuyết về gia đình rồng xuống vịnh này giúp người Việt chống giặc ngoại xâm. Những con rồng nhả ra ngọc và ngà biến thành hàng nghìn hòn đảo đá vôi, tạo thành hàng rào thiên nhiên bảo vệ đất nước. Nhiều hòn đảo có hình dáng độc đáo và được đặt tên theo hình dáng: Hòn Đầu Người, Hòn Gà Chọi, Hòn Rùa...\n\nHang Sửng Sốt là một trong những hang động đẹp nhất vịnh, được phát hiện bởi người Pháp năm 1901. Bên trong hang có những khối thạch nhũ lấp lánh đủ màu sắc. Hang Đầu Gỗ với hệ thống thạch nhũ khổng lồ, Động Thiên Cung với những khối nhũ đá kỳ ảo... đều là những điểm đến hấp dẫn.\n\nVịnh Hạ Long không chỉ là nơi có cảnh quan tuyệt đẹp mà còn là nhà của hệ sinh thái biển phong phú với nhiều loài sinh vật quý hiếm. Du thuyền qua đêm trên vịnh, chèo kayak khám phá các hang động, hoặc đơn giản ngắm hoàng hôn trên vịnh là những trải nghiệm không thể bỏ qua.",
     highlights: ["Du thuyền", "Hang động", "Chèo kayak", "Ngắm hoàng hôn"],
     history:
       "Vịnh Hạ Long được UNESCO công nhận là Di sản thiên nhiên thế giới.",
@@ -90,6 +94,8 @@ export const locations = [
     category: "Culture",
     description:
       "Phố cổ Hội An nổi tiếng với kiến trúc cổ, đèn lồng, và ẩm thực địa phương.",
+    introduction:
+      "Hội An - phố cổ được UNESCO công nhận là Di sản Văn hóa Thế giới năm 1999, là một trong những điểm đến quyến rũ nhất Việt Nam. Từ thế kỷ 16 đến thế kỷ 18, Hội An là cảng thương mại quốc tế sầm uất nhất Đông Nam Á, nơi giao thương của thương nhân Nhật Bản, Trung Quốc, Hà Lan, Bồ Đào Nha và các nước châu Âu.\n\nChùa Cầu (cầu Nhật Bản) là biểu tượng của Hội An, được xây dựng vào năm 1593 để nối liền khu phố Nhật và khu phố Trung Hoa. Theo truyền thuyết, cầu được xây để trấn yếu một con quái vật có đầu ở Ấn Độ, thân ở Hội An và đuôi ở Nhật Bản, thường gây ra động đất.\n\nNhững ngôi nhà cổ Hội An mang đậm dấu ấn kiến trúc Việt - Trung - Nhật hòa quyện độc đáo. Nhà cổ Tấn Ký (hơn 200 năm tuổi), Phùng Hưng, Quán Thắng... đều là những kiệt tác kiến trúc với cấu trúc gỗ quý hiếm và các chi tiết chạm khắc tinh xảo.\n\nMỗi tháng âm lịch vào ngày rằm, phố cổ tắt hết đèn điện và thắp lên hàng nghìn chiếc đèn lồng rực rỡ, tái hiện không khí thời xưa - đó là đêm hội đèn lồng nổi tiếng của Hội An. Cao lầu, mì Quảng, bánh bao bánh vạc, chè bắp... là những món ăn đặc sản không thể bỏ qua. Hội An còn nổi tiếng với nghề may đo theo yêu cầu chỉ trong 24 giờ và làm đèn lồng thủ công truyền thống.",
     highlights: ["Phố cổ", "Đèn lồng", "Thưởng thức cao lầu", "Làm đèn lồng"],
     history:
       "Hội An từng là một cảng thương mại quốc tế, lưu giữ nhiều công trình kiến trúc truyền thống.",
@@ -113,6 +119,8 @@ export const locations = [
     category: "Nature",
     description:
       "Thị trấn vùng cao nổi tiếng với ruộng bậc thang và khí hậu mát mẻ.",
+    introduction:
+      "Sa Pa - thị trấn miền núi nằm ở độ cao 1.600m so với mực nước biển, là điểm đến lý tưởng cho những ai muốn trốn khỏi sự ồn ào của thành phố và hòa mình vào thiên nhiên hùng vĩ của vùng Tây Bắc. Với khí hậu mát mẻ quanh năm, Sa Pa được mệnh danh là 'Đà Lạt của miền Bắc'.\n\nRuộng bậc thang Sa Pa là một trong những cảnh quan đẹp nhất Việt Nam, đặc biệt vào mùa lúa chín (tháng 9-10) khi cả thung lũng chuyển sang màu vàng óng. Những thửa ruộng bậc thang được các dân tộc thiểu số như H'Mông, Dao, Tày, Giáy... tạo dựng qua hàng thế kỷ là kiệt tác của sự kiên nhẫn và trí tuệ con người.\n\nFansipan (3.143m) - 'nóc nhà Đông Dương' là điểm đến thử thách cho những ai yêu thích chinh phục. Giờ đây, du khách có thể lên đỉnh bằng hệ thống cáp treo hiện đại chỉ trong 15 phút. Từ đỉnh Fansipan, trong những ngày trời quang, bạn có thể chiêm ngưỡng toàn cảnh Sa Pa và những dãy núi hùng vĩ.\n\nCác bản làng như Cát Cát, Tả Van, Lao Chải, Tả Phìn... là nơi bạn có thể tìm hiểu về văn hóa độc đáo của các dân tộc thiểu số, tham quan các nghề thủ công truyền thống như dệt lanh, nhuộm chàm, rèn bạc. Chợ tình Sa Pa vào tối thứ 7 và chợ phiên các ngày trong tuần là nơi bạn có thể trải nghiệm văn hóa chợ núi đặc trưng.",
     highlights: ["Ruộng bậc thang", "Trekking", "Bản Cát Cát", "Fansipan"],
     history:
       "Sapa phát triển từ thời Pháp thuộc, là điểm đến trek và khám phá văn hoá dân tộc.",
@@ -147,6 +155,8 @@ export const locations = [
     region: "Miền Trung",
     category: "Culture",
     description: "Cố đô với hệ thống lăng tẩm, đền đài và kiến trúc cung đình.",
+    introduction:
+      "Huế - cố đô của triều đại nhà Nguyễn (1802-1945), là thành phố di sản với hệ thống kiến trúc cung đình, lăng tẩm, đền chùa và các công trình văn hóa độc đáo. Năm 1993, Quần thể di tích Cố đô Huế được UNESCO công nhận là Di sản Văn hóa Thế giới đầu tiên của Việt Nam. Nhã nhạc cung đình Huế cũng được UNESCO vinh danh là Di sản văn hóa phi vật thể.\n\nĐại Nội Huế là khu hoàng thành rộng lớn được xây dựng theo kiểu thành Tử Cấm (Bắc Kinh) với 3 vòng thành bao quanh: Kinh thành, Hoàng thành và Tử cấm thành. Nơi đây từng là nơi sinh sống của 13 vị vua nhà Nguyễn. Ngọ Môn (cổng chính), Điện Thái Hòa (điện chính triều), Thế Miếu (thờ các vua), Cung Diên Thọ (cung hoàng thái hậu)... đều là những kiến trúc đặc sắc.\n\nHệ thống lăng tẩm các vua Nguyễn được xây dựng trên khắp cố đô với kiến trúc độc đáo, hài hòa với thiên nhiên: Lăng Minh Mạng (uy nghiêm trang trọng), Lăng Khải Định (pha trộn Đông Tây), Lăng Tự Đức (thơ mộng thanh tịnh), Lăng Gia Long (giản dị)... Mỗi lăng mang đậm dấu ấn tính cách của từng vị vua.\n\nSông Hương thơ mộng chảy qua thành phố, chia Huế thành hai bờ Nam - Bắc. Chùa Thiên Mụ với tháp Phước Duyên 7 tầng nằm bên bờ sông là biểu tượng của Huế. Ẩm thực Huế mang đậm hương vị cung đình: bún bò Huế, cơm hến, bánh bèo, bánh khoái, nem lụi... Đặc biệt, văn hóa ẩm thực Huế còn nổi tiếng với cách trình bày tinh tế và nghệ thuật trang trí món ăn.",
     highlights: ["Đại Nội", "Lăng Tự Đức", "Chùa Thiên Mụ", "Sông Hương"],
     history:
       "Huế là trung tâm của triều đại Nguyễn, lưu giữ nhiều di sản lịch sử.",
@@ -181,6 +191,8 @@ export const locations = [
     category: "Beach",
     description:
       "Thành phố biển với bãi biển rộng và nhiều điểm tham quan hiện đại.",
+    introduction:
+      "Đà Nẵng - thành phố đáng sống nhất Việt Nam, là trung tâm kinh tế - xã hội - văn hóa của miền Trung. Với vị trí nằm ở trung điểm Việt Nam, Đà Nẵng là cửa ngõ du lịch quan trọng, điểm trung chuyển đến Hội An, Huế, Mỹ Sơn... Thành phố phát triển nhanh với hệ thống cơ sở hạ tầng hiện đại, đường xá rộng rãi sạch đẹp.\n\nBãi biển Mỹ Khê được tạp chí Forbes bình chọn là một trong những bãi biển đẹp nhất hành tinh với bãi cát trắng mịn dài 30km, nước biển trong xanh. Non Nước (Ngũ Hành Sơn) với 5 ngọn núi đá vôi mang tên Kim, Mộc, Thủy, Hỏa, Thổ, ẩn chứa nhiều hang động và chùa chiền linh thiêng.\n\nCầu Rồng với thiết kế hình con rồng dài 666m bắc qua sông Hàn là biểu tượng mới của thành phố. Vào tối cuối tuần, rồng phun nước và lửa thu hút đông đảo du khách. Cầu Tình Yêu (cầu khóa tình yêu), Cầu Quay Sông Hàn (cầu quay duy nhất Việt Nam)... cũng là những điểm check-in nổi tiếng.\n\nBà Nà Hills ở độ cao 1.487m là khu du lịch nghỉ dưỡng với cảnh quan núi rừng hùng vĩ, khí hậu mát mẻ quanh năm. Cầu Vàng (Golden Bridge) với đôi bàn tay khổng lồ đỡ cầu đã trở thành biểu tượng du lịch mới nổi tiếng thế giới. Chùa Linh Ứng với tượng Phật Quan Âm cao 67m nhìn ra biển Đông, Bán đảo Sơn Trà với cảnh quan hoang sơ... Ẩm thực Đà Nẵng phong phú: mì Quảng, bún chả cá, bánh tráng cuốn thịt heo, nem lụi, hải sản tươi sống...",
     highlights: [
       "Bãi biển Mỹ Khê",
       "Cầu Rồng",
@@ -218,6 +230,8 @@ export const locations = [
     category: "Beach",
     description:
       "Đảo ngọc nổi tiếng với bãi biển, lặn ngắm san hô và resort cao cấp.",
+    introduction:
+      "Phú Quốc - hòn đảo lớn nhất Việt Nam với diện tích 574 km², được mệnh danh là 'đảo ngọc' bởi vẻ đẹp hoang sơ của biển xanh cát trắng và rừng nhiệt đới nguyên sinh. Năm 2012, Phú Quốc được bình chọn là 'Đảo đẹp và hoang sơ' của thế giới bởi Lonely Planet.\n\nBãi Sao, Bãi Dài, Bãi Trường là những bãi biển đẹp nhất đảo với nước biển trong xanh như ngọc, cát trắng mịn như bột. Vườn Quốc gia Phú Quốc chiếm hơn 50% diện tích đảo với hệ động thực vật đa dạng, là nơi sinh sống của nhiều loài quý hiếm. Hòn Thơm, Hòn Móng Tay, Hòn Gầm Ghì... là những hòn đảo nhỏ xung quanh lý tưởng cho hoạt động lặn ngắm san hô và câu cá.\n\nPhú Quốc nổi tiếng với các đặc sản như nước mắm (nước mắm Phú Quốc là sản phẩm có chỉ dẫn địa lý được bảo hộ), tiêu đen, sim rượu, rượu sim, hải sản tươi sống... Các điểm tham quan như Vinpearl Safari (vườn thú mở đầu tiên VN), Grand World (công viên giải trí phong cách Venice), Sunset Sanato (bãi biển câu lạc bộ), cáp treo Hòn Thơm (cáp treo vượt biển dài nhất thế giới 7.899m).\n\nĐể khám phá Phú Quốc, bạn có thể thuê xe máy hoặc tham gia các tour trong ngày: tour 4 đảo (lặn ngắm san hô, câu cá, BBQ), tour câu mực đêm, tour khám phá bắc đảo... Các khu resort cao cấp ven biển là nơi lý tưởng để nghỉ dưỡng và thư giãn.",
     highlights: [
       "Bãi Trường",
       "Lặn ngắm san hô",
@@ -256,6 +270,8 @@ export const locations = [
     category: "Nature",
     description:
       "Thành phố ngàn hoa với khí hậu mát mẻ, rừng thông và vườn hoa.",
+    introduction:
+      "Đà Lạt - thành phố ngàn hoa với khí hậu mát mẻ quanh năm (nhiệt độ trung bình 15-24°C), nằm trên cao nguyên Lâm Viên ở độ cao 1.500m. Được người Pháp phát hiện và phát triển từ cuối thế kỷ 19, Đà Lạt vẫn giữ được nét kiến trúc Pháp cổ kính qua những ngôi biệt thự, nhà thờ và công trình công cộng.\n\nHồ Xuân Hương là trung tâm của thành phố, nơi bạn có thể đi dạo, đạp xe hoặc chèo thiên nga. Xung quanh hồ là những hàng thông xanh mướt và các công viên hoa đầy màu sắc. Vườn hoa thành phố, Thung lũng Tình Yêu, Đồi Cù Lần... là những điểm chụp ảnh lý tưởng với đủ loại hoa: hoa dã quỳ, hoa hồng, hoa cẩm tú cầu, hoa mimosa...\n\nĐà Lạt nổi tiếng với các điểm tham quan như Dinh Bảo Đại (dinh thự cuối cùng của vua Bảo Đại), Nhà thờ Con Gà (Cathedral Đà Lạt), Thiền viện Trúc Lâm, Làng Cù Lần với những ngôi nhà đất sét độc đáo, Crazy House (Hang Nga Villa) với kiến trúc kỳ quái...\n\nẨm thực Đà Lạt đặc trưng với các món như lẩu gà lá é, bánh tráng nướng, sữa đậu nành, dâu tây, atiso, trà atiso... Chợ Đà Lạt và chợ đêm là nơi bạn có thể mua đặc sản địa phương như rượu sim, mứt dâu, trà atiso, hoa quả sấy khô. Đà Lạt còn là điểm đến lý tưởng cho các cặp đôi với không khí lãng mạn, các homestay xinh xắn và quán cà phê view đẹp.",
     highlights: ["Vườn hoa", "Hồ Xuân Hương", "Dinh Bảo Đại", "Chợ đêm Đà Lạt"],
     history: "Đà Lạt được xếp loại là khu nghỉ dưỡng từ thời Pháp thuộc.",
     openingHours: "Mở cửa: 24/7 (điểm tham quan khác nhau)",
@@ -286,6 +302,8 @@ export const locations = [
     region: "Miền Bắc",
     category: "Nature",
     description: "Quần thể Tràng An, Tam Cốc với cảnh quan sông núi hùng vĩ.",
+    introduction:
+      "Ninh Bình - 'Vịnh Hạ Long trên cạn', là tỉnh có cảnh quan thiên nhiên tuyệt đẹp với núi đá vôi, sông nước, hang động và ruộng lúa bát ngát. Năm 2014, Quần thể danh thắng Tràng An được UNESCO công nhận là Di sản Văn hóa và Thiên nhiên Thế giới, vừa có giá trị địa chất, vừa có giá trị lịch sử - văn hóa.\n\nTràng An là quần thể cảnh quan tuyệt đẹp với 48 hang động xuyên núi, chùa chiền cổ kính ẩn mình trong lòng núi. Chèo thuyền qua 9 hang động (như Sáng - Tối, Nấu Rượu, Ba Giọt...), len lỏi giữa những vách núi đá vôi dựng đứng, qua những rừng lau lách xanh mướt là trải nghiệm không thể quên. Tam Cốc - Bích Động với dòng sông Ngô Đồng uốn khúc qua 3 hang động (Hang Cả, Hang Hai, Hang Ba), xung quanh là ruộng lúa xanh tươi hoặc vàng óng tùy mùa.\n\nHoa Lư là cố đô của nước Đại Cồ Việt dưới thời Đinh - Tiền Lê (968-1009), nơi lưu giữ nhiều di tích lịch sử như Đinh Tiên Hoàng, Đền Lê Đại Hành. Chùa Bái Đính là quần thể chùa lớn nhất Việt Nam với nhiều kỷ lục: tượng Phật bằng đồng lớn nhất, hành lang La Hán dài nhất (có 500 tượng La Hán), chuông đồng lớn nhất...\n\nHang Múa (Múa Cave) với 500 bậc đá dẫn lên đỉnh núi là điểm ngắm toàn cảnh Tam Cốc tuyệt đẹp. Vườn chim Thung Nham, Vườn Quốc gia Cúc Phương (rừng nguyên sinh già nhất Việt Nam)... Đặc sản Ninh Bình: cơm cháy, thịt dê, gỏi cá, bánh đa...",
     highlights: [
       "Chèo thuyền Tràng An",
       "Hang động",
@@ -324,6 +342,8 @@ export const locations = [
     region: "Miền Nam",
     category: "Beach",
     description: "Thành phố biển nổi tiếng với bãi biển dài và điểm lặn biển.",
+    introduction:
+      "Nha Trang - thành phố biển xinh đẹp với bãi biển dài 7km, nước biển trong xanh và bãi cát trắng mịn, được tạp chí Forbes bình chọn là một trong những vịnh đẹp nhất thế giới. Nha Trang không chỉ nổi tiếng với bãi biển mà còn là thiên đường cho các hoạt động thể thao dưới nước như lặn biển, lướt ván, dù bay...\n\nHòn Mun là điểm lặn ngắm san hô nổi tiếng nhất Nha Trang với hệ sinh thái biển đa dạng, có hơn 350 loài san hô và hàng trăm loài cá nhiệt đới đủ màu sắc. Vinpearl Land (đảo Hòn Tre) là khu vui chơi giải trí lớn với công viên nước, trò chơi cảm giác mạnh và hệ thống cáp treo vượt biển dài nhất thế giới (3.320m).\n\nTháp Bà Ponagar - công trình kiến trúc Chăm Pa cổ (thế kỷ 7-12) là điểm tham quan văn hóa đặc sắc. Viện Hải dương học Nha Trang với bể cá lớn trưng bày hơn 20.000 mẫu vật sinh vật biển. Chùa Long Sơn với tượng Phật trắng cao 24m trên núi là điểm ngắm toàn cảnh thành phố.\n\nẨm thực Nha Trang phong phú với các món hải sản tươi sống: tôm hùm nướng, cua hoàng đế, ốc hương, ghẹ, sò điệp... Các món đặc sản như bún chả cá, bánh căn, nem nướng Ninh Hòa, bún sứa, bánh xèo... đều đáng để thử. Đường Trần Phú ven biển với hàng loạt quán bar, nhà hàng, khách sạn cao cấp là nơi vui chơi về đêm sôi động.",
     highlights: [
       "Bãi biển Nha Trang",
       "Lặn Hòn Mun",
