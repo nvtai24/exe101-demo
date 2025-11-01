@@ -298,7 +298,9 @@ const DestinationDetail = () => {
                           <div className="flex items-center justify-center gap-2">
                             <button
                               onClick={() =>
-                                setAttractionsPage((prev) => Math.max(1, prev - 1))
+                                setAttractionsPage((prev) =>
+                                  Math.max(1, prev - 1)
+                                )
                               }
                               disabled={attractionsPage === 1}
                               className={`px-4 py-2 rounded-lg border transition-colors ${
@@ -339,7 +341,8 @@ const DestinationDetail = () => {
                                 setAttractionsPage((prev) =>
                                   Math.min(
                                     Math.ceil(
-                                      loc.attractions.length / attractionsPerPage
+                                      loc.attractions.length /
+                                        attractionsPerPage
                                     ),
                                     prev + 1
                                   )
