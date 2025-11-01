@@ -621,28 +621,6 @@ const DestinationDetail = () => {
                     </div>
                   </div>
                 </div>
-                {loc.openingHours && (
-                  <div className="flex items-start">
-                    <i className="fas fa-clock text-primary-600 mt-1 mr-3"></i>
-                    <div>
-                      <div className="text-sm text-gray-500">Giờ mở cửa</div>
-                      <div className="font-medium text-gray-900">
-                        {loc.openingHours}
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {loc.price && (
-                  <div className="flex items-start">
-                    <i className="fas fa-ticket-alt text-primary-600 mt-1 mr-3"></i>
-                    <div>
-                      <div className="text-sm text-gray-500">Giá vé</div>
-                      <div className="font-medium text-gray-900">
-                        {loc.price}
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </aside>
