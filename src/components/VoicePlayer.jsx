@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const VoicePlayer = ({ text, audioUrl = null }) => {
   const [playing, setPlaying] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState(null);
-  const [rate, setRate] = useState(1); // Tốc độ: 0.5 - 2
+  const [rate, setRate] = useState(1.1); // Tốc độ: 0.5 - 2 (tăng lên 1.1 để trôi chảy hơn)
   const [pitch, setPitch] = useState(1); // Cao độ: 0 - 2
   const [naturalSpeech, setNaturalSpeech] = useState(true); // Chế độ nói tự nhiên
+  const shouldStopRef = useRef(false); // Dùng ref để kiểm tra ngay lập tức
+  const timeoutIdsRef = useRef([]); // Lưu trữ timeout IDs để hủy
 
   // Load available voices
   useEffect(() => {
@@ -84,92 +86,102 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
 
     let processedText = inputText;
 
-    // Thêm ngắt nghỉ tại dấu câu
-    processedText = processedText.replace(/([.!?])\s+/g, "$1... ");
-    processedText = processedText.replace(/([,;:])\s+/g, "$1. ");
+    // Chỉ thêm ngắt nghỉ nhẹ tại dấu chấm câu lớn (. ! ?)
+    // Không thêm ... để tránh ngắt quãng quá nhiều
+    processedText = processedText.replace(/([.!?])\s+/g, "$1 ");
 
-    // Nhấn mạnh từ khóa quan trọng (viết hoa hoặc từ đặc biệt)
-    const emphasisWords = [
-      "tuyệt vời",
-      "đẹp",
-      "nổi tiếng",
-      "đặc biệt",
-      "quan trọng",
-      "nhất định",
-      "tuyệt đối",
-    ];
-    emphasisWords.forEach((word) => {
-      const regex = new RegExp(`\\b(${word})\\b`, "gi");
-      processedText = processedText.replace(regex, "... $1 ...");
-    });
-
-    // Thêm ngắt nghỉ giữa các câu dài
-    processedText = processedText.replace(/(\w+,\s+\w+,\s+\w+)/g, "$1...");
+    // Giữ nguyên dấu phay, chấm phẩy để giọng đọc tự nhiên
+    // Không thêm pause thêm
 
     return processedText;
   };
 
-  // Hàm chia nhỏ văn bản và đọc với âm điệu thay đổi
+  // Hàm chia văn bản thành các đoạn (paragraphs) để đọc trôi chảy hơn
   const speakWithVariation = (inputText) => {
-    const sentences = inputText.split(/([.!?]+\s+)/);
+    // Chia thành các đoạn lớn hơn (2-3 câu) thay vì từng câu nhỏ
+    // Chia theo dấu chấm + khoảng trắng, nhưng gộp lại thành chunks
+    const allSentences = inputText
+      .split(/(?<=[.!?])\s+/)
+      .filter((s) => s.trim());
+
+    // Gộp 2-3 câu thành một đoạn để đọc trôi chảy
+    const chunks = [];
+    for (let i = 0; i < allSentences.length; i += 2) {
+      const chunk = allSentences.slice(i, i + 2).join(" ");
+      if (chunk.trim()) chunks.push(chunk);
+    }
+
     let currentIndex = 0;
 
-    const speakNextSentence = () => {
-      if (currentIndex >= sentences.length) {
+    const speakNextChunk = () => {
+      // Kiểm tra flag dừng
+      if (shouldStopRef.current) {
+        shouldStopRef.current = false;
         setPlaying(false);
         return;
       }
 
-      const sentence = sentences[currentIndex].trim();
-      if (!sentence) {
-        currentIndex++;
-        speakNextSentence();
+      if (currentIndex >= chunks.length) {
+        setPlaying(false);
+        // Clear all timeouts khi hoàn thành
+        timeoutIdsRef.current.forEach(clearTimeout);
+        timeoutIdsRef.current = [];
         return;
       }
 
-      const utter = new SpeechSynthesisUtterance(sentence);
-      utter.lang = "vi-VN";
+      const chunk = chunks[currentIndex].trim();
+      if (!chunk) {
+        currentIndex++;
+        speakNextChunk();
+        return;
+      }
 
-      // Biến đổi tốc độ và cao độ tự nhiên
-      // Câu hỏi: tăng cao độ
-      if (sentence.includes("?")) {
-        utter.pitch = Math.min(pitch + 0.3, 2);
-        utter.rate = Math.max(rate - 0.1, 0.5);
-      }
-      // Câu cảm thán: thay đổi cường độ
-      else if (sentence.includes("!")) {
-        utter.pitch = Math.min(pitch + 0.2, 2);
-        utter.rate = rate;
-      }
-      // Câu bình thường: biến đổi nhẹ để tự nhiên
-      else {
-        const variation = (Math.random() - 0.5) * 0.15;
-        utter.pitch = Math.max(0.5, Math.min(pitch + variation, 2));
-        utter.rate = Math.max(0.5, Math.min(rate + variation * 0.5, 2));
-      }
+      const utter = new SpeechSynthesisUtterance(chunk);
+      utter.lang = "vi-VN";
+      utter.rate = rate;
+      utter.pitch = pitch;
+
+      // Biến đổi nhẹ pitch và rate để tự nhiên hơn
+      // Không thay đổi quá mạnh để giữ sự liên tục
+      const variation = (Math.random() - 0.5) * 0.1; // Giảm variation để ổn định hơn
+      utter.pitch = Math.max(0.5, Math.min(pitch + variation, 2));
+      utter.rate = Math.max(0.5, Math.min(rate + variation * 0.3, 2));
 
       if (selectedVoice) {
         utter.voice = selectedVoice;
       }
 
       utter.onend = () => {
+        // Kiểm tra flag dừng trước khi tiếp tục
+        if (shouldStopRef.current) {
+          shouldStopRef.current = false;
+          setPlaying(false);
+          return;
+        }
         currentIndex++;
-        // Ngắt nghỉ ngắn giữa các câu
-        setTimeout(speakNextSentence, 200);
+        // Giảm pause giữa các đoạn xuống 100ms để trôi chảy hơn
+        const timeoutId = setTimeout(speakNextChunk, 100);
+        timeoutIdsRef.current.push(timeoutId);
       };
 
       utter.onerror = () => {
         currentIndex++;
-        speakNextSentence();
+        speakNextChunk();
       };
 
       window.speechSynthesis.speak(utter);
     };
 
-    speakNextSentence();
+    speakNextChunk();
   };
 
   const handlePlay = async () => {
+    // Reset flag dừng khi bắt đầu phát
+    shouldStopRef.current = false;
+    // Clear old timeouts
+    timeoutIdsRef.current.forEach(clearTimeout);
+    timeoutIdsRef.current = [];
+
     if (audioUrl) {
       // play audio URL
       const audio = new Audio(audioUrl);
@@ -202,10 +214,19 @@ const VoicePlayer = ({ text, audioUrl = null }) => {
   };
 
   const handleStop = () => {
+    // Thiết lập flag dừng để ngắt vòng lặp đệ quy
+    shouldStopRef.current = true;
+
+    // Hủy tất cả các timeout đang chờ
+    timeoutIdsRef.current.forEach(clearTimeout);
+    timeoutIdsRef.current = [];
+
+    // Hủy speech synthesis
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      setPlaying(false);
     }
+
+    setPlaying(false);
   };
 
   return (
