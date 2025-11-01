@@ -13,6 +13,8 @@ const DestinationDetail = () => {
   const [weather, setWeather] = useState(null);
   const [weatherLoading, setWeatherLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("overview");
+  const [attractionsPage, setAttractionsPage] = useState(1);
+  const attractionsPerPage = 5;
 
   // Fetch weather data
   useEffect(() => {
@@ -20,6 +22,18 @@ const DestinationDetail = () => {
       fetchWeatherData(loc.coordinates.lat, loc.coordinates.lng);
     }
   }, [loc]);
+
+  // Reset attractions page when location changes
+  useEffect(() => {
+    setAttractionsPage(1);
+  }, [id]);
+
+  // Reset attractions page when switching to overview tab
+  useEffect(() => {
+    if (activeTab === "overview") {
+      setAttractionsPage(1);
+    }
+  }, [activeTab]);
 
   const fetchWeatherData = async (lat, lng) => {
     try {
@@ -217,6 +231,140 @@ const DestinationDetail = () => {
                         <p className="text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
                           {loc.history}
                         </p>
+                      </div>
+                    )}
+
+                    {/* Attractions - Địa điểm tham quan gợi ý */}
+                    {loc.attractions && loc.attractions.length > 0 && (
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-xl font-bold text-gray-900 flex items-center">
+                            <i className="fas fa-map-marked-alt text-primary-600 mr-3"></i>
+                            Địa điểm tham quan gợi ý
+                          </h3>
+                          <div className="text-sm text-gray-600">
+                            {loc.attractions.length} địa điểm
+                          </div>
+                        </div>
+
+                        <div className="space-y-4 mb-6">
+                          {loc.attractions
+                            .slice(
+                              (attractionsPage - 1) * attractionsPerPage,
+                              attractionsPage * attractionsPerPage
+                            )
+                            .map((attraction, idx) => {
+                              const actualIndex =
+                                (attractionsPage - 1) * attractionsPerPage +
+                                idx +
+                                1;
+                              return (
+                                <div
+                                  key={idx}
+                                  className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                                >
+                                  <div className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                                      <span className="text-primary-600 font-bold">
+                                        {actualIndex}
+                                      </span>
+                                    </div>
+                                    <div className="flex-1">
+                                      <h4 className="font-bold text-gray-900 mb-2">
+                                        {attraction.name}
+                                      </h4>
+                                      <p className="text-gray-600 text-sm mb-3 leading-relaxed">
+                                        {attraction.description}
+                                      </p>
+                                      <div className="flex flex-wrap gap-4 text-sm">
+                                        <div className="flex items-center text-gray-500">
+                                          <i className="far fa-clock mr-2 text-primary-600"></i>
+                                          <span>{attraction.time}</span>
+                                        </div>
+                                        <div className="flex items-center text-gray-500">
+                                          <i className="fas fa-ticket-alt mr-2 text-primary-600"></i>
+                                          <span>{attraction.price}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                        </div>
+
+                        {/* Pagination */}
+                        {loc.attractions.length > attractionsPerPage && (
+                          <div className="flex items-center justify-center gap-2">
+                            <button
+                              onClick={() =>
+                                setAttractionsPage((prev) => Math.max(1, prev - 1))
+                              }
+                              disabled={attractionsPage === 1}
+                              className={`px-4 py-2 rounded-lg border transition-colors ${
+                                attractionsPage === 1
+                                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                  : "bg-white text-gray-700 hover:bg-primary-50 hover:border-primary-500"
+                              }`}
+                            >
+                              <i className="fas fa-chevron-left mr-2"></i>
+                              Trước
+                            </button>
+
+                            <div className="flex items-center gap-2">
+                              {Array.from(
+                                {
+                                  length: Math.ceil(
+                                    loc.attractions.length / attractionsPerPage
+                                  ),
+                                },
+                                (_, i) => i + 1
+                              ).map((pageNum) => (
+                                <button
+                                  key={pageNum}
+                                  onClick={() => setAttractionsPage(pageNum)}
+                                  className={`w-10 h-10 rounded-lg border transition-colors ${
+                                    attractionsPage === pageNum
+                                      ? "bg-primary-600 text-white border-primary-600"
+                                      : "bg-white text-gray-700 hover:bg-primary-50 hover:border-primary-500"
+                                  }`}
+                                >
+                                  {pageNum}
+                                </button>
+                              ))}
+                            </div>
+
+                            <button
+                              onClick={() =>
+                                setAttractionsPage((prev) =>
+                                  Math.min(
+                                    Math.ceil(
+                                      loc.attractions.length / attractionsPerPage
+                                    ),
+                                    prev + 1
+                                  )
+                                )
+                              }
+                              disabled={
+                                attractionsPage ===
+                                Math.ceil(
+                                  loc.attractions.length / attractionsPerPage
+                                )
+                              }
+                              className={`px-4 py-2 rounded-lg border transition-colors ${
+                                attractionsPage ===
+                                Math.ceil(
+                                  loc.attractions.length / attractionsPerPage
+                                )
+                                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                  : "bg-white text-gray-700 hover:bg-primary-50 hover:border-primary-500"
+                              }`}
+                            >
+                              Sau
+                              <i className="fas fa-chevron-right ml-2"></i>
+                            </button>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>

@@ -9,6 +9,78 @@ export const locations = [
     introduction:
       "Hà Nội - thủ đô ngàn năm văn hiến của Việt Nam, là nơi hội tụ giữa truyền thống và hiện đại. Được thành lập từ năm 1010 dưới triều đại nhà Lý với tên gọi Thăng Long, Hà Nội đã trải qua hơn một thiên niên kỷ với những thăng trầm của lịch sử. Ngày nay, thành phố vẫn giữ được nét đẹp cổ kính qua khu phố cổ 36 phố phường, nơi mỗi con phố mang tên một nghề truyền thống như Hàng Bạc, Hàng Mã, Hàng Đào...\n\nHồ Hoàn Kiếm là trái tim của thành phố, nơi lưu giữ truyền thuyết thanh kiếm thần linh thiêng. Xung quanh hồ, bạn sẽ cảm nhận được nhịp sống đặc trưng của người Hà Nội: buổi sáng tập thể dục, buổi tối đi dạo, cuối tuần phố đi bộ nhộn nhịp. Văn Miếu - Quốc Tử Giám, ngôi trường đại học đầu tiên của Việt Nam được xây dựng từ năm 1070, là minh chứng cho truyền thống hiếu học của dân tộc.\n\nẨm thực Hà Nội là một trong những điều không thể bỏ qua: từ tô phở nóng hổi buổi sáng, bún chả trưa, đến cà phê trứng hay trà đá vỉa hè buổi chiều. Hà Nội còn nổi tiếng với những món ăn đường phố phong phú, các làng nghề truyền thống như Bát Tràng (gốm sứ), Vạn Phúc (lụa), và nhiều di tích lịch sử được UNESCO công nhận.",
     highlights: ["Văn Miếu", "Hồ Hoàn Kiếm", "Phố cổ", "Ẩm thực đường phố"],
+    attractions: [
+      {
+        name: "Hồ Hoàn Kiếm & Đền Ngọc Sơn",
+        description:
+          "Trái tim của Hà Nội với truyền thuyết thanh kiếm thần, đền Ngọc Sơn trên đảo, tháp Rùa giữa hồ. Phố đi bộ cuối tuần sôi động.",
+        time: "Cả ngày",
+        price: "Miễn phí (Đền Ngọc Sơn: 30.000đ)",
+      },
+      {
+        name: "Phố Cổ 36 Phố Phường",
+        description:
+          "Khu phố cổ với kiến trúc nhà ống đặc trưng, mỗi phố một nghề. Thích hợp đi bộ khám phá, mua sắm, thưởng thức ẩm thực đường phố.",
+        time: "Nửa ngày - 1 ngày",
+        price: "Miễn phí",
+      },
+      {
+        name: "Văn Miếu - Quốc Tử Giám",
+        description:
+          "Ngôi trường đại học đầu tiên của Việt Nam (1070), 82 bia tiến sĩ - Di sản ký ức thế giới UNESCO. Kiến trúc cổ kính, yên bình.",
+        time: "1.5 - 2 giờ",
+        price: "30.000đ",
+      },
+      {
+        name: "Hoàng Thành Thăng Long",
+        description:
+          "Di sản văn hóa thế giới UNESCO, trung tâm chính trị của Việt Nam hơn 1000 năm. Khai quật khảo cổ học quan trọng.",
+        time: "2 - 3 giờ",
+        price: "30.000đ",
+      },
+      {
+        name: "Lăng Chủ tịch Hồ Chí Minh",
+        description:
+          "Khu di tích gồm Lăng Bác, Nhà sàn, Bảo tàng Hồ Chí Minh, Chùa Một Cột. Đóng cửa thứ 2, thứ 6 và 3 tháng bảo dưỡng.",
+        time: "2 - 3 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Chùa Trấn Quốc",
+        description:
+          "Ngôi chùa cổ nhất Hà Nội (544) nằm bên hồ Tây, tháp Bảo Tháp 15 tầng, cảnh hoàng hôn tuyệt đẹp.",
+        time: "1 - 1.5 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Nhà Tù Hỏa Lò",
+        description:
+          "Di tích lịch sử về cuộc đấu tranh cách mạng, còn gọi là 'Hanoi Hilton'. Trưng bày hiện vật, tái hiện điều kiện tù đày.",
+        time: "1 - 1.5 giờ",
+        price: "30.000đ",
+      },
+      {
+        name: "Nhà Hát Lớn Hà Nội",
+        description:
+          "Kiến trúc Pháp đẹp nhất Hà Nội (1911), nơi diễn ra các chương trình nghệ thuật đẳng cấp. Chụp ảnh bên ngoài rất đẹp.",
+        time: "30 phút - 1 giờ",
+        price: "Xem show tùy chương trình",
+      },
+      {
+        name: "Cầu Long Biên",
+        description:
+          "Cầu sắt lịch sử do Gustave Eiffel thiết kế (1902), biểu tượng của Hà Nội. Đi bộ lên cầu ngắm sông Hồng, chụp ảnh check-in.",
+        time: "1 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Chợ Đồng Xuân",
+        description:
+          "Chợ lớn nhất phố cổ, mua sắm quần áo, hàng lưu niệm, ẩm thực đường phố. Chợ đêm cuối tuần sôi động.",
+        time: "1 - 2 giờ",
+        price: "Miễn phí",
+      },
+    ],
     history:
       "Hà Nội là trung tâm chính trị, văn hoá của Việt Nam từ nhiều thế kỷ. Có lịch sử lâu đời với nhiều di tích như Văn Miếu, Hoàng thành Thăng Long.",
     openingHours: "Mở cửa: 24/7 (tùy điểm tham quan)",
@@ -58,6 +130,71 @@ export const locations = [
     introduction:
       "Vịnh Hạ Long - một trong những kỳ quan thiên nhiên thế giới, được UNESCO công nhận hai lần (1994 và 2000) là Di sản Thiên nhiên Thế giới. Vịnh có hơn 1.600 hòn đảo đá vôi lớn nhỏ với diện tích khoảng 1.553 km², được hình thành qua 500 triệu năm tiến hóa địa chất.\n\nTên gọi 'Hạ Long' có nghĩa là 'Rồng hạ xuống', xuất phát từ truyền thuyết về gia đình rồng xuống vịnh này giúp người Việt chống giặc ngoại xâm. Những con rồng nhả ra ngọc và ngà biến thành hàng nghìn hòn đảo đá vôi, tạo thành hàng rào thiên nhiên bảo vệ đất nước. Nhiều hòn đảo có hình dáng độc đáo và được đặt tên theo hình dáng: Hòn Đầu Người, Hòn Gà Chọi, Hòn Rùa...\n\nHang Sửng Sốt là một trong những hang động đẹp nhất vịnh, được phát hiện bởi người Pháp năm 1901. Bên trong hang có những khối thạch nhũ lấp lánh đủ màu sắc. Hang Đầu Gỗ với hệ thống thạch nhũ khổng lồ, Động Thiên Cung với những khối nhũ đá kỳ ảo... đều là những điểm đến hấp dẫn.\n\nVịnh Hạ Long không chỉ là nơi có cảnh quan tuyệt đẹp mà còn là nhà của hệ sinh thái biển phong phú với nhiều loài sinh vật quý hiếm. Du thuyền qua đêm trên vịnh, chèo kayak khám phá các hang động, hoặc đơn giản ngắm hoàng hôn trên vịnh là những trải nghiệm không thể bỏ qua.",
     highlights: ["Du thuyền", "Hang động", "Chèo kayak", "Ngắm hoàng hôn"],
+    attractions: [
+      {
+        name: "Du thuyền qua đêm trên vịnh",
+        description:
+          "Trải nghiệm tuyệt vời nhất ở Hạ Long: ngủ trên thuyền, tham gia các hoạt động: kayak, lặn, câu mực, xem hoàng hôn/bình minh.",
+        time: "2 ngày 1 đêm hoặc 3 ngày 2 đêm",
+        price: "2.500.000đ - 8.000.000đ/người",
+      },
+      {
+        name: "Hang Sửng Sốt (Surprise Cave)",
+        description:
+          "Hang động lớn nhất và đẹp nhất vịnh, 3 phòng rộng với thạch nhũ kỳ ảo. Nằm trên đảo Bồ Hòn. Bao gồm trong hầu hết tour.",
+        time: "45 phút - 1 giờ",
+        price: "Trong tour du thuyền",
+      },
+      {
+        name: "Hang Đầu Gỗ (Wooden Head Cave)",
+        description:
+          "Hang động với hệ thống thạch nhũ khổng lồ, nhiều màu sắc. Nằm gần bến tàu Tuần Châu, phù hợp tour trong ngày.",
+        time: "45 phút - 1 giờ",
+        price: "Trong tour",
+      },
+      {
+        name: "Động Thiên Cung",
+        description:
+          "Hang động kỳ ảo với khối nhũ đá hình thù độc đáo, ánh đèn nhiều màu sắc. Cần leo 90 bậc đá để vào hang.",
+        time: "45 phút - 1 giờ",
+        price: "Trong tour",
+      },
+      {
+        name: "Đảo Titop",
+        description:
+          "Đảo nhỏ với bãi biển đẹp để tắm, leo 400 bậc thang lên đỉnh núi ngắm toàn cảnh vịnh tuyệt đẹp. Điểm dừng phổ biến.",
+        time: "1.5 - 2 giờ",
+        price: "Trong tour",
+      },
+      {
+        name: "Làng chài Cửa Vạn",
+        description:
+          "Làng chài truyền thống nổi trên biển, tìm hiểu đời sống người dân, chèo kayak khám phá. Cảnh quan yên bình, thơ mộng.",
+        time: "1 - 1.5 giờ",
+        price: "Trong tour",
+      },
+      {
+        name: "Chèo Kayak & Lặn ngắm san hô",
+        description:
+          "Hoạt động thú vị khám phá hang động nhỏ, vịnh nhỏ, làng chài. Một số tour có lặn ngắm san hô ở khu vực nước trong.",
+        time: "1 - 2 giờ",
+        price: "Bao gồm trong tour",
+      },
+      {
+        name: "Đảo Cát Bà - Vườn Quốc gia",
+        description:
+          "Đảo lớn nhất vịnh, có bãi biển đẹp, rừng quốc gia, voọc Cát Bà quý hiếm. Có thể kết hợp tour Hạ Long - Cát Bà.",
+        time: "1 ngày",
+        price: "Tour riêng hoặc kết hợp",
+      },
+      {
+        name: "Bãi Cháy - Bãi tắm & Casino",
+        description:
+          "Bãi biển đẹp ở TP Hạ Long, khu vui chơi giải trí, ăn uống. Sun World Halong Park với cáp treo, Tượng Nữ thần Quan Âm.",
+        time: "2 - 3 giờ",
+        price: "Vé cáp treo: 250.000đ",
+      },
+    ],
     history:
       "Vịnh Hạ Long được UNESCO công nhận là Di sản thiên nhiên thế giới.",
     openingHours: "Mở cửa: 6:00 - 18:00 (tùy hoạt động)",
@@ -97,6 +234,78 @@ export const locations = [
     introduction:
       "Hội An - phố cổ được UNESCO công nhận là Di sản Văn hóa Thế giới năm 1999, là một trong những điểm đến quyến rũ nhất Việt Nam. Từ thế kỷ 16 đến thế kỷ 18, Hội An là cảng thương mại quốc tế sầm uất nhất Đông Nam Á, nơi giao thương của thương nhân Nhật Bản, Trung Quốc, Hà Lan, Bồ Đào Nha và các nước châu Âu.\n\nChùa Cầu (cầu Nhật Bản) là biểu tượng của Hội An, được xây dựng vào năm 1593 để nối liền khu phố Nhật và khu phố Trung Hoa. Theo truyền thuyết, cầu được xây để trấn yếu một con quái vật có đầu ở Ấn Độ, thân ở Hội An và đuôi ở Nhật Bản, thường gây ra động đất.\n\nNhững ngôi nhà cổ Hội An mang đậm dấu ấn kiến trúc Việt - Trung - Nhật hòa quyện độc đáo. Nhà cổ Tấn Ký (hơn 200 năm tuổi), Phùng Hưng, Quán Thắng... đều là những kiệt tác kiến trúc với cấu trúc gỗ quý hiếm và các chi tiết chạm khắc tinh xảo.\n\nMỗi tháng âm lịch vào ngày rằm, phố cổ tắt hết đèn điện và thắp lên hàng nghìn chiếc đèn lồng rực rỡ, tái hiện không khí thời xưa - đó là đêm hội đèn lồng nổi tiếng của Hội An. Cao lầu, mì Quảng, bánh bao bánh vạc, chè bắp... là những món ăn đặc sản không thể bỏ qua. Hội An còn nổi tiếng với nghề may đo theo yêu cầu chỉ trong 24 giờ và làm đèn lồng thủ công truyền thống.",
     highlights: ["Phố cổ", "Đèn lồng", "Thưởng thức cao lầu", "Làm đèn lồng"],
+    attractions: [
+      {
+        name: "Chùa Cầu (Cầu Nhật Bản)",
+        description:
+          "Biểu tượng của Hội An, cầu cổ được xây 1593 nối phố Nhật-Trung Hoa. Kiến trúc độc đáo, điểm chụp ảnh đẹp nhất phố cổ.",
+        time: "30 phút",
+        price: "Trong vé phố cổ 120.000đ",
+      },
+      {
+        name: "Nhà cổ Tấn Ký",
+        description:
+          "Nhà cổ 200 năm tuổi, kiến trúc Việt-Trung-Nhật hòa quyện. Gỗ quý hiếm, chạm khắc tinh xảo, tham quan có hướng dẫn viên.",
+        time: "30 phút",
+        price: "Trong vé phố cổ",
+      },
+      {
+        name: "Hội quán Phúc Kiến",
+        description:
+          "Hội quán của người Hoa Phúc Kiến, kiến trúc Trung Hoa rực rỡ, thờ Thiên Hậu Thánh Mẫu. Điêu khắc gỗ, gốm sứ tuyệt đẹp.",
+        time: "45 phút",
+        price: "Trong vé phố cổ",
+      },
+      {
+        name: "Phố cổ Hội An (đi bộ khám phá)",
+        description:
+          "Dạo bộ khám phá 36 phố cổ với nhà ống đặc trưng, hàng quán, tiệm may, workshop đèn lồng. Tối đẹp nhất khi đèn lồng thắp sáng.",
+        time: "2-3 giờ",
+        price: "Vé phố cổ 120.000đ",
+      },
+      {
+        name: "Làng gốm Thanh Hà",
+        description:
+          "Làng nghề gốm 500 năm tuổi, tham quan quy trình làm gốm, trải nghiệm nặn gốm. Công viên Terracotta với tác phẩm gốm khổng lồ.",
+        time: "1.5 - 2 giờ",
+        price: "30.000đ - 50.000đ",
+      },
+      {
+        name: "Rừng dừa Bảy Mẫu",
+        description:
+          "Rừng dừa nước trên sông Thu Bồn, ngồi thúng chai, xem múa rối nước, câu cua, làm lá dừa. Trải nghiệm sinh thái thú vị.",
+        time: "2 - 3 giờ",
+        price: "150.000đ - 250.000đ",
+      },
+      {
+        name: "Bãi biển An Bàng",
+        description:
+          "Bãi biển đẹp, yên tĩnh cách phố cổ 5km. Nước biển trong xanh, cát trắng mịn. Nhiều quán cà phê, nhà hàng hải sản ven biển.",
+        time: "Nửa ngày",
+        price: "Miễn phí",
+      },
+      {
+        name: "Chợ đêm Hội An",
+        description:
+          "Chợ đêm sầm uất bên sông Hoài, mua sắm đèn lồng, hàng thủ công, quần áo. Thưởng thức ẩm thực đường phố, thả đèn hoa đăng.",
+        time: "1 - 2 giờ",
+        price: "Miễn phí (chi phí mua sắm)",
+      },
+      {
+        name: "Thánh địa Mỹ Sơn (30km)",
+        description:
+          "Di sản UNESCO, tháp Chăm Pa từ thế kỷ 4-14. Kiến trúc Hindu độc đáo. Nên đi tour có hướng dẫn viên để hiểu rõ lịch sử.",
+        time: "Nửa ngày",
+        price: "Tour: 400.000đ - 600.000đ",
+      },
+      {
+        name: "Workshop may áo & làm đèn lồng",
+        description:
+          "Trải nghiệm may áo dài hoặc làm đèn lồng thủ công. Nhiều cửa hàng cung cấp workshop ngắn 1-2 giờ, có thể mang về làm quà.",
+        time: "1 - 2 giờ",
+        price: "150.000đ - 300.000đ",
+      },
+    ],
     history:
       "Hội An từng là một cảng thương mại quốc tế, lưu giữ nhiều công trình kiến trúc truyền thống.",
     openingHours: "Mở cửa: 7:00 - 22:00 (khu phố cổ)",
@@ -122,6 +331,64 @@ export const locations = [
     introduction:
       "Sa Pa - thị trấn miền núi nằm ở độ cao 1.600m so với mực nước biển, là điểm đến lý tưởng cho những ai muốn trốn khỏi sự ồn ào của thành phố và hòa mình vào thiên nhiên hùng vĩ của vùng Tây Bắc. Với khí hậu mát mẻ quanh năm, Sa Pa được mệnh danh là 'Đà Lạt của miền Bắc'.\n\nRuộng bậc thang Sa Pa là một trong những cảnh quan đẹp nhất Việt Nam, đặc biệt vào mùa lúa chín (tháng 9-10) khi cả thung lũng chuyển sang màu vàng óng. Những thửa ruộng bậc thang được các dân tộc thiểu số như H'Mông, Dao, Tày, Giáy... tạo dựng qua hàng thế kỷ là kiệt tác của sự kiên nhẫn và trí tuệ con người.\n\nFansipan (3.143m) - 'nóc nhà Đông Dương' là điểm đến thử thách cho những ai yêu thích chinh phục. Giờ đây, du khách có thể lên đỉnh bằng hệ thống cáp treo hiện đại chỉ trong 15 phút. Từ đỉnh Fansipan, trong những ngày trời quang, bạn có thể chiêm ngưỡng toàn cảnh Sa Pa và những dãy núi hùng vĩ.\n\nCác bản làng như Cát Cát, Tả Van, Lao Chải, Tả Phìn... là nơi bạn có thể tìm hiểu về văn hóa độc đáo của các dân tộc thiểu số, tham quan các nghề thủ công truyền thống như dệt lanh, nhuộm chàm, rèn bạc. Chợ tình Sa Pa vào tối thứ 7 và chợ phiên các ngày trong tuần là nơi bạn có thể trải nghiệm văn hóa chợ núi đặc trưng.",
     highlights: ["Ruộng bậc thang", "Trekking", "Bản Cát Cát", "Fansipan"],
+    attractions: [
+      {
+        name: "Fansipan - Nóc nhà Đông Dương",
+        description:
+          "Đỉnh núi cao nhất Việt Nam 3.143m. Lên bằng cáp treo 6.3km (15 phút) hoặc trek 2 ngày. Đỉnh có chùa, tượng Phật, view tuyệt đẹp.",
+        time: "Nửa ngày (cáp treo) hoặc 2 ngày (trek)",
+        price: "Cáp treo: 700.000đ khứ hồi",
+      },
+      {
+        name: "Bản Cát Cát",
+        description:
+          "Bản làng H'Mông Black gần thị trấn nhất (2km). Thác nước, nhà máy thủy điện cũ, nghề dệt thổ cẩm, rèn bạc. Phù hợp đi bộ hoặc xe máy.",
+        time: "2 - 3 giờ",
+        price: "70.000đ vé vào bản",
+      },
+      {
+        name: "Lao Chải - Tả Van",
+        description:
+          "Trek đẹp nhất Sa Pa qua ruộng bậc thang, 2 bản làng H'Mông và Giáy. Cảnh quan tuyệt đẹp, homestay để trải nghiệm.",
+        time: "4 - 6 giờ (trek)",
+        price: "Tour: 300.000đ - 500.000đ",
+      },
+      {
+        name: "Thung lũng Mường Hoa",
+        description:
+          "Thung lũng ruộng bậc thang đẹp nhất, đá cổ khắc hình bí ẩn. Đường đi qua nhiều bản làng, cảnh quan thơ mộng.",
+        time: "Nửa ngày - 1 ngày",
+        price: "Tour hoặc thuê xe máy",
+      },
+      {
+        name: "Đỉnh Hàm Rồng",
+        description:
+          "Núi ngay thị trấn, leo 600 bậc lên đỉnh ngắm toàn cảnh Sa Pa. Vườn hoa, vườn đá, quảng trường mây. Sunset/sunrise đẹp.",
+        time: "2 - 3 giờ",
+        price: "70.000đ",
+      },
+      {
+        name: "Thác Bạc (Silver Waterfall)",
+        description:
+          "Thác cao 200m trên đường lên Fansipan. Nước đổ trắng xóa như bạc. Có cầu thang lên gần thác, nhiều điểm chụp ảnh.",
+        time: "45 phút - 1 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Cổng Trời (Heaven's Gate)",
+        description:
+          "Điểm cao nhất đèo Ô Quy Hồ 2.000m, view tuyệt đẹp nhìn xuống thung lũng. Chụp ảnh check-in nổi tiếng.",
+        time: "30 phút - 1 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Chợ tình Sa Pa",
+        description:
+          "Chợ phiên tối thứ 7 nơi thanh niên dân tộc gặp gỡ. Văn hóa độc đáo, mua đặc sản, thổ cẩm. Chợ phiên các ngày khác cũng thú vị.",
+        time: "2 - 3 giờ",
+        price: "Miễn phí",
+      },
+    ],
     history:
       "Sapa phát triển từ thời Pháp thuộc, là điểm đến trek và khám phá văn hoá dân tộc.",
     openingHours: "Mở cửa: 24/7 (điểm tham quan khác nhau)",
@@ -238,6 +505,71 @@ export const locations = [
       "Vinpearl",
       "Hải sản địa phương",
     ],
+    attractions: [
+      {
+        name: "Cáp treo Hòn Thơm (Sun World)",
+        description:
+          "Cáp treo vượt biển dài nhất thế giới 7.899m lên đảo Hòn Thơm. Công viên nước, bãi biển đẹp, buffet. View tuyệt đẹp từ cáp treo.",
+        time: "Nửa ngày - cả ngày",
+        price: "750.000đ - 850.000đ (all-in)",
+      },
+      {
+        name: "Vinpearl Safari Phú Quốc",
+        description:
+          "Vườn thú bán hoang dã đầu tiên VN với 3.000+ động vật. Xe bus tham quan, gần gũi động vật, show biểu diễn.",
+        time: "3 - 4 giờ",
+        price: "650.000đ người lớn, 550.000đ trẻ em",
+      },
+      {
+        name: "Grand World Phú Quốc",
+        description:
+          "Khu phức hợp giải trí phong cách Venice Italia: kênh đào, gondola, show diễn, ẩm thực. Tối đẹp nhất với ánh đèn lung linh.",
+        time: "2 - 3 giờ",
+        price: "Miễn phí vào, chi phí dịch vụ",
+      },
+      {
+        name: "Bãi Sao (Starfish Beach)",
+        description:
+          "Bãi biển đẹp nhất PQ: cát trắng mịn, nước xanh trong, sao biển nhiều. Yên tĩnh, hoang sơ. Nhà hàng hải sản tươi sống.",
+        time: "Nửa ngày",
+        price: "Miễn phí",
+      },
+      {
+        name: "Tour 3-4 đảo phía Nam",
+        description:
+          "Hòn Móng Tay (bãi biển đẹp), Hòn Gầm Ghì, Hòn Thơm. Lặn snorkeling, câu cá, BBQ. Nước trong như pha lê.",
+        time: "Cả ngày",
+        price: "400.000đ - 600.000đ",
+      },
+      {
+        name: "Dinh Cậu & Sunset Sanato",
+        description:
+          "Dinh thờ Thần biển của ngư dân, view hoàng hôn tuyệt đẹp. Gần đó là Sunset Sanato beach club, nghỉ dưỡng sang trọng.",
+        time: "1 - 2 giờ",
+        price: "Miễn phí (Sanato có chi phí)",
+      },
+      {
+        name: "Nhà thùng nước mắm & Chợ đêm",
+        description:
+          "Tham quan quy trình làm nước mắm truyền thống, mua đặc sản. Chợ đêm Phú Quốc sầm uất với hải sản nướng, ẩm thực.",
+        time: "2 - 3 giờ",
+        price: "Miễn phí tham quan",
+      },
+      {
+        name: "Vườn Quốc gia Phú Quốc",
+        description:
+          "Rừng nguyên sinh 50% diện tích đảo, trekking, khám phá thiên nhiên. Nhiều loài động thực vật quý hiếm. Phù hợp yêu thiên nhiên.",
+        time: "Nửa ngày",
+        price: "Miễn phí (thuê hướng dẫn viên khuyến khích)",
+      },
+      {
+        name: "Làng chài Hàm Ninh",
+        description:
+          "Làng chài truyền thống, ăn ghẹ Hàm Ninh nổi tiếng, nhum biển. Nhà hàng nổi trên biển, không khí yên bình.",
+        time: "2 - 3 giờ",
+        price: "Chi phí ăn uống",
+      },
+    ],
     history: "Phú Quốc phát triển du lịch mạnh mẽ trong những năm gần đây.",
     openingHours: "Mở cửa: 24/7 (khu du lịch)",
     price: "Chi phí tour và dịch vụ thay đổi theo mùa",
@@ -273,6 +605,71 @@ export const locations = [
     introduction:
       "Đà Lạt - thành phố ngàn hoa với khí hậu mát mẻ quanh năm (nhiệt độ trung bình 15-24°C), nằm trên cao nguyên Lâm Viên ở độ cao 1.500m. Được người Pháp phát hiện và phát triển từ cuối thế kỷ 19, Đà Lạt vẫn giữ được nét kiến trúc Pháp cổ kính qua những ngôi biệt thự, nhà thờ và công trình công cộng.\n\nHồ Xuân Hương là trung tâm của thành phố, nơi bạn có thể đi dạo, đạp xe hoặc chèo thiên nga. Xung quanh hồ là những hàng thông xanh mướt và các công viên hoa đầy màu sắc. Vườn hoa thành phố, Thung lũng Tình Yêu, Đồi Cù Lần... là những điểm chụp ảnh lý tưởng với đủ loại hoa: hoa dã quỳ, hoa hồng, hoa cẩm tú cầu, hoa mimosa...\n\nĐà Lạt nổi tiếng với các điểm tham quan như Dinh Bảo Đại (dinh thự cuối cùng của vua Bảo Đại), Nhà thờ Con Gà (Cathedral Đà Lạt), Thiền viện Trúc Lâm, Làng Cù Lần với những ngôi nhà đất sét độc đáo, Crazy House (Hang Nga Villa) với kiến trúc kỳ quái...\n\nẨm thực Đà Lạt đặc trưng với các món như lẩu gà lá é, bánh tráng nướng, sữa đậu nành, dâu tây, atiso, trà atiso... Chợ Đà Lạt và chợ đêm là nơi bạn có thể mua đặc sản địa phương như rượu sim, mứt dâu, trà atiso, hoa quả sấy khô. Đà Lạt còn là điểm đến lý tưởng cho các cặp đôi với không khí lãng mạn, các homestay xinh xắn và quán cà phê view đẹp.",
     highlights: ["Vườn hoa", "Hồ Xuân Hương", "Dinh Bảo Đại", "Chợ đêm Đà Lạt"],
+    attractions: [
+      {
+        name: "Hồ Xuân Hương & Đường Hoa",
+        description:
+          "Trung tâm Đà Lạt, đi bộ/đạp xe quanh hồ 7km. Vườn hoa Đà Lạt, thiên nga, xe ngựa. Sunset đẹp, nhiều quán cà phê view hồ.",
+        time: "2 - 3 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Crazy House (Hang Nga)",
+        description:
+          "Kiến trúc kỳ quái như cổ tích, thiết kế bởi KTS Đặng Việt Nga. Khách sạn kiêm điểm tham quan độc nhất vô nhị.",
+        time: "1 - 1.5 giờ",
+        price: "60.000đ",
+      },
+      {
+        name: "Thiền viện Trúc Lâm",
+        description:
+          "Chùa yên tĩnh trên đồi Robin Hill, view hồ Tuyền Lâm tuyệt đẹp. Đi cáp treo lên (2.5km). Không khí thanh tịnh.",
+        time: "2 - 3 giờ",
+        price: "Cáp treo: 70.000đ khứ hồi",
+      },
+      {
+        name: "Dinh Bảo Đại",
+        description:
+          "Dinh thự mùa hè cuối cùng của vua Bảo Đại (1938). Kiến trúc Pháp, nội thất cổ điển, tìm hiểu lịch sử hoàng gia.",
+        time: "1 - 1.5 giờ",
+        price: "50.000đ",
+      },
+      {
+        name: "Thung lũng Tình Yêu",
+        description:
+          "Thung lũng hoa, hồ Đa Thiện, cưỡi ngựa, chụp ảnh. Phù hợp cặp đôi, gia đình. Nhiều góc check-in lãng mạn.",
+        time: "2 - 3 giờ",
+        price: "30.000đ",
+      },
+      {
+        name: "Đồi Cù Lần - Làng Cù Lần",
+        description:
+          "Làng cổ với nhà đất, nông trường chè, cà phê. View đồi núi tuyệt đẹp, chụp ảnh vintage. Cafe view đẹp nhiều.",
+        time: "2 - 3 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Ga Đà Lạt",
+        description:
+          "Ga xe lửa cổ kiến trúc Pháp (1938), tàu cổ chạy đến Trại Mát 7km. Điểm chụp ảnh đẹp với tàu hỏa cổ.",
+        time: "1 - 2 giờ",
+        price: "Vé tàu: 120.000đ khứ hồi",
+      },
+      {
+        name: "Chùa Linh Phước",
+        description:
+          "Chùa ốp vỏ sò, gốm sứ độc đáo. Chùa Ve Chai nổi tiếng với nghệ thuật ghép mảnh. Tượng Phật 48m cao nhất Đà Lạt.",
+        time: "1 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Chợ Đà Lạt & Chợ đêm",
+        description:
+          "Mua đặc sản: dâu tây, atiso, hoa quả sấy, mứt, rượu. Chợ đêm ẩm thực đường phố phong phú, bánh tráng nướng nổi tiếng.",
+        time: "1 - 2 giờ",
+        price: "Miễn phí (chi phí mua sắm)",
+      },
+    ],
     history: "Đà Lạt được xếp loại là khu nghỉ dưỡng từ thời Pháp thuộc.",
     openingHours: "Mở cửa: 24/7 (điểm tham quan khác nhau)",
     price: "Chi phí vào các vườn hoa và khu du lịch thường thấp (20k-150k)",
@@ -349,6 +746,64 @@ export const locations = [
       "Lặn Hòn Mun",
       "Vinpearl",
       "Ẩm thực hải sản",
+    ],
+    attractions: [
+      {
+        name: "Vinpearl Land & Cáp treo",
+        description:
+          "Công viên giải trí lớn trên đảo Hòn Tre: nước, trong nhà, thủy cung. Cáp treo vượt biển 3.320m dài nhất thế giới. Vui chơi cả ngày.",
+        time: "Cả ngày",
+        price: "850.000đ - 1.000.000đ (all-in)",
+      },
+      {
+        name: "Tour 4 đảo (Lặn & Snorkeling)",
+        description:
+          "Tour phổ biến nhất: Hòn Mun lặn ngắm san hô, Hòn Tằm tắm biển, Hòn Mót câu cá, aquarium. BBQ trưa trên tàu.",
+        time: "Cả ngày (8h-16h)",
+        price: "300.000đ - 500.000đ",
+      },
+      {
+        name: "Tháp Bà Ponagar",
+        description:
+          "Tháp Chăm Pa cổ thế kỷ 7-12, kiến trúc Hindu độc đáo. View sông Cái đẹp, tìm hiểu văn hóa Chăm. Sunset đẹp.",
+        time: "1 - 1.5 giờ",
+        price: "22.000đ",
+      },
+      {
+        name: "Viện Hải dương học",
+        description:
+          "Bể cá lớn với 20.000+ mẫu vật sinh vật biển: cá mập, rùa, cá đuối... Trẻ em thích thú. Hiểu về sinh vật biển Việt Nam.",
+        time: "1.5 - 2 giờ",
+        price: "40.000đ người lớn, 20.000đ trẻ em",
+      },
+      {
+        name: "Chùa Long Sơn & Tượng Phật trắng",
+        description:
+          "Chùa cổ từ 1886, tượng Phật trắng 24m trên núi. Leo 193 bậc lên đỉnh ngắm toàn cảnh thành phố. Yên tĩnh thanh tịnh.",
+        time: "1 - 1.5 giờ",
+        price: "Miễn phí",
+      },
+      {
+        name: "Tắm bùn I-Resort / 100 Eggs",
+        description:
+          "Trải nghiệm tắm bùn khoáng nóng, thư giãn spa. I-Resort rộng đẹp, 100 Eggs view biển. Phù hợp gia đình, cặp đôi.",
+        time: "2 - 3 giờ",
+        price: "250.000đ - 600.000đ",
+      },
+      {
+        name: "Hòn Chồng - Vườn đá",
+        description:
+          "Khu đá tự nhiên độc đáo bên biển, truyền thuyết tình yêu. View biển đẹp, chụp ảnh. Gần trung tâm, phù hợp chiều tối.",
+        time: "1 giờ",
+        price: "22.000đ",
+      },
+      {
+        name: "Chợ Đầm & Chợ đêm",
+        description:
+          "Chợ lớn nhất NT mua đặc sản: yến sào, hải sản khô, trái cây. Chợ đêm đường Trần Phú ẩm thực, hàng lưu niệm.",
+        time: "1 - 2 giờ",
+        price: "Miễn phí (chi phí mua sắm)",
+      },
     ],
     history:
       "Nha Trang phát triển du lịch biển từ lâu, có nhiều resort và hoạt động biển.",
